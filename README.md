@@ -27,7 +27,7 @@ Docker containers made from scratch to collect data from the Linux server.
 
 This will be built based on a homemade docker stack, which includes Nginx for WebGUI and MySQL for database.
 
-CnC WebGUI Managed will be made in HTML, CSS and Javascript. CnC Monitor Agent will be made in bash, with either cron or systemctl as run-timer.
+CnC WebGUI Managed will be made in HTML, Php, CSS and Javascript. CnC Monitor Agent will be made in bash, with either cron or systemctl as run-timer.
 
 #### Remote Management 
 
