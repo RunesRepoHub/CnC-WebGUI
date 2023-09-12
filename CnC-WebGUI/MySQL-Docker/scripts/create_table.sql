@@ -16,3 +16,14 @@ ALTER TABLE `info`
 GO
 ALTER TABLE `info`
   MODIFY `machine_id` int(11) NOT NULL AUTO_INCREMENT;
+GO
+CREATE TABLE `hostnames` (
+  `machine_id` int(11) NOT NULL,
+  `hostname` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+GO
+ALTER TABLE `hostnames`
+  ADD PRIMARY KEY (`machine_id`);
+GO
+ALTER TABLE `hostnames`
+  MODIFY `machine_id` int(11) NOT NULL AUTO_INCREMENT;
