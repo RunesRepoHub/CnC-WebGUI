@@ -4,6 +4,11 @@ WebGUI for giving overview to my CnC Bash Script
 Docker containers made from scratch to collect data from the Linux server.
 
 
+## Status
+
+This is still an internal tools and has not been made available to the public yet.
+It is also still under development and is not yet production ready.
+
 ### Basic Operation Procedures (BOP)
 
 - Collect CPU, RAM and Disk usage.
@@ -44,7 +49,7 @@ So I make a bash script that sets up a Linux server to a CnC WebGUI Manager, as 
 
 It will most likely be added 2 separate bash scripts containing Tailscale VPN for Remote Management.
 
-KEEP IT SIMPLE STUPID 🤣
+KEEP IT SIMPLE STUPID.
 
 ## Software license 
 
