@@ -29,7 +29,7 @@
 
 
 <?php
-$servername = "192.168.1.191";
+$servername = "192.168.1.100";
 $username = "root";
 $password = "12Marvel";
 $dbname = "machines";
@@ -83,7 +83,7 @@ mysqli_close($link);
 </div>
 
 <?php
-$servername = "192.168.1.191";
+$servername = "192.168.1.100";
 $username = "root";
 $password = "12Marvel";
 $dbname = "machines";
