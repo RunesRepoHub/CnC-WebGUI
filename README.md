@@ -3,6 +3,7 @@ WebGUI for giving overview to my CnC Bash Script
 
 Docker containers made from scratch to collect data from the Linux server.
 
+![Alt text](image.png)
 
 ## Status
 

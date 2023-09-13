@@ -2,6 +2,7 @@ version: "3.2"
 services:
   cnc-webgui-db:
     image: cnc-mysql:1.0 
+    restart: always
     ports:
       - "3306:3306"
     environment:
@@ -9,6 +10,8 @@ services:
       - MYSQL_DATABASE=machines
       - MYSQL_ROOT_HOST=%
     command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./src:/cnc-webgui/db
   web:
     image: cnc-web:1.0
     environment:
@@ -17,9 +20,10 @@ services:
       - MYSQL_PASSWORD=12Marvel
       - MYSQL_DATABASE=machines
       - MYSQL_HOST=db
+    restart: always
     ports:
       - "8080:80"
     depends_on:
       - cnc-webgui-db
     volumes:
-      - ./src:/app/public
+      - ./src:/cnc-webgui/web
