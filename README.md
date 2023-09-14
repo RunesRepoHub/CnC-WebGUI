@@ -51,33 +51,3 @@ So I make a bash script that sets up a Linux server to a CnC WebGUI Manager, as 
 It will most likely be added 2 separate bash scripts containing Tailscale VPN for Remote Management.
 
 KEEP IT SIMPLE STUPID.
-
-
-### Links and Sources
-
-#### MySQL Docker:
-
-```embed
-title: "Build a custom MySQL Docker Container"
-image: ""
-description: "Tired of going through endless documentation for setting up your database in any computer apart from…"
-url: "https://dev.to/sumana2001/build-a-custom-mysql-docker-container-404f"
-```
-
-#### Agent MySQL insert Data
-
-```embed
-title: "Using shell script to insert data into remote MYSQL database"
-image: "https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon@2.png?v=73d79a89bded"
-description: "I’ve been trying to get a shell(bash) script to insert a row into a REMOTE database, but I’ve been having some trouble :( The script is meant to upload a file to a server, get a URL, HASH, and a file"
-url: "https://stackoverflow.com/questions/3900496/using-shell-script-to-insert-data-into-remote-mysql-database"
-```
-
-#### MySQL Install on Debian 10
-
-```embed
-title: "How To Install the Latest MySQL on Debian 10 | DigitalOcean"
-image: ""
-description: "MySQL is a prominent open source database management system used to store and retrieve data for a wide variety of popular applications. MySQL is the M in the…"
-url: "https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-debian-10"
-```
