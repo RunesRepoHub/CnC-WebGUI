@@ -52,13 +52,6 @@ It will most likely be added 2 separate bash scripts containing Tailscale VPN fo
 
 KEEP IT SIMPLE STUPID.
 
-## Software license 
-
-The "software solution" will require an active license, which will be checked at startup.
-
-So this software will not work without a license and/or internet.
-
-However, the source code will be partially or fully available via github.
 
 ### Links and Sources
 
