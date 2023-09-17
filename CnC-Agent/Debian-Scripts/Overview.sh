@@ -41,6 +41,8 @@ else
     VER=$(uname -r)
 fi
 
+disto="$OS $VER"
+
 # MySQL server credentials
 DB_HOST="$databaseip"
 DB_USER="root"
