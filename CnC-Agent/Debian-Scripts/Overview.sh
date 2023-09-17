@@ -57,14 +57,14 @@ update_data() {
     
     # Update the data in the database
     mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" <<EOF
-    UPDATE network_info
+    UPDATE info
     SET packages='$packages'
     WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND distro='$distro';
 EOF
 }
 
 # Check if the data exists in the database
-result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM network_info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND distro='$distro';")
+result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND distro='$distro';")
 
 # If data exists, update it; otherwise, insert a new record
 if [ -n "$result" ]; then
@@ -73,7 +73,7 @@ if [ -n "$result" ]; then
 else
     # Insert new data into the database
     mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" <<EOF
-    INSERT INTO network_info (hostname, ip_address, mac_address, distro, packages)
+    INSERT INTO info (hostname, ip_address, mac_address, distro, packages)
     VALUES ('$hostname', '$ip_address', '$mac_address', '$distro', '$packages');
 EOF
     echo "Data inserted."
