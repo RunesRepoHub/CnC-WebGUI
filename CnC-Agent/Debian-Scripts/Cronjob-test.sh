@@ -14,13 +14,13 @@ END=5
 i=$START
 while [[ $i -le $END ]]
 do
-    if [ $i === 1 ]; then
+    if [ $i == 1 ]; then
     job1=$(crontab -l | grep -i Overview)
     
-    elif [ $i === 2 ]; then
+    elif [ $i == 2 ]; then
     job2=$(crontab -l | grep -i Packages-test)
     
-    elif [ $i === 3 ]; then
+    elif [ $i == 3 ]; then
     job3=$(crontab -l | grep -i Cronjob-test)
 
     else
@@ -28,11 +28,11 @@ do
     fi
     # Data to insert if it doesn't exist in the database
     VAR1="$hn"
-    if [ $i === 1 ]; then
+    if [ $i == 1 ]; then
     VAR2="$job1"
-    elif [ $i === 2 ]; then
+    elif [ $i == 2 ]; then
     VAR2="$job2"
-    elif [ $i === 3 ]; then
+    elif [ $i == 3 ]; then
     VAR2="$job3"
     else
         echo "Failed to run"
