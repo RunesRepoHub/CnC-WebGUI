@@ -35,175 +35,117 @@ mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines <<
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job1');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job2');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job3');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job4');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job5');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job6');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job7');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job8');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job9');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job10');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job11');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job12');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job13');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job14');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job15');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job16');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job17');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job18');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job19');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job20');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job21');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job22');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job23');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job24');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job25');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job26');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job27');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job28');
 EOF
 
-pause 2
-
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job29');
 EOF
-
-pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cron_jobs_scripts) values('$hn','$job30');
