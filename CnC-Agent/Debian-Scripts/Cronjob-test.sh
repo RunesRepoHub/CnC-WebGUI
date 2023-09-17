@@ -24,7 +24,7 @@ do
     job3=$(crontab -l | grep -i Cronjob-test | sed -n '1 p')
 
     else
-        echo "Failed to run"
+        echo ""
     fi
     # Data to insert if it doesn't exist in the database
     VAR1="$hn"
@@ -35,7 +35,7 @@ do
     elif [ $i == 3 ]; then
     VAR2="$job3"
     else
-        echo "Failed to run"
+        echo ""
     fi
 
     # Check if the data already exists in the database
