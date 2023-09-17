@@ -37,5 +37,7 @@ EXPOSE 80 443
 ENTRYPOINT ["/etc/entrypoint.sh"]
 
 COPY ./index.html /var/www/mysite/index.html
-COPY ./Database-login.php /var/www/mysite/Database-login.php
+COPY ./packages.php /var/www/mysite/packages.php
+COPY ./cronjob.php /var/www/mysite/cronjob.php
+COPY ./overview.php /var/www/mysite/overview.php
 COPY ./style.css /var/www/mysite/style.css

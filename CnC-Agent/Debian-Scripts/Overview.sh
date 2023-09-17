@@ -2,6 +2,11 @@ databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 
 hn=$(echo $HOSTNAME)
 
+mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
+"SELECT * FROM info WHERE $hn;"
+EOF
+
+
 ip=$(hostname -I | awk '{print $1}')
 
 mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
