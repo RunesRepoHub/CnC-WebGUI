@@ -8,7 +8,7 @@ sudo dpkg -i /tmp/mysql-apt-config* > /dev/null 2>&1
 
 apt update > /dev/null 2>&1
 
-apt install mysql-server -y > /dev/null 2>&1
+apt install mysql-server -y 
 
 systemctl stop mysql > /dev/null 2>&1
 systemctl disable mysql > /dev/null 2>&1
