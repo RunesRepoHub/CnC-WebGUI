@@ -48,7 +48,7 @@ if($link === false){
 }
 
 // Attempt select query execution
-$sql = "SELECT * FROM info WHERE cronjobs = 'Iron Man'";
+$sql = "SELECT * FROM cronjobs";
 if($result = mysqli_query($link, $sql)){
   if(mysqli_num_rows($result) > 0){
         echo '<div class="product-box">';
@@ -57,14 +57,12 @@ if($result = mysqli_query($link, $sql)){
               echo "<th>Machine ID</th>";
               echo "<th>Hostname</th>";
               echo "<th>Cron Jobs Script</th>";
-              echo "<th>Cron Run Time</th>";
           echo "</tr>";
       while($row = mysqli_fetch_array($result)){
           echo "<tr>";
               echo "<td>" . $row['machine_id'] . "</td>";
               echo "<td>" . $row['hostname'] . "</td>";
               echo "<td>" . $row['cron_jobs_scripts'] . "</td>";
-              echo "<td>" . $row['cron_run_time'] . "</td>";
           echo "</tr>";
       }
       echo "</table>";
