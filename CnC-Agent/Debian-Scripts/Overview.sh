@@ -52,29 +52,29 @@ update_data() {
     local hostname="$hn"
     local ip_address="$ip"
     local mac_address="$mac_address"
-    local distro="$OS $VER"
+    local disto="$OS $VER"
     local packages="$packages"
     
     # Update the data in the database
     mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" <<EOF
     UPDATE info
     SET packages='$packages'
-    WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND distro='$distro';
+    WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';
 EOF
 }
 
 # Check if the data exists in the database
-result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND distro='$distro';")
+result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';")
 
 # If data exists, update it; otherwise, insert a new record
 if [ -n "$result" ]; then
-    update_data "$hostname" "$ip_address" "$mac_address" "$distro" "$packages"
+    update_data "$hostname" "$ip_address" "$mac_address" "$disto" "$packages"
     echo "Data updated."
 else
     # Insert new data into the database
     mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" <<EOF
-    INSERT INTO info (hostname, ip_address, mac_address, distro, packages)
-    VALUES ('$hostname', '$ip_address', '$mac_address', '$distro', '$packages');
+    INSERT INTO info (hostname, ip_address, mac_address, disto, packages)
+    VALUES ('$hostname', '$ip_address', '$mac_address', '$disto', '$packages');
 EOF
     echo "Data inserted."
 fi
