@@ -7,7 +7,7 @@ hn=$(echo $HOSTNAME)
 
 ip=$(hostname -I | awk '{print $1}')
 
-mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
+mac=$(cat /sys/class/net/*/address | sed -n '1 p')
 
 packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
 
@@ -41,6 +41,8 @@ else
     VER=$(uname -r)
 fi
 
+OSVER="$OS $VER"
+
 # MySQL server credentials
 DB_HOST="$databaseip"
 DB_USER="root"
@@ -51,8 +53,8 @@ DB_NAME="machines"
 update_data() {
     local hostname="$hn"
     local ip_address="$ip"
-    local mac_address="$mac_address"
-    local disto="$OS $VER"
+    local mac_address="$mac"
+    local disto="$OSVER"
     local packages="$packages"
     
     # Update the data in the database
