@@ -61,7 +61,6 @@ elif
     
     ## Run Debian Installer
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
-    fi
 elif
     ## Check if OS is Ubuntu 22.04 
     if [[ $OS == "Ubuntu" && $VER == "22.04" ]];
@@ -77,7 +76,6 @@ elif
 
     ## Git clone the files from the github repo
     git clone https://github.com/rune004/CnC-WebGUI.git ~/
-    fi
 else
 echo "Unsupported OS"
 fi
