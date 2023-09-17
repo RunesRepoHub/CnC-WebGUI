@@ -2,8 +2,6 @@
 databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 hn=$(echo $HOSTNAME)
 
-job1=$(crontab -l | sed -n '1 p')
-
 # MySQL database connection details
 DB_HOST="$databaseip"
 DB_PORT="3306"
@@ -16,11 +14,29 @@ END=5
 i=$START
 while [[ $i -le $END ]]
 do
-    job1=$(crontab -l | sed -n "'$i p'")
+    if [ $i === 1 ]; then
+    job1=$(crontab -l | grep -i Overview)
+    
+    elif [ $i === 2 ]; then
+    job2=$(crontab -l | grep -i Packages-test)
+    
+    elif [ $i === 3 ]; then
+    job3=$(crontab -l | grep -i Cronjob-test)
 
+    else
+        echo "Failed to run"
+    fi
     # Data to insert if it doesn't exist in the database
     VAR1="$hn"
+    if [ $i === 1 ]; then
     VAR2="$job1"
+    elif [ $i === 2 ]; then
+    VAR2="$job2"
+    elif [ $i === 3 ]; then
+    VAR2="$job3"
+    else
+        echo "Failed to run"
+    fi
 
     # Check if the data already exists in the database
     existing_data=$(mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "SELECT * FROM cronjobs WHERE hostname='$VAR1' AND cron_jobs_scripts='$VAR2';")
@@ -33,5 +49,5 @@ do
     else
     echo "Data already exists in the database."
     fi
-   ((i = i + 1))
+    ((i = i + 1))
 done
