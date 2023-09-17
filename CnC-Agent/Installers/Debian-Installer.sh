@@ -1,3 +1,9 @@
+## Setup dialog
+apt-get install dialog > /dev/null 2>&1
+dialog --create-rc ~/.dialogrc
+cat ~/CnC-WebGUI/CnC-Agent/Installers/dialog.txt > ~/.dialogrc
+
+
 # Dialog input to get database IP
 databaseip=$(\
   dialog --title "Database IP" \
