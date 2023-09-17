@@ -1,17 +1,17 @@
 echo "Installing MySQL"
-apt update
-apt install gnupg -y
+apt update > /dev/null 2>&1
+apt install gnupg -y > /dev/null 2>&1
 
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1
 
-sudo dpkg -i /tmp/mysql-apt-config*
+sudo dpkg -i /tmp/mysql-apt-config* > /dev/null 2>&1
 
-apt update
+apt update > /dev/null 2>&1
 
-apt install mysql-server -y
+apt install mysql-server -y > /dev/null 2>&1
 
-systemctl stop mysql
-systemctl disable mysql
+systemctl stop mysql > /dev/null 2>&1
+systemctl disable mysql > /dev/null 2>&1
 
 read -p "Database IP: " databaseip
 

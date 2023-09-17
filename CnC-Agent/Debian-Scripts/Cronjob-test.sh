@@ -33,178 +33,178 @@ job30=$(crontab -l | sed -n '30 p')
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job1');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job2');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job3');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job4');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job5');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job6');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job7');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job8');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job9');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job10');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job11');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job12');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job13');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job14');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job15');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job16');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job17');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job18');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job19');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job20');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job21');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job22');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job23');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job24');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job25');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job26');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job27');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job28');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job29');
-EOF > /dev/null 2>&1
+EOF 
 
 pause 2
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into cronjobs (hostname,cronjobs) values('$hn','$job30');
-EOF > /dev/null 2>&1
+EOF 
