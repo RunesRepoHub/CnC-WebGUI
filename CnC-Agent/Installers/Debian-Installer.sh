@@ -2,9 +2,9 @@ echo "Installing MySQL"
 apt update > /dev/null 2>&1
 apt install gnupg -y > /dev/null 2>&1
 
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp 
 
-sudo dpkg -i /tmp/mysql-apt-config* > /dev/null 2>&1
+sudo dpkg -i /tmp/mysql-apt-config* 
 
 apt update > /dev/null 2>&1
 
