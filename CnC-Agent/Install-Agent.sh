@@ -30,53 +30,29 @@ fi
 
 
 ## Check if OS is Debian 10 
-if [[ $OS == "Debian GNU/Linux" && $VER == "10" ]];
-then
-    ## Update the OS
-    echo "Running apt-get update"
-    apt-get update > /dev/null 2>&1
-
-    ## Install Git to use git clone 
-    echo "Installing git"
-    apt-get install git -y > /dev/null 2>&1
-
+if [[ $OS == "Debian GNU/Linux" && $VER == "10" ]]; then
     ## Git clone the files from the github repo
     git clone https://github.com/rune004/CnC-WebGUI.git ~/
     
     ## Run Debian Installer
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
-elif
-    if [[ $OS == "Debian GNU/Linux" && $VER == "11" ]];
-    then
-    ## Update the OS
-    echo "Running apt-get update"
-    apt-get update > /dev/null 2>&1
 
-    ## Install Git to use git clone 
-    echo "Installing git"
-    apt-get install git -y > /dev/null 2>&1
-
+## Check if OS is Debian 10     
+elif [[ $OS == "Debian GNU/Linux" && $VER == "11" ]]; then
     ## Git clone the files from the github repo
     git clone https://github.com/rune004/CnC-WebGUI.git ~/
     
     ## Run Debian Installer
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
-elif
-    ## Check if OS is Ubuntu 22.04 
-    if [[ $OS == "Ubuntu" && $VER == "22.04" ]];
-    then
-    ## Run Debian Installer
-    ## Update the OS
-    echo "Running apt-get update"
-    apt-get update > /dev/null 2>&1
 
-    ## Install Git to use git clone 
-    echo "Installing git"
-    apt-get install git -y > /dev/null 2>&1
-
+## Check if OS is Ubuntu 22.04 
+elif [[ $OS == "Ubuntu" && $VER == "22.04" ]]; then
     ## Git clone the files from the github repo
     git clone https://github.com/rune004/CnC-WebGUI.git ~/
+    
+    ## Run Debian Installer
+    bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
+
 else
 echo "Unsupported OS"
 fi
-
