@@ -31,24 +31,18 @@ fi
 
 ## Check if OS is Debian 10 
 if [[ $OS == "Debian GNU/Linux" && $VER == "10" ]]; then
-    ## Git clone the files from the github repo
-    git clone https://github.com/rune004/CnC-WebGUI.git ~/
     
     ## Run Debian Installer
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
 
 ## Check if OS is Debian 10     
 elif [[ $OS == "Debian GNU/Linux" && $VER == "11" ]]; then
-    ## Git clone the files from the github repo
-    git clone https://github.com/rune004/CnC-WebGUI.git ~/
     
     ## Run Debian Installer
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
 
 ## Check if OS is Ubuntu 22.04 
 elif [[ $OS == "Ubuntu" && $VER == "22.04" ]]; then
-    ## Git clone the files from the github repo
-    git clone https://github.com/rune004/CnC-WebGUI.git ~/
     
     ## Run Debian Installer
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
