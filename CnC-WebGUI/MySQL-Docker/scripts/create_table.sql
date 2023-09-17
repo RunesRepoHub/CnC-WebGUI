@@ -58,9 +58,9 @@ CREATE TABLE `cronjobs` (
   `cron_run_time` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 GO
-ALTER TABLE `info`
+ALTER TABLE `cronjobs`
   ADD PRIMARY KEY (`machine_id`);
 GO
-ALTER TABLE `info`
+ALTER TABLE `cronjobs`
   MODIFY `machine_id` int(11) NOT NULL AUTO_INCREMENT;
 GO
