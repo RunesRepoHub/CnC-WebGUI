@@ -1,3 +1,5 @@
+databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+
 hn=$(echo $HOSTNAME)
 
 ip=$(hostname -I | awk '{print $1}')

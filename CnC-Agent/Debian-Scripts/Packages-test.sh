@@ -1,3 +1,5 @@
+databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+
 git=$(apt list --installed 2>/dev/null | grep -i git/ | awk '{print $2}')
 wget=$(apt list --installed 2>/dev/null | grep -i wget | awk '{print $2}')
 sudo=$(apt list --installed 2>/dev/null | grep -i sudo | awk '{print $2}')
@@ -13,6 +15,6 @@ containerd=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{pr
 hn=$(echo $HOSTNAME)
 
 
-mysql --host=192.168.1.100 --port=3306 --user=root --password=12Marvel machines << EOF
+mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
 insert into packages (hostname,git,wget,sudo,python,python3,nettools,mysql,libpython,dockercecli,dockercomposeplugin,curl,containerd) values('$hn','$git','$wget','$sudo','$python','$python3','$nettools','$mysql','$libpython','$dockercecli','$dockercomposeplugin','$curl','$containerd');
 EOF
