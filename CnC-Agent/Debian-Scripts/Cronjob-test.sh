@@ -16,7 +16,7 @@ END=5
 i=$START
 while [[ $i -le $END ]]
 do
-    job1=$(crontab -l | sed -n '1 p')
+    job1=$(crontab -l | sed -n '$i p')
 
     # Data to insert if it doesn't exist in the database
     VAR1="$hn"
