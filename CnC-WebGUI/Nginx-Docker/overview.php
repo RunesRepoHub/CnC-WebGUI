@@ -33,7 +33,6 @@
    </head>
 <body>
 
-
 <?php
 $servername = "cnc-webgui-db";
 $username = "root";
@@ -48,7 +47,7 @@ if($link === false){
 }
 
 // Attempt select query execution
-$sql = "SELECT * FROM cronjobs";
+$sql = "SELECT * FROM info";
 if($result = mysqli_query($link, $sql)){
   if(mysqli_num_rows($result) > 0){
         echo '<div class="product-box">';
@@ -56,13 +55,19 @@ if($result = mysqli_query($link, $sql)){
           echo "<tr>";
               echo "<th>Machine ID</th>";
               echo "<th>Hostname</th>";
-              echo "<th>Cron Jobs Script</th>";
+              echo "<th>IP Address</th>";
+              echo "<th>MAC Address</th>";
+              echo "<th>Disto</th>";
+              echo "<th>Packages</th>";
           echo "</tr>";
       while($row = mysqli_fetch_array($result)){
           echo "<tr>";
               echo "<td>" . $row['machine_id'] . "</td>";
               echo "<td>" . $row['hostname'] . "</td>";
-              echo "<td>" . $row['cron_jobs_scripts'] . "</td>";
+              echo "<td>" . $row['ip_address'] . "</td>";
+              echo "<td>" . $row['mac_address'] . "</td>";
+              echo "<td>" . $row['disto'] . "</td>";
+              echo "<td>" . $row['packages'] . "</td>";
           echo "</tr>";
       }
       echo "</table>";
