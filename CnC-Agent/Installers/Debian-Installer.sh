@@ -1,6 +1,6 @@
 echo "Installing MySQL"
 apt update
-apt install gnupg
+apt install gnupg -y
 
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp
 
@@ -8,7 +8,7 @@ sudo dpkg -i /tmp/mysql-apt-config*
 
 apt update
 
-apt install mysql-server
+apt install mysql-server -y
 
 systemctl stop mysql
 systemctl disable mysql
