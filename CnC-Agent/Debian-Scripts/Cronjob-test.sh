@@ -15,13 +15,13 @@ i=$START
 while [[ $i -le $END ]]
 do
     if [ $i == 1 ]; then
-    job1=$(crontab -l | grep -i Overview)
+    job1=$(crontab -l | grep -i Overview | sed -n '1 p')
     
     elif [ $i == 2 ]; then
-    job2=$(crontab -l | grep -i Packages-test)
+    job2=$(crontab -l | grep -i Packages-test | sed -n '1 p')
     
     elif [ $i == 3 ]; then
-    job3=$(crontab -l | grep -i Cronjob-test)
+    job3=$(crontab -l | grep -i Cronjob-test | sed -n '1 p')
 
     else
         echo "Failed to run"
