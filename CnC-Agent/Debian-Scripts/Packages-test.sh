@@ -10,7 +10,7 @@ dockercecli=$(apt list --installed 2>/dev/null | grep -i docker-ce-cli | awk '{p
 dockercomposeplugin=$(apt list --installed 2>/dev/null | grep -i docker-compose-plugin | awk '{print $2}')
 curl=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}')
 containerd=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}')
-hn=$(cat /proc/sys/kernel/hostnamef)
+hn=$($HOSTNAME)
 
 
 mysql --host=192.168.1.100 --port=3306 --user=root --password=12Marvel machines << EOF
