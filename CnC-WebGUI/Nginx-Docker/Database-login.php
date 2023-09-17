@@ -48,7 +48,7 @@ if($link === false){
 }
 
 // Attempt select query execution
-$sql = "SELECT * FROM info WHERE hostname = 'Iron Man'";
+$sql = "SELECT * FROM info";
 if($result = mysqli_query($link, $sql)){
   if(mysqli_num_rows($result) > 0){
         echo '<div class="product-box">';

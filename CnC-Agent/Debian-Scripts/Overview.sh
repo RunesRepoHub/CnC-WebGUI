@@ -4,7 +4,7 @@ hn=$(echo $HOSTNAME)
 
 ip=$(hostname -I | awk '{print $1}')
 
-mac_address=$(/sbin/ifconfig ens18 | sed -n '2 p' | awk '{print $2}')
+mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
 
 packages=$(apt-get -s --no-download dist-upgrade -V --fix-missing | grep '=>')
 
