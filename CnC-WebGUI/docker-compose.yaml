@@ -1,7 +1,7 @@
 version: "3.2"
 services:
   cnc-webgui-db:
-    image: cnc-mysql:1.0 
+    image: 192.168.1.140:5000/cnc-mysql:1.0 
     restart: always
     ports:
       - "3306:3306"
@@ -13,7 +13,7 @@ services:
     volumes:
       - ./src:/cnc-webgui/db
   web:
-    image: cnc-web:1.0
+    image: 192.168.1.140:5000/cnc-web:1.0
     environment:
       - MYSQL_ROOT_PASSWORD=12Marvel
       - MYSQL_USER=root

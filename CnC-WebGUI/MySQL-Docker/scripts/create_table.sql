@@ -50,3 +50,17 @@ ALTER TABLE `packages`
 GO
 ALTER TABLE `packages`
   MODIFY `machine_id` int(11) NOT NULL AUTO_INCREMENT;
+GO
+CREATE TABLE `cronjobs` (
+  `machine_id` int(11) NOT NULL,
+  `hostname` varchar(255) NOT NULL DEFAULT '',
+  `cron_jobs_scripts` varchar(255) NOT NULL DEFAULT '',
+  `cron_run_time` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+GO
+ALTER TABLE `cronjobs`
+  ADD PRIMARY KEY (`machine_id`);
+GO
+ALTER TABLE `cronjobs`
+  MODIFY `machine_id` int(11) NOT NULL AUTO_INCREMENT;
+GO
