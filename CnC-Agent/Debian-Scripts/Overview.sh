@@ -42,10 +42,10 @@ else
 fi
 
 # MySQL server credentials
-DB_HOST="your_mysql_host"
-DB_USER="your_mysql_user"
-DB_PASS="your_mysql_password"
-DB_NAME="your_mysql_database"
+DB_HOST="$databaseip"
+DB_USER="root"
+DB_PASS="12Marvel"
+DB_NAME="machines"
 
 # Function to update data in the database
 update_data() {
