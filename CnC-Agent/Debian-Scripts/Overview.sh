@@ -3,7 +3,7 @@ databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 hn=$(echo $HOSTNAME)
 
 mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
-"SELECT * FROM info WHERE $hn;"
+SELECT * FROM info WHERE $hn
 EOF
 
 
