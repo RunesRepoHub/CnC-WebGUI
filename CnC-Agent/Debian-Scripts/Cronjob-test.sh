@@ -8,7 +8,7 @@ DB_PORT="3306"
 DB_USER="root"
 DB_PASSWORD="12Marvel"
 DB_NAME="machines"
-START=1
+START=0
 END=5
 ## save $START, just in case if we need it later ##
 i=$START
@@ -24,7 +24,7 @@ do
     job3=$(crontab -l | grep -i Cronjob-test | sed -n '1 p')
 
     else
-        echo ""
+        ((i = i + 1))
     fi
     # Data to insert if it doesn't exist in the database
     VAR1="$hn"
@@ -35,7 +35,7 @@ do
     elif [ $i == 3 ]; then
     VAR2="$job3"
     else
-        echo ""
+        ((i = i + 1))
     fi
 
     # Check if the data already exists in the database

@@ -58,7 +58,7 @@ if($result = mysqli_query($link, $sql)){
               echo "<th>IP Address</th>";
               echo "<th>MAC Address</th>";
               echo "<th>Disto</th>";
-              echo "<th>Packages</th>";
+              echo "<th>Package Updates</th>";
           echo "</tr>";
       while($row = mysqli_fetch_array($result)){
           echo "<tr>";
