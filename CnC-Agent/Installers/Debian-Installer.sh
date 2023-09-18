@@ -32,7 +32,7 @@ clear
 read -p "Database IP: " databaseip
 
 # IP address and port to check
-ip_address="databaseip"
+ip_address="$databaseip"
 port="3306"
 
 # Check if the port is open
