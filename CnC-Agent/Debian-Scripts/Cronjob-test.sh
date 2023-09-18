@@ -16,16 +16,16 @@ while [[ $i -le $END ]]
 do
     VAR1="$hn"
     if [ $i == 1 ]; then
-    job1=$(crontab -l | grep -i Cronjob-test | sed -n '1 p')
+    job1=$(crontab -l | grep -i Cronjob-test)
     
     elif [ $i == 2 ]; then
-    job2=$(crontab -l | grep -i Packages-test | sed -n '1 p')
+    job2=$(crontab -l | grep -i Packages-test)
     
     elif [ $i == 3 ]; then
-    job3=$(crontab -l | grep -i Overview | sed -n '1 p')
+    job3=$(crontab -l | grep -i Overview)
 
     else
-        ((i = i + 1))
+        
     fi
     # Data to insert if it doesn't exist in the database
     VAR1="$hn"
@@ -36,7 +36,7 @@ do
     elif [ $i == 3 ]; then
     VAR2="$job3"
     else
-        ((i = i + 1))
+        
     fi
 
     # Check if the data already exists in the database
