@@ -64,6 +64,5 @@ if [[ $mysqlup == $mysqlstatus ]]; then
     bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh
 else 
     echo "No Access To MySQL Server";
-    break;
 fi
 
