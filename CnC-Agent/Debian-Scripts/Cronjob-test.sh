@@ -51,7 +51,7 @@ do
     if [ $i == 1 ]; then
     echo "Data already exists in the database from $me."
     else
-    echo "" 2>/dev/null
+    echo "" > /dev/null 2>&1
     fi
     fi
     ((i = i + 1))
