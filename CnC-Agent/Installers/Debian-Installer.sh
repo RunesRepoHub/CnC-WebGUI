@@ -31,9 +31,10 @@ systemctl disable mysql > /dev/null 2>&1
 clear 
 read -p "Database IP: " databaseip
 
-mysqlup=$(nmap -p 3306 $databaseip | grep -i "Host is up" | awk '{print substr($0, 1, length($0)-19)}')
+mysqlstatus="Host is up"
+mysqlup=$(nmap -p 3306 $databaseip | grep -i $mysqlstatus | awk '{print substr($0, 1, length($0)-19)}')
 
-if [ $mysqlup == "Host is up" ]; then
+if [ $mysqlup == $mysqlstatus ]; then
     ## Save database IP address
     touch ~/CnC-WebGUI/CnC-Agent/.databaseip
     echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
@@ -63,6 +64,5 @@ if [ $mysqlup == "Host is up" ]; then
     bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh
 else 
     echo "No Access To MySQL Server";
-    exit;
 fi
 
