@@ -9,7 +9,7 @@ DB_USER="root"
 DB_PASSWORD="12Marvel"
 DB_NAME="machines"
 START=1
-END=5
+END=20
 ## save $START, just in case if we need it later ##
 i=$START
 while [[ $i -le $END ]]
