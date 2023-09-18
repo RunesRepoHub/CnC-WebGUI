@@ -1,5 +1,5 @@
 me=$(basename "$0")
-
+export DEBIAN_FRONTEND=noninteractive
 ## Update and install gnupg
 clear
 echo "Installing CnC-Agent"
@@ -11,7 +11,7 @@ apt install gnupg -y > /dev/null 2>&1
 clear
 echo "Installing MySQL"
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1
-dpkg -i /tmp/mysql-apt-config*
+dpkg -i mysql-apt-config_0.8.22-1_all.deb
 apt update > /dev/null 2>&1
 
 ## Install and set up MySQL
@@ -21,7 +21,7 @@ echo "Setting Up MySQL"
 debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1
 debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1
 
-DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server > /dev/null 2>&1
+apt-get -y install mysql-server > /dev/null 2>&1
 
 systemctl stop mysql > /dev/null 2>&1
 systemctl disable mysql > /dev/null 2>&1
