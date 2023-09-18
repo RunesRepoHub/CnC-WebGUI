@@ -1,3 +1,5 @@
+me=$(basename "$0")
+
 ## Update and install gnupg
 clear
 echo "Installing CnC-Agent"

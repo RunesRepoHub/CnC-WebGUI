@@ -1,5 +1,5 @@
 #!/bin/bash
-
+me=$(basename "$0")
 databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 
 hostname=$(echo $HOSTNAME)
@@ -71,12 +71,12 @@ result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT
 # If data exists, update it; otherwise, insert a new record
 if [ -n "$result" ]; then
     update_data "$hostname" "$ip_address" "$mac_address" "$disto" "$packages"
-    echo "Data updated."
+    echo "Data updated from $me."
 else
     # Insert new data into the database
     mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
     INSERT INTO info (hostname, ip_address, mac_address, disto, packages)
     VALUES ('$hostname', '$ip_address', '$mac_address', '$disto', '$packages');
 EOF
-    echo "Data inserted."
+    echo "Data inserted from $me."
 fi

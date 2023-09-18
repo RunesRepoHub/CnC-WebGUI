@@ -1,4 +1,6 @@
 databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+me=$(basename "$0")
+
 
 git=$(apt list --installed 2>/dev/null | grep -i git/ | awk '{print $2}')
 wget=$(apt list --installed 2>/dev/null | grep -i wget | awk '{print $2}')
