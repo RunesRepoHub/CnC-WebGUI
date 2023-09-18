@@ -8,7 +8,7 @@ DB_PORT="3306"
 DB_USER="root"
 DB_PASSWORD="12Marvel"
 DB_NAME="machines"
-START=0
+START=1
 END=5
 ## save $START, just in case if we need it later ##
 i=$START
