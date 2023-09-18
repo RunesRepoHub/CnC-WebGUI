@@ -16,13 +16,13 @@ while [[ $i -le $END ]]
 do
     VAR1="$hn"
     if [ $i == 1 ]; then
-    job1=$(crontab -l | grep -i Cronjob-test)
+    job1=$(crontab -l | grep -i Cronjob-test.sh)
     
     elif [ $i == 2 ]; then
-    job2=$(crontab -l | grep -i Packages-test)
+    job2=$(crontab -l | grep -i Packages-test.sh)
     
     elif [ $i == 3 ]; then
-    job3=$(crontab -l | grep -i Overview)
+    job3=$(crontab -l | grep -i Overview-test.sh)
 
     else
         break;
