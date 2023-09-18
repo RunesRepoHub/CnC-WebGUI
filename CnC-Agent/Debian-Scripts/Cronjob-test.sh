@@ -1,4 +1,6 @@
 #!/bin/bash
+sleep 20
+
 databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 hn=$(echo $HOSTNAME)
 
