@@ -66,7 +66,7 @@ EOF
 }
 
 # Check if the data exists in the database
-result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';")
+result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';" 2>/dev/null)
 
 # If data exists, update it; otherwise, insert a new record
 if [ -n "$result" ]; then
