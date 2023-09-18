@@ -34,7 +34,7 @@ read -p "Database IP: " databaseip
 mysqlstatus="Host is up"
 mysqlup=$(nmap -p 3306 $databaseip | grep -i $mysqlstatus | awk '{print substr($0, 1, length($0)-19)}')
 
-if [ $mysqlup == $mysqlstatus ]; then
+if [ $mysqlup == "$mysqlstatus" ]; then
     ## Save database IP address
     touch ~/CnC-WebGUI/CnC-Agent/.databaseip
     echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
