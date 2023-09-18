@@ -25,7 +25,7 @@ do
     job3=$(crontab -l | grep -i Overview)
 
     else
-        
+        break;
     fi
     # Data to insert if it doesn't exist in the database
     VAR1="$hn"
@@ -36,7 +36,7 @@ do
     elif [ $i == 3 ]; then
     VAR2="$job3"
     else
-        
+        break;
     fi
 
     # Check if the data already exists in the database
