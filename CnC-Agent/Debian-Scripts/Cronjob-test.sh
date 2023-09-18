@@ -17,6 +17,7 @@ i=$START
 while [[ $i -le $END ]]
 do
     VAR1="$hn"
+    VAR2=""
     if [ $i == 1 ]; then
     job1=$(crontab -l | grep -i Cronjob-test.sh)
     
