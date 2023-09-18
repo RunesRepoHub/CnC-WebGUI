@@ -35,6 +35,10 @@
 
 
 <?php
+echo '<body style="background-color:#242323">';
+echo "<center>";
+echo '<span style="color:#ffffff;text-align:center;font-size:40px;">Cron Jobs Scripts</span>';
+echo "</center>";
 $servername = "cnc-webgui-db";
 $username = "root";
 $password = "12Marvel";
@@ -56,7 +60,7 @@ if($result = mysqli_query($link, $sql)){
           echo "<tr>";
               echo "<th>Machine ID</th>";
               echo "<th>Hostname</th>";
-              echo "<th>Cron Jobs Script</th>";
+              echo "<th>Cron Jobs Scripts</th>";
           echo "</tr>";
       while($row = mysqli_fetch_array($result)){
           echo "<tr>";

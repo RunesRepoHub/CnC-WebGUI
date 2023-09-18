@@ -6,7 +6,7 @@
             position: absolute;
             left: 25%;
             top: 10%;
-            background: yellow;
+            margin: 0 auto
         }
         .product-box2 {
             position: absolute;
@@ -34,6 +34,11 @@
 <body>
 
 <?php
+echo '<body style="background-color:#242323">';
+echo "<center>";
+echo '<span style="color:#ffffff;text-align:center;font-size:40px;">Overview</span>';
+echo "</center>";
+
 $servername = "cnc-webgui-db";
 $username = "root";
 $password = "12Marvel";

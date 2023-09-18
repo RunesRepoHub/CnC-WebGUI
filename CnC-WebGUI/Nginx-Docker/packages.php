@@ -35,6 +35,10 @@
 
 
 <?php
+echo '<body style="background-color:#242323">';
+echo "<center>";
+echo '<span style="color:#ffffff;text-align:center;font-size:40px;">Package Updates</span>';
+echo "</center>";
 $servername = "cnc-webgui-db";
 $username = "root";
 $password = "12Marvel";

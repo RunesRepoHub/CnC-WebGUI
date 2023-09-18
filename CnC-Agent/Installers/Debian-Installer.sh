@@ -5,7 +5,7 @@ clear
 echo "Installing CnC-Agent"
 apt update > /dev/null 2>&1
 apt install gnupg -y > /dev/null 2>&1
-
+apt install nmap -y > /dev/null 2>&1
 
 ## Download MySQL
 clear
@@ -31,30 +31,38 @@ systemctl disable mysql > /dev/null 2>&1
 clear 
 read -p "Database IP: " databaseip
 
-## Save database IP address
-touch ~/CnC-WebGUI/CnC-Agent/.databaseip
-echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
+mysqlup=$(nmap -p 3306 $databaseip)
 
-## Check/Setup Packages Reporting via cron 
-ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh /usr/bin/ > /dev/null 2>&1
+if [ $mysqlup == "Host is up" ]; then
+    ## Save database IP address
+    touch ~/CnC-WebGUI/CnC-Agent/.databaseip
+    echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
 
-crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh >/dev/null 2>&1' >> file; crontab file
+    ## Check/Setup Packages Reporting via cron 
+    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh /usr/bin/ > /dev/null 2>&1
 
-## Run Packages Reporting for the first time
-bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh
+    crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh >/dev/null 2>&1' >> file; crontab file
 
-## Check/Setup Packages Reporting via cron 
-ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh /usr/bin/ > /dev/null 2>&1
+    ## Run Packages Reporting for the first time
+    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh
 
-crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh >/dev/null 2>&1' >> file; crontab file
+    ## Check/Setup Packages Reporting via cron 
+    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh /usr/bin/ > /dev/null 2>&1
 
-## Run Packages Reporting for the first time
-bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview-test.sh
+    crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh >/dev/null 2>&1' >> file; crontab file
 
-## Check/Setup Packages Reporting via cron 
-ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh /usr/bin/ > /dev/null 2>&1
+    ## Run Packages Reporting for the first time
+    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview-test.sh
 
-crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh >/dev/null 2>&1' >> file; crontab file
+    ## Check/Setup Packages Reporting via cron 
+    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh /usr/bin/ > /dev/null 2>&1
 
-## Run Packages Reporting for the first time
-bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh
+    crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh >/dev/null 2>&1' >> file; crontab file
+
+    ## Run Packages Reporting for the first time
+    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh
+else 
+    echo "No Access To MySQL Server";
+    exit;
+fi
+
