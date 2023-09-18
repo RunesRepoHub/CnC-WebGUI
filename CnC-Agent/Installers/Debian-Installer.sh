@@ -31,7 +31,7 @@ systemctl disable mysql > /dev/null 2>&1
 clear 
 read -p "Database IP: " databaseip
 
-mysqlup=$(nmap -p 3306 $databaseip)
+mysqlup=$(nmap -p 3306 $databaseip | grep -i "Host is up" | awk '{print substr($0, 1, length($0)-19)}')
 
 if [ $mysqlup == "Host is up" ]; then
     ## Save database IP address
