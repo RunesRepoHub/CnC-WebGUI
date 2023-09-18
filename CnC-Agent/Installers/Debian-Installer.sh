@@ -15,10 +15,10 @@ apt update > /dev/null 2>&1
 clear 
 echo "Setting Up MySQL"
 
-debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel"
-debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel"
+debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1
+debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1
 
-DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server
+DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server > /dev/null 2>&1
 
 systemctl stop mysql > /dev/null 2>&1
 systemctl disable mysql > /dev/null 2>&1
