@@ -6,11 +6,14 @@ wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/
 
 dpkg -i /tmp/mysql-apt-config* 
 
-clear 
-
 apt update > /dev/null 2>&1
 
-apt install mysql-server -y > /dev/null 2>&1
+debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel"
+debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel"
+
+DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server
+
+clear 
 
 systemctl stop mysql > /dev/null 2>&1
 systemctl disable mysql > /dev/null 2>&1
