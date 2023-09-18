@@ -14,6 +14,7 @@ END=5
 i=$START
 while [[ $i -le $END ]]
 do
+    VAR1="$hn"
     if [ $i == 1 ]; then
     job1=$(crontab -l | grep -i Overview | sed -n '1 p')
     
