@@ -21,8 +21,8 @@ RUN { \
         echo 'opcache.enable_cli=1'; \
     } > /usr/local/etc/php/conf.d/php-opocache-cfg.ini
 
-COPY nginx-site.conf /etc/nginx/sites-enabled/default
-COPY entrypoint.sh /etc/entrypoint.sh
+COPY config/nginx-site.conf /etc/nginx/sites-enabled/default
+COPY config/entrypoint.sh /etc/entrypoint.sh
 RUN chmod +x /etc/entrypoint.sh
 
 RUN docker-php-ext-install mysqli pdo_mysql && docker-php-ext-enable mysqli
