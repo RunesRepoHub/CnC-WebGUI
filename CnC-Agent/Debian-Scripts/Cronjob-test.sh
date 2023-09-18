@@ -44,7 +44,7 @@ do
     # If no rows were returned, insert the data
     if [ -z "$existing_data" ]; then
     echo "Inserting data into the database..."
-    mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "INSERT INTO cronjobs (hostname, cron_jobs_scripts) VALUES ('$VAR1', '$VAR2');"
+    mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "INSERT INTO cronjobs (hostname, cron_jobs_scripts) VALUES ('$VAR1', '$VAR2');" 2>/dev/null
     echo "Data inserted successfully."
     else
     echo "Data already exists in the database."

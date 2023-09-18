@@ -15,6 +15,6 @@ containerd=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{pr
 hn=$(echo $HOSTNAME)
 
 
-mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines << EOF
+mysql --host=$databaseip --port=3306 --user=root --password=12Marvel machines 2>/dev/null << EOF
 insert into packages (hostname,git,wget,sudo,python,python3,nettools,mysql,libpython,dockercecli,dockercomposeplugin,curl,containerd) values('$hn','$git','$wget','$sudo','$python','$python3','$nettools','$mysql','$libpython','$dockercecli','$dockercomposeplugin','$curl','$containerd');
 EOF

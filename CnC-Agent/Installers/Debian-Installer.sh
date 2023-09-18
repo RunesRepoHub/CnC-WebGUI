@@ -20,6 +20,8 @@ systemctl disable mysql > /dev/null 2>&1
 
 read -p "Database IP: " databaseip
 
+mysql_config_editor set --login-path=remote --host=$databaseip --user=root --12Marvel
+
 ##
 touch ~/CnC-WebGUI/CnC-Agent/.databaseip
 echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
