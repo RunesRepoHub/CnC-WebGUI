@@ -32,7 +32,7 @@ clear
 read -p "Database IP: " databaseip
 
 mysqlstatus="Host is up"
-mysqlup=$(nmap -p 3306 $databaseip | grep -i $mysqlstatus | awk '{print substr($0, 1, length($0)-19)}')
+mysqlup=$(nmap -p 3306 $databaseip | grep -i $mysqlstatus | awk '{print substr($0, 1, length($0)-20)}')
 
 if [ $mysqlup == "$mysqlstatus" ]; then
     ## Save database IP address
