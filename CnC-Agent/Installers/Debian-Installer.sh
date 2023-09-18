@@ -11,7 +11,7 @@ apt install gnupg -y > /dev/null 2>&1
 clear
 echo "Installing MySQL"
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1
-dpkg -i /tmp/mysql-apt-config* > /dev/null 2>&1
+dpkg -i /tmp/mysql-apt-config*
 apt update > /dev/null 2>&1
 
 ## Install and set up MySQL
