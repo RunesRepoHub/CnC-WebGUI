@@ -50,8 +50,9 @@ do
     else
     if [ $i == 1 ]; then
     echo "Data already exists in the database from $me."
-    elif [ $i =< 2]; then
+    else
     echo "" 2>/dev/null
+    fi
     fi
     ((i = i + 1))
 done
