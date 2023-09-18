@@ -31,10 +31,18 @@ systemctl disable mysql > /dev/null 2>&1
 clear 
 read -p "Database IP: " databaseip
 
-mysqlstatus="Host is up" 
-mysqlup=$(nmap -p 3306 $databaseip | grep -i $mysqlstatus > /dev/null 2>&1 | awk '{print substr($0, 1, length($0)-20)}') 
+# IP address and port to check
+ip_address="databaseip"
+port="3306"
 
-if [[ $mysqlup == $mysqlstatus ]]; then
+# Check if the port is open
+if nc -z -w 2 "$ip_address" "$port"; then
+    result="up"
+else
+    result="down"
+fi
+
+if [[ $result == "up" ]]; then
     ## Save database IP address
     touch ~/CnC-WebGUI/CnC-Agent/.databaseip
     echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
