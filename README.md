@@ -6,7 +6,7 @@ Docker containers made from scratch to collect data from the Linux server.
 ## Introduction
 
 ### Overview
-![Alt text](image.png)
+
 
 Get an easy overview over the server. 
 
@@ -93,7 +93,7 @@ KEEP IT SIMPLE STUPID.
 
 ## Installation
 
-Docker stack
+#### Docker stack
 
 Only make changes to the "mark" input.
 
@@ -129,3 +129,12 @@ services:
       - ~/CnC-WebGUI/src:/cnc-webgui/web                                       <----- Do not change this
 ```
 
+#### Install Agent
+
+```
+cd /tmp 
+
+wget https://raw.githubusercontent.com/rune004/CnC-WebGUI/master/CnC-Agent/Download-Agent.sh 
+
+bash Download-Agent.sh
+```
