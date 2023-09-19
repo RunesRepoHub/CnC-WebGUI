@@ -95,8 +95,8 @@ KEEP IT SIMPLE STUPID.
 
 
 ### Docker images
-The images has not been made public yet, so if you want to use this right now.
-You will have to build the images yourself.
+The images has not been made public yet, so if you want to use this right now. `#ffffff`
+You will have to build the images yourself. `#ffffff`
 
 Steps:
 
