@@ -43,7 +43,7 @@ if [ -n "$existing_data" ]; then
         docker_compose_plugin='$DOCKER_COMPOSE_PLUGIN',
         curl='$CURL',
         containerd='$CONTAINERD'
-        WHERE hostname='$HOSTNAME'"
+        WHERE hostname='$HOSTNAME'" 2>/dev/null
 else
     # Insert a new record
     mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "INSERT INTO packages (
@@ -74,5 +74,5 @@ else
         '$DOCKER_COMPOSE_PLUGIN',
         '$CURL',
         '$CONTAINERD'
-    )"
+    )" 2>/dev/null
 fi
