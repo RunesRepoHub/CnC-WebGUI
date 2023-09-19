@@ -95,20 +95,36 @@ do
         echo "" > /dev/null 2>&1
     fi
 
-    # Check if the data already exists in the database
-    existing_data=$(mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "SELECT * FROM packages WHERE hostname='$hn' AND package='$VAR1' package_version='$VAR2';" 2>/dev/null)
+# Function to update data in the database
+update_data() {
+    local hostname="$hostname"
+    local package="$VAR1"
+    local package_version="$VAR2"
 
-    # If no rows were returned, insert the data
-    if [ -z "$existing_data" ]; then
-    echo "Inserting data into the database from $me..."
-    mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "INSERT INTO packages (hostname, package, package_version) VALUES ('$hn', '$VAR1', '$VAR2');" 2>/dev/null
-    echo "Data inserted successfully from $me."
-    else
-    if [ $i == 1 ]; then
-    echo "Data already exists in the database from $me."
-    else
-    echo "" > /dev/null 2>&1
-    fi
-    fi
-    ((i = i + 1))
+    # Update the data in the database
+    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
+    UPDATE packages
+    SET package_version='$package_version'
+    WHERE hostname='$hostname' AND package='$VAR1' AND package_version='$VAR2';
+EOF
+}
+
+    # Check if the data exists in the database
+    result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM packages WHERE hostname='$hostname' AND package='$VAR1' AND package_version='$VAR2';" 2>/dev/null)
+
+
+    # If data exists, update it; otherwise, insert a new record
+if [ -n "$result" ]; then
+    update_data "$hostname" "$VAR1" "$VAR2"
+    echo "Data updated from $me."
+else
+    # Insert new data into the database
+    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
+    INSERT INTO info (hostname, package, package_version)
+    VALUES ('$hostname', '$package', '$package_version');
+EOF
+    echo "Data inserted from $me."
+fi
+
+((i = i + 1))
 done
