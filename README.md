@@ -17,6 +17,8 @@
 >* Disto
 >* Updates ready
 
+-----------------------------------------------------------
+
 ### Cron Jobs Scripts
 ![Alt text](Assets/image-1.png)
 
@@ -25,6 +27,8 @@
 > This is not yet fully supported
 >
 >* Only shows CnC Scripts for now
+
+-----------------------------------------------------------
 
 ### Package Version
 ![Alt text](Assets/image-2.png)
@@ -46,6 +50,7 @@
 >* curl
 >* containerd
 
+-----------------------------------------------------------
 
 ## Status
 >[!WARNING]
@@ -53,21 +58,22 @@
 >It is also still under development and is not yet production ready.
 
 ### Basic Operation Procedures (BOP)
-
-- Collect CPU, RAM and Disk usage.
-- Collect data on docker version and other SOP (standard operation procedure) software version.
-- Uptimer and warning.
+>[!NOTE]
+>- Collect CPU, RAM and Disk usage.
+>- Collect data on docker version and other SOP (standard operation procedure) software version.
+>- Uptimer and warning.
 
 
 ### Advanced Operation Procedures (AOP)
+>[!NOTE]
+>- Change basic configs 
+>- Reboot/shutdown/update/upgrade
+>- Overview of cron jobs 
+>- Change and update cron jobs
+>- Tailscale VPN
+>- Docker images sync vulnerability scan 
 
-- Change basic configs 
-- Reboot/shutdown/update/upgrade
-- Overview of cron jobs 
-- Change and update cron jobs
-- Tailscale VPN
-- Docker images sync vulnerability scan 
-
+-----------------------------------------------------------
 
 ## Development
 
