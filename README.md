@@ -6,7 +6,7 @@ Docker containers made from scratch to collect data from the Linux server.
 ## Introduction
 
 ### Overview
-
+![Alt text](image.png)
 
 Get an easy overview over the server. 
 
@@ -130,6 +130,9 @@ services:
 ```
 
 #### Install Agent
+
+Run the following commands on a Debian 10/11 server to install the agent.
+> The docker web and db containers has to be running.
 
 ```
 cd /tmp 
