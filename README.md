@@ -95,26 +95,28 @@ KEEP IT SIMPLE STUPID.
 
 
 ### Docker images
-The images has not been made public yet, so if you want to use this right now. `#ffffff`
-You will have to build the images yourself. `#ffffff`
+>[!NOTE]
+>The images has not been made public yet, so if you want to use this right now.
+>You will have to build the images yourself. 
 
-Steps:
+**Steps:**
 
-1. Git clone this repo. 
-2. Run CnC-Image-Builder.sh
-3. Input information web/db version + IP + Port for remote or local docker registry.
+1. **Git clone this repo.** 
+2. **Run CnC-Image-Builder.sh**
+3. **Input information web/db version + IP + Port for remote or local docker registry.**
 
-This should make the two docker images and after they have been made it will use the docker-compose file to start the two dockers.
+>[!IMPORTANT]
+> This should make the two docker images and after they have been made it will use the docker-compose file to start the two dockers. When the two dockers are up and running, check the you don't have errors on the website.
 
-When the two dockers are up and running, check the you don't have errors on the website.
+>[!WARNING]
+> (The WebGUI will give php errors at startup because it is still waiting for the database to come online)
 
-(The WebGUI will give php errors at startup because it is still waiting for the database to come online)
-
-When it has come online you can then install the Agent to the servers you want to moniter.
+**When it has come online you can then install the Agent to the servers you want to moniter.**
 
 #### Install Agent
+**Run the following commands on a Debian 10/11 server to install the agent.**
 
-Run the following commands on a Debian 10/11 server to install the agent.
+>[!WARNING]
 > The docker web and db containers has to be running.
 
 ```
@@ -127,8 +129,8 @@ bash Download-Agent.sh
 
 
 #### Docker stack
-
-Only make changes to the "mark" input.
+>[!WARNING]
+>Only make changes to the "mark" input.
 
 ```
 version: "3.2"
