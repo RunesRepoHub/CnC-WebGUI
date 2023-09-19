@@ -29,34 +29,12 @@ if($result = mysqli_query($link, $sql)){
         echo "<table align='center' cellspacing=3 cellpadding=4 border=1 bgcolor=dddddd>";
           echo "<tr>";
               echo "<th>Hostname</th>";
-              echo "<th>git</th>";
-              echo "<th>wget</th>";
-              echo "<th>sudo</th>";
-              echo "<th>python</th>";
-              echo "<th>python3</th>";
-              echo "<th>net-tools</th>";
-              echo "<th>mysql</th>";
-              echo "<th>libpython</th>";
-              echo "<th>docker-ce-cli</th>";
-              echo "<th>docker-compose-plugin</th>";
-              echo "<th>curl</th>";
-              echo "<th>containerd</th>";
+              echo "<th>Package</th>";
           echo "</tr>";
       while($row = mysqli_fetch_array($result)){
           echo "<tr>";
               echo "<td>" . $row['hostname'] . "</td>";
-              echo "<td>" . $row['git'] . "</td>";
-              echo "<td>" . $row['wget'] . "</td>";
-              echo "<td>" . $row['sudo'] . "</td>";
-              echo "<td>" . $row['python'] . "</td>";
-              echo "<td>" . $row['python3'] . "</td>";
-              echo "<td>" . $row['nettools'] . "</td>";
-              echo "<td>" . $row['mysql'] . "</td>";
-              echo "<td>" . $row['libpython'] . "</td>";
-              echo "<td>" . $row['dockercecli'] . "</td>";
-              echo "<td>" . $row['dockercomposeplugin'] . "</td>";
-              echo "<td>" . $row['curl'] . "</td>";
-              echo "<td>" . $row['containerd'] . "</td>";
+              echo "<td>" . $row['package'] . "</td>";
           echo "</tr>";
       }
       echo "</table>";

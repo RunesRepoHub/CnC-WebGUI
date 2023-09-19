@@ -96,12 +96,12 @@ do
     fi
 
     # Check if the data already exists in the database
-    existing_data=$(mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "SELECT * FROM packages WHERE hostname='$hn' AND package='$VAR2';" 2>/dev/null)
+    existing_data=$(mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "SELECT * FROM packages WHERE hostname='$hn' AND package='$VAR1 $VAR2';" 2>/dev/null)
 
     # If no rows were returned, insert the data
     if [ -z "$existing_data" ]; then
     echo "Inserting data into the database from $me..."
-    mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "INSERT INTO packages (hostname, package) VALUES ('$hn', '$VAR2');" 2>/dev/null
+    mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" -D "$DB_NAME" -e "INSERT INTO packages (hostname, package) VALUES ('$hn', '$VAR1 $VAR2');" 2>/dev/null
     echo "Data inserted successfully from $me."
     else
     if [ $i == 1 ]; then
