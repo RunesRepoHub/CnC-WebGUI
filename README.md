@@ -1,47 +1,50 @@
 # CnC-WebGUI
-WebGUI for giving overview to my CnC Bash Script
+**WebGUI for giving overview to my CnC Bash Script**
 
-Docker containers made from scratch to collect data from the Linux server.
+**Docker containers made from scratch to collect data from the Linux server.**
 
 ## Introduction
 
 ### Overview
 ![Alt text](Assets/image.png)
 
-Get an easy overview over the server. 
+**Get an easy overview over the server.** 
 
-* Hostname
-* IP Address
-* MAC Address
-* Disto
-* Updates ready
+>[!IMPORTANT]
+>* Hostname
+>* IP Address
+>* MAC Address
+>* Disto
+>* Updates ready
 
 ### Cron Jobs Scripts
 ![Alt text](Assets/image-1.png)
 
-Get an easy overview over cron jobs.
+**Get an easy overview over cron jobs.**
+>[!WARNING]
 > This is not yet fully supported
-
-* Only shows CnC Scripts for now
+>
+>* Only shows CnC Scripts for now
 
 ### Package Version
 ![Alt text](Assets/image-2.png)
 
-Get an easy overview over a handfull of packages.
+**Get an easy overview over a handfull of packages.**
+>[!IMPORTANT]
 > This has a planned expansion for more and user picked packages
-
-* git
-* wget
-* sudo
-* python
-* python3
-* nettools
-* mysql
-* libpython
-* docker-ce-cli
-* docker-compose-plugin
-* curl
-* containerd
+>
+>* git
+>* wget
+>* sudo
+>* python
+>* python3
+>* nettools
+>* mysql
+>* libpython
+>* docker-ce-cli
+>* docker-compose-plugin
+>* curl
+>* containerd
 
 
 ## Status
@@ -86,9 +89,9 @@ Get an easy overview over a handfull of packages.
 >The idea behind this whole system is to have a better and faster overview of all my Linux servers, but without adding a maintenance problem with more new "Pre-made" software. 
 >
 >So I make a bash script that sets up a Linux server to a CnC WebGUI Manager, as a Docker container and then I make another bash script to install the CnC Monitor Agent, which sends the data from the Linux servers to the CnC WebGUI Manager.
-
+>
 >It will most likely be added 2 separate bash scripts containing Tailscale VPN for Remote Management.
-
+>
 >KEEP IT SIMPLE STUPID.
 
 ## Installation
