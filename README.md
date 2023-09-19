@@ -6,7 +6,7 @@ Docker containers made from scratch to collect data from the Linux server.
 ## Introduction
 
 ### Overview
-![Alt text](image.png)
+![Alt text](Assets/image.png)
 
 Get an easy overview over the server. 
 
@@ -17,7 +17,7 @@ Get an easy overview over the server.
 * Updates ready
 
 ### Cron Jobs Scripts
-![Alt text](image-1.png)
+![Alt text](Assets/image-1.png)
 
 Get an easy overview over cron jobs.
 > This is not yet fully supported
@@ -25,7 +25,7 @@ Get an easy overview over cron jobs.
 * Only shows CnC Scripts for now
 
 ### Package Version
-![Alt text](image-2.png)
+![Alt text](Assets/image-2.png)
 
 Get an easy overview over a handfull of packages.
 > This has a planned expansion for more and user picked packages
@@ -93,6 +93,39 @@ KEEP IT SIMPLE STUPID.
 
 ## Installation
 
+
+### Docker images
+The images has not been made public yet, so if you want to use this right now.
+You will have to build the images yourself.
+
+Steps:
+
+1. Git clone this repo. 
+2. Run CnC-Image-Builder.sh
+3. Input information web/db version + IP + Port for remote or local docker registry.
+
+This should make the two docker images and after they have been made it will use the docker-compose file to start the two dockers.
+
+When the two dockers are up and running, check the you don't have errors on the website.
+
+(The WebGUI will give php errors at startup because it is still waiting for the database to come online)
+
+When it has come online you can then install the Agent to the servers you want to moniter.
+
+#### Install Agent
+
+Run the following commands on a Debian 10/11 server to install the agent.
+> The docker web and db containers has to be running.
+
+```
+cd /tmp 
+
+wget https://raw.githubusercontent.com/rune004/CnC-WebGUI/master/CnC-Agent/Download-Agent.sh 
+
+bash Download-Agent.sh
+```
+
+
 #### Docker stack
 
 Only make changes to the "mark" input.
@@ -127,17 +160,4 @@ services:
       - cnc-webgui-db                                                          <----- Do not change this
     volumes:
       - ~/CnC-WebGUI/src:/cnc-webgui/web                                       <----- Do not change this
-```
-
-#### Install Agent
-
-Run the following commands on a Debian 10/11 server to install the agent.
-> The docker web and db containers has to be running.
-
-```
-cd /tmp 
-
-wget https://raw.githubusercontent.com/rune004/CnC-WebGUI/master/CnC-Agent/Download-Agent.sh 
-
-bash Download-Agent.sh
 ```
