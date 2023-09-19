@@ -31,8 +31,18 @@ GO
 CREATE TABLE `packages` (
   `machine_id` int(11) NOT NULL,
   `hostname` varchar(255) NOT NULL DEFAULT '',
-  `package` varchar(255) NOT NULL DEFAULT '',
-  `package_version` varchar(255) NOT NULL DEFAULT ''
+  `git` varchar(255) NOT NULL DEFAULT '',
+  `wget` varchar(255) NOT NULL DEFAULT '',
+  `sudo` varchar(255) NOT NULL DEFAULT '',
+  `python` varchar(255) NOT NULL DEFAULT '',
+  `python3` varchar(255) NOT NULL DEFAULT '',
+  `nettools` varchar(255) NOT NULL DEFAULT '',
+  `mysql` varchar(255) NOT NULL DEFAULT '',
+  `libpython` varchar(255) NOT NULL DEFAULT '',
+  `dockercecli` varchar(255) NOT NULL DEFAULT '',
+  `dockercomposeplugin` varchar(255) NOT NULL DEFAULT '',
+  `curl` varchar(255) NOT NULL DEFAULT '',
+  `containerd` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 GO
 ALTER TABLE `packages`
