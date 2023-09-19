@@ -120,7 +120,7 @@
 >[!WARNING]
 > (The WebGUI will give php errors at startup because it is still waiting for the database to come online)
 
->[!IMPONTANT]
+>[!IMPORTANT]
 >When it has come online you can then install the Agent to the servers you want to moniter.**
 
 #### Install Agent
