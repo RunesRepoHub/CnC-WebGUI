@@ -121,7 +121,7 @@
 > (The WebGUI will give php errors at startup because it is still waiting for the database to come online)
 
 >[!IMPORTANT]
->When it has come online you can then install the Agent to the servers you want to moniter.**
+>When it has come online you can then install the Agent to the servers you want to moniter.
 
 #### Install Agent
 >[!NOTE]
@@ -133,7 +133,7 @@
 ```
 cd /tmp 
 
-wget https://raw.githubusercontent.com/rune004/CnC-WebGUI/master/CnC-Agent/Download-Agent.sh 
+wget https://raw.githubusercontent.com/rune004/CnC-WebGUI/master/Download-Agent.sh 
 
 bash Download-Agent.sh
 ```
