@@ -25,7 +25,7 @@ DB_NAME="machines"
 
 
 # Query the MySQL database for existing data
-existing_data=$(mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "SELECT * FROM packages WHERE hostname='$HOSTNAME'")
+existing_data=$(mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "SELECT * FROM packages WHERE hostname='$HOSTNAME'" 2>/dev/null)
 
 # Check if data for the current hostname already exists
 if [ -n "$existing_data" ]; then
