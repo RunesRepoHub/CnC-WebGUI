@@ -31,7 +31,8 @@ GO
 CREATE TABLE `packages` (
   `machine_id` int(11) NOT NULL,
   `hostname` varchar(255) NOT NULL DEFAULT '',
-  `package` varchar(255) NOT NULL DEFAULT ''
+  `package` varchar(255) NOT NULL DEFAULT '',
+  `package_version` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 GO
 ALTER TABLE `packages`

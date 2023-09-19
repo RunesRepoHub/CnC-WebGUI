@@ -30,11 +30,13 @@ if($result = mysqli_query($link, $sql)){
           echo "<tr>";
               echo "<th>Hostname</th>";
               echo "<th>Package</th>";
+              echo "<th>package Version</th>";
           echo "</tr>";
       while($row = mysqli_fetch_array($result)){
           echo "<tr>";
               echo "<td>" . $row['hostname'] . "</td>";
               echo "<td>" . $row['package'] . "</td>";
+              echo "<td>" . $row['package_version'] . "</td>";
           echo "</tr>";
       }
       echo "</table>";
