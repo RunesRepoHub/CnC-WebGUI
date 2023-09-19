@@ -23,18 +23,16 @@ echo "</center>";
 echo str_repeat('&nbsp;', 5);
 
 // Attempt select query execution
-$sql = "SELECT * FROM cronjobs";
+$sql = "SELECT * FROM cronjobs ORDER BY cron_jobs_scripts ASC";
 if($result = mysqli_query($link, $sql)){
   if(mysqli_num_rows($result) > 0){
         echo "<table align='center' cellspacing=3 cellpadding=4 border=1 bgcolor=dddddd>";
           echo "<tr>";
-              echo "<th>Machine ID</th>";
               echo "<th>Hostname</th>";
               echo "<th>Cron Jobs Scripts</th>";
           echo "</tr>";
       while($row = mysqli_fetch_array($result)){
           echo "<tr>";
-              echo "<td>" . $row['machine_id'] . "</td>";
               echo "<td>" . $row['hostname'] . "</td>";
               echo "<td>" . $row['cron_jobs_scripts'] . "</td>";
           echo "</tr>";

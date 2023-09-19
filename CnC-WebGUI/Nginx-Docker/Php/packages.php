@@ -23,7 +23,7 @@ echo "</center>";
 echo str_repeat('&nbsp;', 5);
 
 // Attempt select query execution
-$sql = "SELECT * FROM packages ORDER BY hostname ASC";
+$sql = "SELECT * FROM packages ORDER BY package ASC";
 if($result = mysqli_query($link, $sql)){
   if(mysqli_num_rows($result) > 0){
         echo "<table align='center' cellspacing=3 cellpadding=4 border=1 bgcolor=dddddd>";
