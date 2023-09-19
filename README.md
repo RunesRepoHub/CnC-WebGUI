@@ -3,7 +3,46 @@ WebGUI for giving overview to my CnC Bash Script
 
 Docker containers made from scratch to collect data from the Linux server.
 
+## Introduction
+
+### Overview
 ![Alt text](image.png)
+
+Get an easy overview over the server. 
+
+* Hostname
+* IP Address
+* MAC Address
+* Disto
+* Updates ready
+
+### Cron Jobs Scripts
+![Alt text](image-1.png)
+
+Get an easy overview over cron jobs.
+> This is not yet fully supported
+
+* Only shows CnC Scripts for now
+
+### Package Version
+![Alt text](image-2.png)
+
+Get an easy overview over a handfull of packages.
+> This has a planned expansion for more and user picked packages
+
+* git
+* wget
+* sudo
+* python
+* python3
+* nettools
+* mysql
+* libpython
+* docker-ce-cli
+* docker-compose-plugin
+* curl
+* containerd
+
 
 ## Status
 
@@ -51,3 +90,54 @@ So I make a bash script that sets up a Linux server to a CnC WebGUI Manager, as 
 It will most likely be added 2 separate bash scripts containing Tailscale VPN for Remote Management.
 
 KEEP IT SIMPLE STUPID.
+
+## Installation
+
+#### Docker stack
+
+Only make changes to the "mark" input.
+
+```
+version: "3.2"
+services:
+  cnc-webgui-db:                                                               <----- Do not change this
+    image: 192.168.1.140:5000/cnc-mysql:1.0                                    <----- Will be available at some point on dockerhub
+    restart: always
+    ports:
+      - "3306:3306"                                                            <----- Do not change this
+    environment:
+      - MYSQL_ROOT_PASSWORD=12Marvel                                           <----- Do not change this
+      - MYSQL_DATABASE=machines                                                <----- Do not change this
+      - MYSQL_ROOT_HOST=%                                                      <----- Do not change this
+    command: --default-authentication-plugin=mysql_native_password             <----- Do not change this
+    volumes:
+      - ~/CnC-WebGUI/src:/cnc-webgui/db                                        <----- Do not change this
+  web:
+    image: 192.168.1.140:5000/cnc-web:1.0                                      <----- Will be available at some point on dockerhub
+    environment:
+      - MYSQL_ROOT_PASSWORD=12Marvel                                           <----- Do not change this
+      - MYSQL_USER=root                                                        <----- Do not change this
+      - MYSQL_PASSWORD=12Marvel                                                <----- Do not change this
+      - MYSQL_DATABASE=machines                                                <----- Do not change this
+      - MYSQL_HOST=db                                                          <----- Do not change this
+    restart: always
+    ports:
+      - "8080:80"                                                              <----- Only change "8080" NOT "80" 
+    depends_on:
+      - cnc-webgui-db                                                          <----- Do not change this
+    volumes:
+      - ~/CnC-WebGUI/src:/cnc-webgui/web                                       <----- Do not change this
+```
+
+#### Install Agent
+
+Run the following commands on a Debian 10/11 server to install the agent.
+> The docker web and db containers has to be running.
+
+```
+cd /tmp 
+
+wget https://raw.githubusercontent.com/rune004/CnC-WebGUI/master/CnC-Agent/Download-Agent.sh 
+
+bash Download-Agent.sh
+```

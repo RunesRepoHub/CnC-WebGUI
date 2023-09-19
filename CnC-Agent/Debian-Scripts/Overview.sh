@@ -1,5 +1,5 @@
 #!/bin/bash
-
+me=$(basename "$0")
 databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 
 hostname=$(echo $HOSTNAME)
@@ -58,7 +58,7 @@ update_data() {
     local packages="$packages"
     
     # Update the data in the database
-    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" <<EOF
+    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
     UPDATE info
     SET packages='$packages'
     WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';
@@ -66,17 +66,17 @@ EOF
 }
 
 # Check if the data exists in the database
-result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';")
+result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';" 2>/dev/null)
 
 # If data exists, update it; otherwise, insert a new record
 if [ -n "$result" ]; then
     update_data "$hostname" "$ip_address" "$mac_address" "$disto" "$packages"
-    echo "Data updated."
+    echo "Data updated from $me."
 else
     # Insert new data into the database
-    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" <<EOF
+    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
     INSERT INTO info (hostname, ip_address, mac_address, disto, packages)
     VALUES ('$hostname', '$ip_address', '$mac_address', '$disto', '$packages');
 EOF
-    echo "Data inserted."
+    echo "Data inserted from $me."
 fi
