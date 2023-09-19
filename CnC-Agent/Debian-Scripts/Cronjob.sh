@@ -22,10 +22,10 @@ do
     job1=$(crontab -l | grep -i Overview | sed -n '1 p')
     
     elif [ $i == 2 ]; then
-    job2=$(crontab -l | grep -i Packages-test | sed -n '1 p')
+    job2=$(crontab -l | grep -i Packages | sed -n '1 p')
     
     elif [ $i == 3 ]; then
-    job3=$(crontab -l | grep -i Cronjob-test | sed -n '1 p')
+    job3=$(crontab -l | grep -i Cronjob | sed -n '1 p')
 
     else
         echo "" > /dev/null 2>&1
