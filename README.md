@@ -45,9 +45,9 @@ Get an easy overview over a handfull of packages.
 
 
 ## Status
-
-This is still an internal tools and has not been made available to the public yet.
-It is also still under development and is not yet production ready.
+>[!WARNING]
+>This is still an internal tools and has not been made available to the public yet.
+>It is also still under development and is not yet production ready.
 
 ### Basic Operation Procedures (BOP)
 
@@ -69,27 +69,27 @@ It is also still under development and is not yet production ready.
 ## Development
 
 #### Management interface 
-
-This will be built based on a homemade docker stack, which includes Nginx for WebGUI and MySQL for database.
-
-CnC WebGUI Managed will be made in HTML, Php, CSS and Javascript. CnC Monitor Agent will be made in bash, with either cron or systemctl as run-timer.
+>[!NOTE]
+>This will be built based on a homemade docker stack, which includes Nginx for WebGUI and MySQL for database.
+>
+>CnC WebGUI Managed will be made in HTML, Php, CSS and Javascript. CnC Monitor Agent will be made in bash, with either cron or systemctl as run-timer.
 
 #### Remote Management 
-
-It will also be possible to deploy with Tailscale VPN, so that a connection can be established between servers that are not on the same local network.
-
-It may also be possible to use another program, but I have not tested other than Tailscale with automatic deployment.
+>[!NOTE]
+>It will also be possible to deploy with Tailscale VPN, so that a connection can be established between servers that are not on the same local network.
+>
+>It may also be possible to use another program, but I have not tested other than Tailscale with automatic deployment.
 
 
 #### Easy Deployment 
+>[!NOTE]
+>The idea behind this whole system is to have a better and faster overview of all my Linux servers, but without adding a maintenance problem with more new "Pre-made" software. 
+>
+>So I make a bash script that sets up a Linux server to a CnC WebGUI Manager, as a Docker container and then I make another bash script to install the CnC Monitor Agent, which sends the data from the Linux servers to the CnC WebGUI Manager.
 
-The idea behind this whole system is to have a better and faster overview of all my Linux servers, but without adding a maintenance problem with more new "Pre-made" software. 
+>It will most likely be added 2 separate bash scripts containing Tailscale VPN for Remote Management.
 
-So I make a bash script that sets up a Linux server to a CnC WebGUI Manager, as a Docker container and then I make another bash script to install the CnC Monitor Agent, which sends the data from the Linux servers to the CnC WebGUI Manager.
-
-It will most likely be added 2 separate bash scripts containing Tailscale VPN for Remote Management.
-
-KEEP IT SIMPLE STUPID.
+>KEEP IT SIMPLE STUPID.
 
 ## Installation
 
@@ -99,22 +99,24 @@ KEEP IT SIMPLE STUPID.
 >The images has not been made public yet, so if you want to use this right now.
 >You will have to build the images yourself. 
 
-**Steps:**
-
-1. **Git clone this repo.** 
-2. **Run CnC-Image-Builder.sh**
-3. **Input information web/db version + IP + Port for remote or local docker registry.**
-
 >[!IMPORTANT]
+>Steps:
+>
+>1. Git clone this repo. 
+>2. Run CnC-Image-Builder.sh
+>3. Input information web/db version + IP + Port for remote or local docker registry.
+>
 > This should make the two docker images and after they have been made it will use the docker-compose file to start the two dockers. When the two dockers are up and running, check the you don't have errors on the website.
 
 >[!WARNING]
 > (The WebGUI will give php errors at startup because it is still waiting for the database to come online)
 
-**When it has come online you can then install the Agent to the servers you want to moniter.**
+>[!IMPONTANT]
+>When it has come online you can then install the Agent to the servers you want to moniter.**
 
 #### Install Agent
-**Run the following commands on a Debian 10/11 server to install the agent.**
+>[!NOTE]
+>Run the following commands on a Debian 10/11 server to install the agent.
 
 >[!WARNING]
 > The docker web and db containers has to be running.
