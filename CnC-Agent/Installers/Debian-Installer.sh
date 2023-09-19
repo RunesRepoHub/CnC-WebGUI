@@ -48,12 +48,12 @@ if [[ $result == "up" ]]; then
     echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh /usr/bin/ > /dev/null 2>&1
+    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh >/dev/null 2>&1' >> file; crontab file
+    crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages-test.sh
+    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh
 
     ## Check/Setup Packages Reporting via cron 
     ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh /usr/bin/ > /dev/null 2>&1
@@ -61,15 +61,15 @@ if [[ $result == "up" ]]; then
     crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview-test.sh
+    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh /usr/bin/ > /dev/null 2>&1
+    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh >/dev/null 2>&1' >> file; crontab file
+    crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob-test.sh
+    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh
 else 
     echo "No Access To MySQL Server";
 fi

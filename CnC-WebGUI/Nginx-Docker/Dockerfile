@@ -21,8 +21,8 @@ RUN { \
         echo 'opcache.enable_cli=1'; \
     } > /usr/local/etc/php/conf.d/php-opocache-cfg.ini
 
-COPY config/nginx-site.conf /etc/nginx/sites-enabled/default
-COPY config/entrypoint.sh /etc/entrypoint.sh
+COPY ./Config/nginx-site.conf /etc/nginx/sites-enabled/default
+COPY ./Config/entrypoint.sh /etc/entrypoint.sh
 RUN chmod +x /etc/entrypoint.sh
 
 RUN docker-php-ext-install mysqli pdo_mysql && docker-php-ext-enable mysqli
@@ -36,8 +36,8 @@ EXPOSE 80 443
 
 ENTRYPOINT ["/etc/entrypoint.sh"]
 
-COPY ./index.html /var/www/mysite/index.html
-COPY ./packages.php /var/www/mysite/packages.php
-COPY ./cronjob.php /var/www/mysite/cronjob.php
-COPY ./overview.php /var/www/mysite/overview.php
-COPY ./style.css /var/www/mysite/style.css
+COPY ./html/index.html /var/www/mysite/index.html
+COPY ./Php/packages.php /var/www/mysite/packages.php
+COPY ./Php/cronjob.php /var/www/mysite/cronjob.php
+COPY ./Php/overview.php /var/www/mysite/overview.php
+COPY ./html/style.css /var/www/mysite/style.css
