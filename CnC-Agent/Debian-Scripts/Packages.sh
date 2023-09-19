@@ -46,8 +46,7 @@ if [ -n "$existing_data" ]; then
         WHERE hostname='$HOSTNAME'" 
 else
     # Insert a new record
-    mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e 2>/dev/null <<EOF 
-    INSERT INTO packages (
+    mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "INSERT INTO packages (
         hostname,
         git,
         wget,
@@ -75,6 +74,5 @@ else
         '$DOCKER_COMPOSE_PLUGIN',
         '$CURL',
         '$CONTAINERD'
-    );
-EOF
+    )" 2>/dev/null
 fi
