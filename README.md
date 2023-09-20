@@ -148,7 +148,7 @@
 ```
 cd /tmp 
 
-wget https://raw.githubusercontent.com/rune004/CnC-WebGUI/master/Download-Agent.sh 
+wget https://raw.githubusercontent.com/rune004/CnC-WebGUI/Production/Download-Agent.sh 
 
 bash Download-Agent.sh
 ```
