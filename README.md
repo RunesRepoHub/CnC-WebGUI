@@ -1,10 +1,9 @@
 # CnC-WebGUI
 **WebGUI for giving overview to my CnC Bash Script**
+**Docker containers made from scratch to collect data from the Linux server.**
 
 >[!WARNING]
 > MAKE SURE YOU USE THE PRODUCTION BRANCH, NOT THE MASTER BRANCH.
-
-**Docker containers made from scratch to collect data from the Linux server.**
 
 ## Introduction
 
@@ -18,8 +17,7 @@
 >**Web/db Server**
 >* Git install on the web/db server
 >* Docker + Docker-compose installed on the web/db server
-
->[!IMPORTANT]
+>
 >**Agent Devices**
 >* No packages requried now (May change in the future)
 
@@ -76,14 +74,14 @@
 >It is also still under development and is not yet production ready.
 
 ### Basic Operation Procedures (BOP)
->[!NOTE]
+>[!IMPORTANT]
 >- Collect CPU, RAM and Disk usage.
 >- Collect data on docker version and other SOP (standard operation procedure) software version.
 >- Uptimer and warning.
 
 
 ### Advanced Operation Procedures (AOP)
->[!NOTE]
+>[!IMPORTANT]
 >- Change basic configs 
 >- Reboot/shutdown/update/upgrade
 >- Overview of cron jobs 
@@ -122,11 +120,10 @@
 
 
 ### Docker images
->[!NOTE]
+>[!IMPORTANT]
 >The images has not been made public yet, so if you want to use this right now.
 >You will have to build the images yourself. 
-
->[!IMPORTANT]
+>
 >Steps:
 >
 >1. Git clone this repo. ```git clone --branch Production https://github.com/rune004/CnC-WebGUI.git```
@@ -136,15 +133,12 @@
 
 >[!WARNING]
 > (The WebGUI will give php errors at startup because it is still waiting for the database to come online)
-
->[!IMPORTANT]
 >When it has come online you can then install the Agent to the servers you want to moniter.
 
 #### Install Agent
->[!NOTE]
->Run the following commands on a Debian 10/11 server to install the agent.
-
 >[!WARNING]
+>Run the following commands on a Debian 10/11 server to install the agent.
+>
 > The docker web and db containers has to be running.
 
 ```
