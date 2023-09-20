@@ -14,8 +14,7 @@
 
 >[!IMPORTANT]
 >**Agent Devices**
->* 
->* 
+>* No packages requried now (May change in the future)
 
 ### Overview
 ![Alt text](Assets/image.png)
