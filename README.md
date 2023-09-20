@@ -1,6 +1,9 @@
 # CnC-WebGUI
 **WebGUI for giving overview to my CnC Bash Script**
 
+>[!WARNING]
+> MAKE SURE YOU USE THE PRODUCTION BRANCH, NOT THE MASTER BRANCH.
+
 **Docker containers made from scratch to collect data from the Linux server.**
 
 ## Introduction
