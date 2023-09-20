@@ -158,7 +158,7 @@ bash Download-Agent.sh
 version: "3.2"
 services:
   cnc-webgui-db:                                                               <----- Do not change this
-    image: 192.168.1.140:5000/cnc-mysql:1.0                                    <----- Will be available at some point on dockerhub
+    image: cnc-mysql:1.0                                                       <----- Will be available at some point on dockerhub
     restart: always
     ports:
       - "3306:3306"                                                            <----- Do not change this
@@ -170,7 +170,7 @@ services:
     volumes:
       - ~/CnC-WebGUI/src:/cnc-webgui/db                                        <----- Do not change this
   web:
-    image: 192.168.1.140:5000/cnc-web:1.0                                      <----- Will be available at some point on dockerhub
+    image: cnc-web:1.0                                                         <----- Will be available at some point on dockerhub
     environment:
       - MYSQL_ROOT_PASSWORD=12Marvel                                           <----- Do not change this
       - MYSQL_USER=root                                                        <----- Do not change this
