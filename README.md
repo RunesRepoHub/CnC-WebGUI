@@ -5,6 +5,10 @@
 
 ## Introduction
 
+### Video Demo
+
+[See how to deploy the code](https://media.rp-helpdesk.com/view?m=CLXrOulOT)
+
 ### Requriements 
 
 >[!IMPORTANT]
