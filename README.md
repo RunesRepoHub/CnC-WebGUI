@@ -126,7 +126,7 @@
 >[!IMPORTANT]
 >Steps:
 >
->1. Git clone this repo. 
+>1. Git clone this repo. ```git clone --branch Production https://github.com/rune004/CnC-WebGUI.git```
 >2. Run CnC-Image-Builder.sh
 >3. Input information web/db version + IP + Port for remote or local docker registry.
 >
