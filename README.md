@@ -1,5 +1,5 @@
 # CnC-WebGUI
-**WebGUI for giving overview to my Linux Server**
+**WebGUI for giving overview to my Linux servers**
 
 **Docker containers made from scratch to collect data from the Linux server.**
 
