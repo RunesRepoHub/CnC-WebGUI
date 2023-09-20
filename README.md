@@ -128,7 +128,6 @@
 >
 >1. Git clone this repo. ```git clone --branch Production https://github.com/rune004/CnC-WebGUI.git```
 >2. Run CnC-Image-Builder.sh
->3. Input information web/db version + IP + Port for remote or local docker registry.
 >
 > This should make the two docker images and after they have been made it will use the docker-compose file to start the two dockers. When the two dockers are up and running, check the you don't have errors on the website.
 
