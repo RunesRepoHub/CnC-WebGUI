@@ -5,6 +5,18 @@
 
 ## Introduction
 
+### Requriements 
+
+>[!IMPORTANT]
+>**Web/db Server**
+>* Git install on the web/db server
+>* Docker + Docker-compose installed on the web/db server
+
+>[!IMPORTANT]
+>**Agent Devices**
+>* 
+>* 
+
 ### Overview
 ![Alt text](Assets/image.png)
 
