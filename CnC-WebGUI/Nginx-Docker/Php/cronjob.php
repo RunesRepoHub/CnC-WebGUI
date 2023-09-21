@@ -5,10 +5,7 @@
 <?php
 echo '<body style="background-color:#242323">';
 
-$servername = "cnc-webgui-db";
-$username = "root";
-$password = "12Marvel";
-$dbname = "machines";
+include '/var/mysql.php';
 
 // Create connection
 $link = new mysqli($servername, $username, $password, $dbname);

@@ -5,10 +5,7 @@
 <?php
 echo '<body style="background-color:#242323">';
 
-$servername = "cnc-webgui-db";
-$username = "root";
-$password = "12Marvel";
-$dbname = "machines";
+include '/var/mysql.php';
 
 // Create connection
 $link = new mysqli($servername, $username, $password, $dbname);
@@ -50,11 +47,11 @@ if($result = mysqli_query($link, $sql)){
               echo "<td>" . $row['sudo'] . "</td>";
               echo "<td>" . $row['python'] . "</td>";
               echo "<td>" . $row['python3'] . "</td>";
-              echo "<td>" . $row['nettools'] . "</td>";
+              echo "<td>" . $row['net_tools'] . "</td>";
               echo "<td>" . $row['mysql'] . "</td>";
               echo "<td>" . $row['libpython'] . "</td>";
-              echo "<td>" . $row['dockercecli'] . "</td>";
-              echo "<td>" . $row['dockercomposeplugin'] . "</td>";
+              echo "<td>" . $row['docker_ce_cli'] . "</td>";
+              echo "<td>" . $row['docker_compose_plugin'] . "</td>";
               echo "<td>" . $row['curl'] . "</td>";
               echo "<td>" . $row['containerd'] . "</td>";
           echo "</tr>";

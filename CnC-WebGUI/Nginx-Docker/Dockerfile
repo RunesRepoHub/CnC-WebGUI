@@ -41,3 +41,5 @@ COPY ./Php/packages.php /var/www/mysite/packages.php
 COPY ./Php/cronjob.php /var/www/mysite/cronjob.php
 COPY ./Php/overview.php /var/www/mysite/overview.php
 COPY ./html/style.css /var/www/mysite/style.css
+
+COPY ./Config/mysql.php /var/mysql.php
