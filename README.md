@@ -15,7 +15,7 @@
 ### Requriements 
 
 **OS**
-Supports:
+Supported:
 
 * Debian 10 (Tested) (Web/DB & Agent)
 * Debian 11 (Tested) (Web/DB & Agent)
