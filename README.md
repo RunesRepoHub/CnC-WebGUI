@@ -41,7 +41,7 @@ The docker web and db containers has to be running.
 ```
 cd /tmp 
 
-wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/CnC-Agent/Install-Agent.sh
+wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/CnC-Agent/Download-Agent.sh
 
 bash Download-Agent.sh
 ```
