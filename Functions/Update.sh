@@ -17,7 +17,8 @@ if [ $GIT_Version > "$LOCAL_Version" ]; then
     rm ~/$LOCAL_Version
 
     echo "The latest Version has been download and installed"
-else  
+else
+    clear
     echo "An Error was incountered"
     echo "Error code 11 (Version Control Failed)"
     echo "Submit a issue on via github"
