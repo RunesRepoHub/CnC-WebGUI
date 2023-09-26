@@ -1,8 +1,7 @@
 me=$(basename "$0")
-USERNAME=$(whoami)
 export DEBIAN_FRONTEND=noninteractive
 
-filename='/$USERNAME/CnC-WebGUI/Logs/Debian-Installer.log'
+filename="~/CnC-WebGUI/Logs/Debian-Installer.log"
 
 ## Update and install gnupg
 clear
@@ -75,7 +74,6 @@ if [[ $result == "up" ]]; then
     ## Run Packages Reporting for the first time
     bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh
 
-    rm file
 else 
     echo "No Access To MySQL Server";
 fi
