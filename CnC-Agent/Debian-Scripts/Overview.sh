@@ -1,7 +1,6 @@
 #!/bin/bash
 me=$(basename "$0")
-folder='/CnC-WebGUI/CnC-Agent'
-databaseip=$(cat $folder/.databaseip)
+databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 
 hostname=$(echo $HOSTNAME)
 

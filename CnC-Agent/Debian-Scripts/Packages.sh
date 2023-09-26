@@ -1,5 +1,4 @@
-folder='/CnC-WebGUI/CnC-Agent'
-databaseip=$(cat $folder/.databaseip)
+databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 me=$(basename "$0")
 
 
