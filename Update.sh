@@ -12,7 +12,7 @@ if [ $GIT_Version > "$LOCAL_Version" ]; then
     git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git > /dev/null 2>&1
 
     rm ~/Update.sh
-    rm ~/$GIT_Version
+    rm ~/$LOCAL_Version
 
     echo "The latest Version has been download and installed"
 else  
