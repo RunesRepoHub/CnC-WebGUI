@@ -11,6 +11,8 @@ if [ $GIT_Version > "$LOCAL_Version" ]; then
 
     rm ~/Update.sh >> ~/CnC-WebGUI/Logs/Update.log
 
+    cd ~/
+
     echo "The latest Version has been download and installed"
 else  
     echo "An Error was incountered"
