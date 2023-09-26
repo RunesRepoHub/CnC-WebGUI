@@ -1,19 +1,18 @@
-PS3="Select the what you want to install on this server: "
+#!/bin/bash
 
-select opt in Agent Server quit; do
+PS3="Select the what you want to install on this server:"
 
-  case $opt in
-    Agent)
-      bash ~/CnC-WebGUI/CnC-Agent/Install-Agent.sh
-      ;;
-    Server)
-      bash ~/CnC-WebGUI/Functions/CnC-Image-Builder.sh
-      ;;
-    quit)
-      break
-      ;;
-    *) 
-      echo "Invalid option $REPLY"
-      ;;
-  esac
+items=("Agent" "Server" "Quit")
+
+while true; do
+    select item in "${items[@]}" Quit
+    do
+        case $REPLY in
+            1) bash ~/CnC-WebGUI/CnC-Agent/Install-Agent.sh; break;;
+            2) bash ~/CnC-WebGUI/Functions/CnC-Image-Builder.sh; break;;
+            3) break;;
+            $((${#items[@]}+1))) echo "We're done!"; break 2;;
+            *) echo "Ooops - unknown choice $REPLY"; break;
+        esac
+    done
 done
