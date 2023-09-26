@@ -15,7 +15,8 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         # do dangerous stuff
-        bash ~/CnC-WebGUI/Update.sh
+        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Update.sh -P ~/
+        bash ~/Update.sh
 
     fi 
 else 
