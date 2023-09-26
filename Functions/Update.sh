@@ -1,5 +1,5 @@
 GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Version.txt)
-LOCAL_Version=$(cat ~/CnC-WebGUI/Version.txt)
+LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
 if [ $GIT_Version > "$LOCAL_Version" ]; then 
 

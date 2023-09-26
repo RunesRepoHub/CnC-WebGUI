@@ -1,4 +1,4 @@
-version=$(cat ~/CnC-WebGUI/Version.txt)
+version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
 touch ~/CnC-WebGUI/CnC-WebGUI/.env
 echo "version=$version" > ~/CnC-WebGUI/CnC-WebGUI/.env
