@@ -21,14 +21,14 @@ apt update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 clear 
 echo "Setting Up MySQL"
 
-debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1 >> $filename
-debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1 >> $filename
+debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
-apt-get -y install mysql-server > /dev/null 2>&1 >> $filename
-apt-get update > /dev/null 2>&1 >> $filename
+apt-get -y install mysql-server > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+apt-get update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
-systemctl stop mysql > /dev/null 2>&1 >> $filename
-systemctl disable mysql > /dev/null 2>&1 >> $filename
+systemctl stop mysql > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+systemctl disable mysql > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
 ## Get database IP address
 clear 
