@@ -18,6 +18,8 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
         wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Update.sh -P ~/ > /dev/null 2>&1
         bash ~/Update.sh
 
+        sleep 10
+
         bash ~/Cnc-WebGUI/CnC-Agent/Install-Agent.sh
 
     fi 
