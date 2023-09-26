@@ -20,7 +20,7 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
 
         sleep 10
 
-        bash ~/Cnc-WebGUI/CnC-Agent/Install-Agent.sh
+        bash ~/CnC-WebGUI/CnC-Agent/Install-Agent.sh
 
     fi 
 else 

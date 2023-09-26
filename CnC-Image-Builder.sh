@@ -29,7 +29,7 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
 
         sleep 10
 
-        bash ~/Cnc-WebGUI/CnC-Image-Builder.sh
+        bash ~/CnC-WebGUI/CnC-Image-Builder.sh
 
     fi 
 else 
