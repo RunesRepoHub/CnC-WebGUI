@@ -20,7 +20,7 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
 
         sleep 5
 
-        bash ~/CnC-WebGUI/Install-CnC-WebGUI.sh
+        bash ~/Functions/Getting-started.sh
 
     fi 
 else 
