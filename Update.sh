@@ -5,15 +5,13 @@ if [ $GIT_Version > "$LOCAL_Version" ]; then
 
     echo "Removing files from old Version and Downloading the newest Version"
 
-    rm -r ~/CnC-WebGUI > /dev/null 2>&1
+    rm -r ~/CnC-WebGUI 
 
-    cd ~/ > /dev/null 2>&1
+    cd ~/ 
 
     git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git > /dev/null 2>&1
 
-    rm ~/Update.sh > /dev/null 2>&1
-
-    cd ~/ > /dev/null 2>&1
+    rm ~/Update.sh
 
     echo "The latest Version has been download and installed"
 else  
