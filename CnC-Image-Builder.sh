@@ -1,4 +1,4 @@
-
+USERNAME=$(whoami)
 bash /$USERNAME/CnC-WebGUI/metafile.sh
 
 docker build -t cnc-web:$version /$USERNAME/CnC-WebGUI/CnC-WebGUI/Nginx-Docker
