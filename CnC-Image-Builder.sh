@@ -1,4 +1,4 @@
-PATH='CnC-WebGUI/CnC-WebGUI'
+PATH="CnC-WebGUI/CnC-WebGUI"
 USERNAME=$(whoami)
 version=$(cat /$USERNAME/CnC-WebGUI/Version.txt)
 
