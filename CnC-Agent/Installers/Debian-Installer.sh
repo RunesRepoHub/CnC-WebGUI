@@ -31,8 +31,6 @@ apt-get update > /dev/null 2>&1 >> $filename
 systemctl stop mysql > /dev/null 2>&1 >> $filename
 systemctl disable mysql > /dev/null 2>&1 >> $filename
 
-filename=" "
-
 ## Get database IP address
 clear 
 read -p "Database IP: " databaseip
