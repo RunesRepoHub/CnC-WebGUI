@@ -7,5 +7,7 @@ docker build -t cnc-web:$version ~/CnC-WebGUI/CnC-WebGUI/Nginx-Docker >> ~/CnC-W
 docker build -t cnc-mysql:$version ~/CnC-WebGUI/CnC-WebGUI/MySQL-Docker >> ~/CnC-WebGUI/Logs/CnC-Image-Builder.log
 
 clear
+echo " "
+echo " "
 
 docker compose -f ~/CnC-WebGUI/CnC-WebGUI/docker-compose.yaml -p cnc-webgui up -d
