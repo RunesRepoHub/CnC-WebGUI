@@ -2,7 +2,7 @@ me=$(basename "$0")
 USERNAME=$(whoami)
 export DEBIAN_FRONTEND=noninteractive
 
-PATH='/CnC-WebGUI/CnC-Agent'
+PATH='/$USERNAME/CnC-WebGUI/CnC-Agent/Debian-Scripts'
 
 filename='/$USERNAME/CnC-WebGUI/Logs/Debian-Installer.log'
 
@@ -54,28 +54,28 @@ if [[ $result == "up" ]]; then
     echo "$databaseip" > $PATH/.databaseip
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s $PATH/Debian-Scripts/Packages.sh /usr/bin/ > /dev/null 2>&1
+    ln -s $PATH/Packages.sh /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby '$PATH'/Debian-Scripts/Packages.sh >/dev/null 2>&1' >> file; crontab file
+    crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby '$PATH'/Packages.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash $PATH/Debian-Scripts/Packages.sh
+    bash $PATH/Packages.sh
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s $PATH/Debian-Scripts/Overview.sh /usr/bin/ > /dev/null 2>&1
+    ln -s $PATH/Overview.sh /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file; echo '00 00 * * * ruby '$PATH'/Debian-Scripts/Overview.sh >/dev/null 2>&1' >> file; crontab file
+    crontab -l > file; echo '00 00 * * * ruby '$PATH'/Overview.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash $PATH/Debian-Scripts/Overview.sh
+    bash $PATH/Overview.sh
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s $PATH/Debian-Scripts/Cronjob.sh /usr/bin/ > /dev/null 2>&1
+    ln -s $PATH/Cronjob.sh /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file; echo '00 00 * * * ruby '$PATH'/Debian-Scripts/Cronjob.sh >/dev/null 2>&1' >> file; crontab file
+    crontab -l > file; echo '00 00 * * * ruby '$PATH'/Cronjob.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash $PATH/Debian-Scripts/Cronjob.sh
+    bash $PATH/Cronjob.sh
 
     rm file
 else 
