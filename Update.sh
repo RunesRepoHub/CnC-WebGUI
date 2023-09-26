@@ -3,15 +3,17 @@ LOCAL_Version=$(cat ~/CnC-WebGUI/Version.txt)
 
 if [ $GIT_Version > "$LOCAL_Version" ]; then 
 
-    rm -r ~/CnC-WebGUI >> ~/CnC-WebGUI/Logs/Update.log
+    echo "Removing files from old Version and Downloading the newest Version"
 
-    cd ~/ >> ~/CnC-WebGUI/Logs/Update.log
+    rm -r ~/CnC-WebGUI > /dev/null 2>&1
 
-    git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git >> ~/CnC-WebGUI/Logs/Update.log
+    cd ~/ > /dev/null 2>&1
 
-    rm ~/Update.sh >> ~/CnC-WebGUI/Logs/Update.log
+    git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git > /dev/null 2>&1
 
-    cd ~/
+    rm ~/Update.sh > /dev/null 2>&1
+
+    cd ~/ > /dev/null 2>&1
 
     echo "The latest Version has been download and installed"
 else  
