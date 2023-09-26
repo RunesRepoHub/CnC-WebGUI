@@ -1,4 +1,5 @@
 version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
+ip_address=$(hostname -I | awk '{print $1}')
 
 touch ~/CnC-WebGUI/CnC-WebGUI/.env
 echo "version=$version" > ~/CnC-WebGUI/CnC-WebGUI/.env
@@ -10,5 +11,10 @@ clear
 
 
 docker compose -f ~/CnC-WebGUI/CnC-WebGUI/docker-compose.yaml -p cnc-webgui up -d
+echo " "
+echo " "
+
+echo "This server can be used by CnC-Agents via this IP Address: $ip_address"
+
 echo " "
 echo " "
