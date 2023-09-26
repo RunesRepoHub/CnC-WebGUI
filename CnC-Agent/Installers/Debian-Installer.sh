@@ -1,4 +1,5 @@
 me=$(basename "$0")
+USERNAME=$(whoami)
 export DEBIAN_FRONTEND=noninteractive
 
 filename='$USERNAME/CnC-WebGUI/Logs/Debian-Installer.log'
