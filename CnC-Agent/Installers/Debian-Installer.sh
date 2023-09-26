@@ -1,7 +1,7 @@
 me=$(basename "$0")
 export DEBIAN_FRONTEND=noninteractive
 
-filename="~/CnC-WebGUI/Logs/Debian-Installer.log"
+filename='~/CnC-WebGUI/Logs/Debian-Installer.log'
 
 ## Update and install gnupg
 clear
