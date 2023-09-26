@@ -1,32 +1,42 @@
 me=$(basename "$0")
 export DEBIAN_FRONTEND=noninteractive
+
+i=1 
+filename="$me-log.file" 
+while [ -f $filename$i ] 
+do 
+    i=$((i + 1)) 
+done 
+filename=$filename$i
+
 ## Update and install gnupg
 clear
 echo "Installing CnC-Agent"
-apt update > /dev/null 2>&1
-apt install gnupg -y > /dev/null 2>&1
-apt install nmap -y > /dev/null 2>&1
+apt update > /dev/null 2>&1 >> $filename
+apt install gnupg -y > /dev/null 2>&1 >> $filename
+apt install nmap -y > /dev/null 2>&1 >> $filename
 
 ## Download MySQL
 clear
 echo "Installing MySQL"
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1
-dpkg -i /tmp/mysql-apt-config_0.8.22-1_all.deb > /dev/null 2>&1
-apt update > /dev/null 2>&1
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1 >> $filename
+dpkg -i /tmp/mysql-apt-config_0.8.22-1_all.deb > /dev/null 2>&1 >> $filename
+apt update > /dev/null 2>&1 >> $filename
 
 ## Install and set up MySQL
 clear 
 echo "Setting Up MySQL"
 
-debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1
-debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1
+debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1 >> $filename
+debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1 >> $filename
 
-apt-get -y install mysql-server > /dev/null 2>&1
-apt-get update > /dev/null 2>&1
+apt-get -y install mysql-server > /dev/null 2>&1 >> $filename
+apt-get update > /dev/null 2>&1 >> $filename
 
-systemctl stop mysql > /dev/null 2>&1
-systemctl disable mysql > /dev/null 2>&1
+systemctl stop mysql > /dev/null 2>&1 >> $filename
+systemctl disable mysql > /dev/null 2>&1 >> $filename
 
+filename=" "
 
 ## Get database IP address
 clear 
