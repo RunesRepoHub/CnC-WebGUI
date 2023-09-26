@@ -1,6 +1,8 @@
 rm -r CnC-WebGUI/
 
+PATH='/CnC-WebGUI/CnC-Agent'
+
 git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
 
-bash ~/CnC-WebGUI/CnC-Agent/Install-Agent.sh
+bash $PATH/Install-Agent.sh
 

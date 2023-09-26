@@ -1,6 +1,7 @@
 #!/bin/bash
 me=$(basename "$0")
-databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+PATH='/CnC-WebGUI/CnC-Agent'
+databaseip=$(cat $PATH/.databaseip)
 
 hostname=$(echo $HOSTNAME)
 

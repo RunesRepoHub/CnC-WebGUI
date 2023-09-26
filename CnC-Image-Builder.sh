@@ -1,4 +1,6 @@
-docker build -t cnc-web:1.0 /root/CnC-WebGUI/CnC-WebGUI/Nginx-Docker
-docker build -t cnc-mysql:1.0 /root/CnC-WebGUI/CnC-WebGUI/MySQL-Docker
+bash /$USERNAME/CnC-WebGUI/.metafile.sh
 
-docker compose -f /root/CnC-WebGUI/CnC-WebGUI/docker-compose.yaml -p cnc-webgui up -d
+docker build -t cnc-web:$version /$USERNAME/CnC-WebGUI/CnC-WebGUI/Nginx-Docker
+docker build -t cnc-mysql:$version /$USERNAME/CnC-WebGUI/CnC-WebGUI/MySQL-Docker
+
+docker compose -f /$USERNAME/CnC-WebGUI/CnC-WebGUI/docker-compose.yaml -p cnc-webgui up -d

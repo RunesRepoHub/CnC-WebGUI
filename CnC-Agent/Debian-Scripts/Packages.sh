@@ -1,4 +1,5 @@
-databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+PATH='/CnC-WebGUI/CnC-Agent'
+databaseip=$(cat $PATH/.databaseip)
 me=$(basename "$0")
 
 

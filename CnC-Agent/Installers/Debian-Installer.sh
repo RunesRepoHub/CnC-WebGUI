@@ -2,6 +2,8 @@ me=$(basename "$0")
 USERNAME=$(whoami)
 export DEBIAN_FRONTEND=noninteractive
 
+PATH='/CnC-WebGUI/CnC-Agent'
+
 filename='/$USERNAME/CnC-WebGUI/Logs/Debian-Installer.log'
 
 ## Update and install gnupg
@@ -48,32 +50,32 @@ fi
 
 if [[ $result == "up" ]]; then
     ## Save database IP address
-    touch ~/CnC-WebGUI/CnC-Agent/.databaseip
-    echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
+    touch $PATH/.databaseip
+    echo "$databaseip" > $PATH/.databaseip
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh /usr/bin/ > /dev/null 2>&1
+    ln -s $PATH/Debian-Scripts/Packages.sh /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh >/dev/null 2>&1' >> file; crontab file
+    crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby '$PATH'/Debian-Scripts/Packages.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh
+    bash $PATH/Debian-Scripts/Packages.sh
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh /usr/bin/ > /dev/null 2>&1
+    ln -s $PATH/Debian-Scripts/Overview.sh /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh >/dev/null 2>&1' >> file; crontab file
+    crontab -l > file; echo '00 00 * * * ruby '$PATH'/Debian-Scripts/Overview.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh
+    bash $PATH/Debian-Scripts/Overview.sh
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh /usr/bin/ > /dev/null 2>&1
+    ln -s $PATH/Debian-Scripts/Cronjob.sh /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh >/dev/null 2>&1' >> file; crontab file
+    crontab -l > file; echo '00 00 * * * ruby '$PATH'/Debian-Scripts/Cronjob.sh >/dev/null 2>&1' >> file; crontab file
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh
+    bash $PATH/Debian-Scripts/Cronjob.sh
 
     rm file
 else 

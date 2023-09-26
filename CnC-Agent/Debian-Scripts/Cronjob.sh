@@ -1,10 +1,11 @@
 #!/bin/bash
-databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+PATH='/CnC-WebGUI/CnC-Agent'
+databaseip=$(cat $PATH/.databaseip)
 hn=$(echo $HOSTNAME)
 me=$(basename "$0")
 
-touch ~/CnC-WebGUI/CnC-Agent/cron.txt
-crontab -l > ~/CnC-WebGUI/CnC-Agent/cron.txt
+touch $PATH/cron.txt
+crontab -l > $PATH/cron.txt
 
 # MySQL database connection details
 DB_HOST="$databaseip"
@@ -13,7 +14,7 @@ DB_USER="root"
 DB_PASSWORD="12Marvel"
 DB_NAME="machines"
 START=1
-END=$(wc -l < ~/CnC-WebGUI/CnC-Agent/cron.txt)
+END=$(wc -l < $PATH/cron.txt)
 ## save $START, just in case if we need it later ##
 i=$START
 while [[ $i -le $END ]]
