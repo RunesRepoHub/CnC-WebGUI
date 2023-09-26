@@ -26,8 +26,10 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
         # do dangerous stuff
         wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Update.sh -P ~/ > /dev/null 2>&1
         bash ~/Update.sh
-        
-        cd ~/
+
+        sleep 10
+
+        bash ~/Cnc-WebGUI/CnC-Image-Builder.sh
 
     fi 
 else 
