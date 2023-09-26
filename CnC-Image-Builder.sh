@@ -1,8 +1,9 @@
+folder='CnC-WebGUI/CnC-WebGUI'
 USERNAME=$(whoami)
 version=$(cat /$USERNAME/CnC-WebGUI/Version.txt)
 
-touch /$USERNAME/CnC-WebGUI/CnC-WebGUI/.env
-echo "version=$version" > /$USERNAME/CnC-WebGUI/CnC-WebGUI/.env
+touch /$USERNAME/$folder/.env
+echo "version=$version" > /$USERNAME/$folder/.env
 
 
 docker build -t cnc-web:$version /$USERNAME/CnC-WebGUI/CnC-WebGUI/Nginx-Docker
