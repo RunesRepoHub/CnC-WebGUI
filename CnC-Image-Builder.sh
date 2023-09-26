@@ -1,12 +1,10 @@
-folder='CnC-WebGUI/CnC-WebGUI'
-USERNAME=$(whoami)
-version=$(cat /$USERNAME/CnC-WebGUI/Version.txt)
+version=$(cat ~/CnC-WebGUI/Version.txt)
 
-touch /$USERNAME/$folder/.env
-echo "version=$version" > /$USERNAME/$folder/.env
+touch ~/CnC-WebGUI/CnC-WebGUI/.env
+echo "version=$version" > ~/CnC-WebGUI/CnC-WebGUI/.env
 
 
-docker build -t cnc-web:$version /$USERNAME/$folder/Nginx-Docker
-docker build -t cnc-mysql:$version /$USERNAME/$folder/MySQL-Docker
+docker build -t cnc-web:$version ~/CnC-WebGUI/CnC-WebGUI/Nginx-Docker
+docker build -t cnc-mysql:$version ~/CnC-WebGUI/CnC-WebGUI/MySQL-Docker
 
-docker compose -f /$USERNAME/$folder/docker-compose.yaml -p cnc-webgui up -d
+docker compose -f ~/CnC-WebGUI/CnC-WebGUI/docker-compose.yaml -p cnc-webgui up -d
