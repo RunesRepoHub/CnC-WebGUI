@@ -1,4 +1,4 @@
-GIT_Version=$("`wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Version.txt`")
+GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Version.txt)
 LOCAL_Version=$(cat ~/CnC-WebGUI/Version.txt)
 
 if [ $GIT_Version >= $LOCAL_Version ]; then 
@@ -7,9 +7,15 @@ if [ $GIT_Version >= $LOCAL_Version ]; then
 
 else 
 
-    rm -r ~/CnC-WebGUI
+    echo "There is a newer version of CnC-WebGUI"
+    echo "Do you want to update first?"
 
-    git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
+    read -p "Are you sure? " -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        # do dangerous stuff
+        bash ~/CnC-WebGUI/Update.sh
 
-    bash ~/CnC-WebGUI/CnC-Agent/Install-Agent.sh
+    fi 
 fi

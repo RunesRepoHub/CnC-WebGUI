@@ -1,4 +1,4 @@
-GIT_Version=$("`wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Version.txt`")
+GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Version.txt)
 LOCAL_Version=$(cat ~/CnC-WebGUI/Version.txt)
 
 if [ $GIT_Version >= $LOCAL_Version ]; then
@@ -23,7 +23,7 @@ else
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         # do dangerous stuff
-        bash ~/CnC-WebGUI/Download-Agent.sh
+        bash ~/CnC-WebGUI/Update.sh
 
     fi 
 fi
