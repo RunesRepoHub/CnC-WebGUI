@@ -1,7 +1,11 @@
 GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Version.txt)
 LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
-if [[ $GIT_Version > "$LOCAL_Version" ]]; then
+if [ $GIT_Version == "$LOCAL_Version" ]; then
+
+    bash ~/CnC-WebGUI/Functions/Getting-started.sh
+
+elif [ $GIT_Version > "$LOCAL_Version" ] ; then 
 
     echo "There is a newer version of CnC-WebGUI"
     echo "Do you want to update first?"
@@ -12,7 +16,7 @@ if [[ $GIT_Version > "$LOCAL_Version" ]]; then
     then
         # do dangerous stuff
         wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Update.sh -P ~/ > /dev/null 2>&1
-        bash ~/Update.sh
+        bash ~/CnC-WebGUI/Functions/Update.sh
 
         sleep 5
 
