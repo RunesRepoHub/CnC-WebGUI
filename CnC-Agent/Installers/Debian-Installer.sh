@@ -6,16 +6,16 @@ filename='~/CnC-WebGUI/Logs/Debian-Installer.log'
 ## Update and install gnupg
 clear
 echo "Installing CnC-Agent"
-apt update > /dev/null 2>&1 >> $filename
-apt install gnupg -y > /dev/null 2>&1 >> $filename
-apt install nmap -y > /dev/null 2>&1 >> $filename
+apt update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+apt install gnupg -y > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+apt install nmap -y > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
 ## Download MySQL
 clear
 echo "Installing MySQL"
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1 >> $filename
-dpkg -i /tmp/mysql-apt-config_0.8.22-1_all.deb > /dev/null 2>&1 >> $filename
-apt update > /dev/null 2>&1 >> $filename
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+dpkg -i /tmp/mysql-apt-config_0.8.22-1_all.deb > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+apt update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
 ## Install and set up MySQL
 clear 
