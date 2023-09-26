@@ -3,6 +3,8 @@ LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
 if [ $GIT_Version > "$LOCAL_Version" ]; then 
 
+    clear 
+
     echo "Removing files from old Version and Downloading the newest Version"
 
     rm -r ~/CnC-WebGUI 
