@@ -1,5 +1,8 @@
-GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Version.txt)
+GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Version.txt)
 LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
+
+
+
 
 if [ $GIT_Version == "$LOCAL_Version" ]; then
 
@@ -15,7 +18,7 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         # do dangerous stuff
-        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Update.sh -P ~/ > /dev/null 2>&1
+        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Update.sh -P ~/ > /dev/null 2>&1
         bash ~/CnC-WebGUI/Functions/Update.sh
 
         sleep 5
