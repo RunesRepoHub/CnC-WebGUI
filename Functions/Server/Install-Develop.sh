@@ -3,14 +3,26 @@ GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/D
 ## Get Local Version
 LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
+user=$(id -u -n)
+
+if [ $user != "root"]; then
+
+    path="/home/$user/CnC-WebGUI/bash"
+
+else 
+
+    path="/root/CnC-WebGUI"
+
+fi
+
 ## Compare Local and repo versions
 if [ $GIT_Version == "$LOCAL_Version" ]; then
 ## If local version is up to date with repo just run:
 
 
-    sudo chmod u+x /home/rune/CnC-WebGUI/Functions/Server/Getting-started.sh
+    sudo chmod u+x $path/Functions/Server/Getting-started.sh
 
-    sudo -i /home/rune/CnC-WebGUI/Functions/Server/Getting-started.sh
+    sudo -i $path/Functions/Server/Getting-started.sh
 
 
 elif [ $GIT_Version > "$LOCAL_Version" ] ; then 
