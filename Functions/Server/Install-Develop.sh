@@ -36,11 +36,11 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
 
         sleep 5
 
-        sudo chmod u+x ~/CnC-WebGUI/Functions/Server/Getting-started.sh
+        sudo chmod u+x /CnC-WebGUI/Functions/Server/Getting-started.sh
 
-        sudo -i ~/CnC-WebGUI/Functions/Server/Getting-started.sh
+        sudo -i /CnC-WebGUI/Functions/Server/Getting-started.sh
 
-        bash ~/CnC-WebGUI/Functions/Server/Getting-started.sh
+        bash /CnC-WebGUI/Functions/Server/Getting-started.sh
 
     fi 
 else 
