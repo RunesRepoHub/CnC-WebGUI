@@ -12,7 +12,7 @@ while true; do
         case $REPLY in
             1)
             ## Check if this version has been downloaded before 
-            FILE=~/CnC-WebGUI/Functions/Install-Develop.sh
+            FILE=~/CnC-WebGUI
             if [ -f "$FILE" ]; then
                 ## Clear screen for better overview
                 clear
@@ -43,7 +43,7 @@ while true; do
             break 2;;
             2) 
             ## Check if this version has been downloaded before
-            FILE=~/CnC-WebGUI/Functions/Install-Production.sh
+            FILE=~/CnC-WebGUI
             if [ -f "$FILE" ]; then
                 ## Clear screen for better overview
                 clear
