@@ -9,7 +9,7 @@ while true; do
     do
         case $REPLY in
             1) 
-            git clone --branch Development https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
+            git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
             bash ~/CnC-WebGUI/Functions/Install-Develop.sh; 
             break;;
             2) 
