@@ -13,7 +13,7 @@ while true; do
             1)
             ## Check if this version has been downloaded before 
             FILE=~/CnC-WebGUI
-            if [ -f "$FILE" ]; then
+            if [ -d "$FILE" ]; then
                 ## Clear screen for better overview
                 clear
                 ## Inform the user if the file has already been downloaded
@@ -44,7 +44,7 @@ while true; do
             2) 
             ## Check if this version has been downloaded before
             FILE=~/CnC-WebGUI
-            if [ -f "$FILE" ]; then
+            if [ -d "$FILE" ]; then
                 ## Clear screen for better overview
                 clear
                 ## Inform the user if the file has already been downloaded
