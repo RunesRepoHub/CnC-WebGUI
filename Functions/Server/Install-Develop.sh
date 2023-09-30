@@ -10,7 +10,7 @@ if [ $GIT_Version == "$LOCAL_Version" ]; then
 
     sudo chmod u+x /home/rune/CnC-WebGUI/Functions/Server/Getting-started.sh
 
-    sudo -i /home/runeCnC-WebGUI/Functions/Server/Getting-started.sh
+    sudo -i /home/rune/CnC-WebGUI/Functions/Server/Getting-started.sh
 
 
 elif [ $GIT_Version > "$LOCAL_Version" ] ; then 
