@@ -35,25 +35,25 @@ user=$(whoami)
 if [[ $OS == "Debian GNU/Linux" && $VER == "10" ]]; then
     
     ## Run Debian Installer
-    bash ~/CnC-WebGUI/Functions/Server/Run-Install-Debian.sh
+    bash <(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Server/Run-Install-Debian.sh)
 
 ## Check if OS is Debian 10     
 elif [[ $OS == "Debian GNU/Linux" && $VER == "11" ]]; then
     
     ## Run Debian Installer
-    bash ~/CnC-WebGUI/Functions/Server/Run-Install-Debian.sh
+    bash <(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Server/Run-Install-Debian.sh)
 
 ## Check if OS is Ubuntu 22.04 and root user
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user == "root" ]]; then
     
     ## Run Debian Installer
-    bash ~/CnC-WebGUI/Functions/Server/Run-Install-Debian.sh
+    bash <(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Server/Run-Install-Debian.sh)
 
 ## Check if OS is Ubuntu 22.04 and "normal user"
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user != "root" ]]; then
     
     ## Run Debian Installer
-    bash ~/CnC-WebGUI/Functions/Server/Run-Install-Ubuntu.sh
+    bash <(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Server/Run-Install-Ubuntu.sh)
 
 else
 echo "Unsupported OS"
