@@ -1,5 +1,5 @@
 ## Get Version from repo 
-GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Version.txt)
+GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Version.txt)
 ## Get Local Version
 LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
@@ -7,9 +7,8 @@ LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 if [ $GIT_Version == "$LOCAL_Version" ]; then
 ## If local version is up to date with repo just run:
 
-    bash ~/CnC-WebGUI/Functions/Getting-started.sh
+    bash ~/CnC-WebGUI/Functions/Server/Getting-started.sh
 
-## If the local version is behind the repo version
 elif [ $GIT_Version > "$LOCAL_Version" ] ; then 
 
     ## Inform user of the updated version
@@ -25,13 +24,13 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
     echo    # (optional) move to a new line
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-        ## 
-        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Update.sh -P ~/ > /dev/null 2>&1
-        bash ~/CnC-WebGUI/Functions/Update.sh
+        # do dangerous stuff
+        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Server/Update-Dev.sh -P ~/ > /dev/null 2>&1
+        bash ~/CnC-WebGUI/Functions/Server/Update-Dev.sh
 
         sleep 5
 
-        bash ~/CnC-WebGUI/Functions/Getting-started.sh
+        bash ~/CnC-WebGUI/Functions/Server/Getting-started.sh
 
     fi 
 else 

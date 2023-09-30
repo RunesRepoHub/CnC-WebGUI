@@ -26,4 +26,6 @@ services:
     depends_on:
       - cnc-webgui-db
     volumes:
-      - ~/CnC-WebGUI/src:/cnc-webgui/web
+      - dbdata:/var/lib/mysql
+volumes:
+  dbdata:
