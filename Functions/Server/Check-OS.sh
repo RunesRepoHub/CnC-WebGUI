@@ -52,7 +52,7 @@ elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user == "root" ]]; then
 ## Check if OS is Ubuntu 22.04 and "normal user"
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user != "root" ]]; then
     
-    ## Run Debian Installer
+    ## Run Ubuntu Installer
     bash <(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Server/Run-Install-Ubuntu.sh)
 
 else

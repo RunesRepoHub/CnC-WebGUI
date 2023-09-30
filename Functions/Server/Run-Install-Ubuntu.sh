@@ -39,19 +39,19 @@ while true; do
                 if [[ $REPLY =~ ^[Yy]$ ]]
                 then
                     ## Remove old files
-                    rm -r ~/CnC-WebGUI
+                    sudo rm -r ~/CnC-WebGUI
                     ## Clones new files
-                    git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
+                    sudo git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
                     ## Runs the installation script
-                    bash ~/CnC-WebGUI/Functions/Server/Install-Develop.sh;
+                    sudo bash ~/CnC-WebGUI/Functions/Server/Install-Develop.sh;
                 fi
             else 
                 ## If the files has not been download before
                 echo "$FILE does not exist."
                 ## Clones new files
-                git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
+                sudo git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
                 ## Runs the installation script
-                bash ~/CnC-WebGUI/Functions/Server/Install-Develop.sh;
+                sudo bash ~/CnC-WebGUI/Functions/Server/Install-Develop.sh;
             fi 
             break 2;;
             2) 
@@ -71,19 +71,19 @@ while true; do
                 if [[ $REPLY =~ ^[Yy]$ ]]
                 then
                     ## Remove old files
-                    rm -r ~/CnC-WebGUI
+                    sudo rm -r ~/CnC-WebGUI
                     ## Clones new files
-                    git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
+                    sudo git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
                     ## Runs the installation script
-                    bash ~/CnC-WebGUI/Functions/Server/Install-Production.sh;
+                    sudo bash ~/CnC-WebGUI/Functions/Server/Install-Production.sh;
                 fi
             else 
                 ## If the files has not been download before
                 echo "$FILE does not exist."
                 ## Clones new files
-                git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
+                sudo git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
                 ## Runs the installation script
-                bash ~/CnC-WebGUI/Functions/Server/Install-Production.sh;
+                sudo bash ~/CnC-WebGUI/Functions/Server/Install-Production.sh;
             fi 
             break 2;;
             ## When quiting the script
