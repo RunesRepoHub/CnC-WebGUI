@@ -5,7 +5,7 @@ LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
 user=$(id -u -n)
 
-if [ $user != "root"]; then
+if [ $user != "root" ]; then
 
     path="/home/$user/CnC-WebGUI/bash"
 
