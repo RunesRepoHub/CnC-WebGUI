@@ -43,7 +43,7 @@ while true; do
                     ## Clones new files
                     git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
                     ## Runs the installation script
-                    bash ~/CnC-WebGUI/Functions/Server/Install-Develop.sh;
+                    bash ~/CnC-WebGUI/Functions/Server/Debian/Install-Develop.sh;
                 fi
             else 
                 ## If the files has not been download before
@@ -51,7 +51,7 @@ while true; do
                 ## Clones new files
                 git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
                 ## Runs the installation script
-                bash ~/CnC-WebGUI/Functions/Server/Install-Develop.sh;
+                bash ~/CnC-WebGUI/Functions/Server/Debian/Install-Develop.sh;
             fi 
             break 2;;
             2) 
@@ -75,7 +75,7 @@ while true; do
                     ## Clones new files
                     git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
                     ## Runs the installation script
-                    bash ~/CnC-WebGUI/Functions/Server/Install-Production.sh;
+                    bash ~/CnC-WebGUI/Functions/Server/Debian/Install-Production.sh;
                 fi
             else 
                 ## If the files has not been download before
@@ -83,7 +83,7 @@ while true; do
                 ## Clones new files
                 git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
                 ## Runs the installation script
-                bash ~/CnC-WebGUI/Functions/Server/Install-Production.sh;
+                bash ~/CnC-WebGUI/Functions/Server/Debian/Install-Production.sh;
             fi 
             break 2;;
             ## When quiting the script
