@@ -37,7 +37,7 @@ while true; do
                     bash ~/CnC-WebGUI/Functions/Install-Develop.sh;
                 fi
             else 
-                break ;;
+                break 
             fi
             else 
                 ## If the files has not been download before
