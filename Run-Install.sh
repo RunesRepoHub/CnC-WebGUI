@@ -17,7 +17,8 @@ while true; do
                 ## Clear screen for better overview
                 clear
                 ## Inform the user if the file has already been downloaded
-                echo "$FILE exists. Do you want to delete the old files and install a new version?"
+                echo "$FILE exists."
+                echo "Do you want to delete the old files and install a new version?"
                 ## Ask the user for action input
                 read -p "Are you sure? " -n 1 -r
                 ## Move to a new line
@@ -48,7 +49,8 @@ while true; do
                 ## Clear screen for better overview
                 clear
                 ## Inform the user if the file has already been downloaded
-                echo "$FILE exists. Do you want to delete the old files and install a new version?"
+                echo "$FILE exists."
+                echo "Do you want to delete the old files and install a new version?"
                 ## Ask the user for action input
                 read -p "Are you sure? " -n 1 -r
                 ## Move to a new line

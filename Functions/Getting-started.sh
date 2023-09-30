@@ -1,4 +1,5 @@
 #!/bin/bash
+clear 
 
 PS3="Select the what you want to install on this server:"
 
