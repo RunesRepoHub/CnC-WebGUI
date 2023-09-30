@@ -1,4 +1,6 @@
 #!/bin/bash
+user=$(id -u -n)
+
 clear
 echo "The Development Version is undergoing constant updates and changes to the code and will therefor not always work as it should... THIS HAS BEEN YOUR WARNING"
 echo 
@@ -23,7 +25,7 @@ while true; do
         case $REPLY in
             1)
             ## Check if this version has been downloaded before 
-            FILE=~/CnC-WebGUI
+            FILE=/home/$user/CnC-WebGUI
             if [ -d "$FILE" ]; then
                 ## Clear screen for better overview
                 clear
@@ -39,11 +41,11 @@ while true; do
                 if [[ $REPLY =~ ^[Yy]$ ]]
                 then
                     ## Remove old files
-                    sudo rm -r ~/CnC-WebGUI
+                    sudo rm -r /home/$user/CnC-WebGUI
                     ## Clones new files
                     sudo git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
                     ## Runs the installation script
-                    sudo bash ~/CnC-WebGUI/Functions/Server/Install-Develop.sh;
+                    sudo bash /home/$user/CnC-WebGUI/Functions/Server/Install-Develop.sh;
                 fi
             else 
                 ## If the files has not been download before
@@ -51,7 +53,7 @@ while true; do
                 ## Clones new files
                 sudo git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
                 ## Runs the installation script
-                sudo bash ~/CnC-WebGUI/Functions/Server/Install-Develop.sh;
+                sudo bash /home/$user/CnC-WebGUI/Functions/Server/Install-Develop.sh;
             fi 
             break 2;;
             2) 
@@ -71,11 +73,11 @@ while true; do
                 if [[ $REPLY =~ ^[Yy]$ ]]
                 then
                     ## Remove old files
-                    sudo rm -r ~/CnC-WebGUI
+                    sudo rm -r /home/$user/CnC-WebGUI
                     ## Clones new files
                     sudo git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
                     ## Runs the installation script
-                    sudo bash ~/CnC-WebGUI/Functions/Server/Install-Production.sh;
+                    sudo bash /home/$user/CnC-WebGUI/Functions/Server/Install-Production.sh;
                 fi
             else 
                 ## If the files has not been download before
@@ -83,7 +85,7 @@ while true; do
                 ## Clones new files
                 sudo git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
                 ## Runs the installation script
-                sudo bash ~/CnC-WebGUI/Functions/Server/Install-Production.sh;
+                sudo bash /home/$user/CnC-WebGUI/Functions/Server/Install-Production.sh;
             fi 
             break 2;;
             ## When quiting the script
