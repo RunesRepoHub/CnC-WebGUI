@@ -17,7 +17,7 @@ items=("Development" "Production")
 
 ## Select Version of code to download
 t=1
-while [ $t -le 1]; do
+while [ $t -le 1 ]; do
     select item in "${items[@]}" Quit
     do
         case $REPLY in
