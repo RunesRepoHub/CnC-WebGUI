@@ -11,7 +11,7 @@ while true; do
             1) 
             git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
             bash ~/CnC-WebGUI/Functions/Install-Develop.sh; 
-            break;;
+            break 2;;
             2) 
             git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
             bash ~/CnC-WebGUI/Functions/Install-Production.sh; 
