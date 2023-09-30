@@ -50,7 +50,7 @@ elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user == "root" ]]; then
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
 
 ## Check if OS is Ubuntu 22.04 and "normal user"
-elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user != "root"]]; then
+elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user != "root" ]]; then
     
     ## Run Debian Installer
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Debian-Installer.sh
