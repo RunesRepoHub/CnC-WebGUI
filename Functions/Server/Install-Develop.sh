@@ -3,27 +3,11 @@ GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/D
 ## Get Local Version
 LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
-user=$(id -u -n)
-
-if [ $user == "root" ]; then
-
-    path="/root/CnC-WebGUI"    
-
-else 
-
-    path="/home/$user/CnC-WebGUI/bash"
-
-fi
-
 ## Compare Local and repo versions
 if [ $GIT_Version == "$LOCAL_Version" ]; then
 ## If local version is up to date with repo just run:
 
-
-    sudo chmod u+x $path/Functions/Server/Getting-started.sh
-
-    sudo -i $path/Functions/Server/Getting-started.sh
-
+    bash ~/CnC-WebGUI/Functions/Server/Getting-started.sh
 
 elif [ $GIT_Version > "$LOCAL_Version" ] ; then 
 
@@ -41,15 +25,12 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         # do dangerous stuff
-        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Server/Update-Dev.sh -P ~/ > /dev/null 2>&1
-        bash ~/CnC-WebGUI/Functions/Server/Update-Dev.sh
+        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Server/Update.sh -P ~/ > /dev/null 2>&1
+        bash ~/CnC-WebGUI/Functions/Server/Update.sh
 
         sleep 5
 
-        sudo chmod u+x /CnC-WebGUI/Functions/Server/Getting-started.sh
-
-        sudo -i /CnC-WebGUI/Functions/Server/Getting-started.sh
-
+        bash ~/CnC-WebGUI/Functions/Server/Getting-started.sh
     fi 
 else 
     echo "An Error was incountered"
