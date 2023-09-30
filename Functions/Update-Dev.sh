@@ -1,4 +1,4 @@
-GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Version.txt)
+GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Version.txt)
 LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
 if [ $GIT_Version > "$LOCAL_Version" ]; then 
@@ -11,7 +11,7 @@ if [ $GIT_Version > "$LOCAL_Version" ]; then
 
     cd ~/ 
 
-    git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git > /dev/null 2>&1
+    git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git > /dev/null 2>&1
 
     rm ~/Update.sh
     rm ~/$LOCAL_Version
