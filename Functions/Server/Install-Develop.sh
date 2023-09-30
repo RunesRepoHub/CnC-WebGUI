@@ -3,7 +3,7 @@ GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/D
 ## Get Local Version
 LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 
-user=$(whoiam)
+user=$(id -u -n)
 
 if [ $user == "root" ]; then
 
