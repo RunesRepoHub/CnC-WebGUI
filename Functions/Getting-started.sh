@@ -2,8 +2,7 @@
 clear 
 PS3="Select the what you want to install on this server:"
 
-items=("Server" "Agent" "Uninstall CnC-WebGUI")
-echo 
+items=("Server" "Agent" "Uninstall CnC-WebGUI") 
 while true; do
     select item in "${items[@]}" Quit
     do
@@ -16,3 +15,4 @@ while true; do
         esac
     done
 done
+echo 
