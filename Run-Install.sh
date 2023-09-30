@@ -11,6 +11,9 @@ while true; do
     do
         case $REPLY in
             1)
+            ## Check and insurer that the user does want the dev version
+            if [[ $REPLY =~ ^[Yy]$ ]]
+            then
             ## Check if this version has been downloaded before 
             FILE=~/CnC-WebGUI
             if [ -d "$FILE" ]; then
@@ -33,6 +36,9 @@ while true; do
                     ## Runs the installation script
                     bash ~/CnC-WebGUI/Functions/Install-Develop.sh;
                 fi
+            else 
+                break ;;
+            fi
             else 
                 ## If the files has not been download before
                 echo "$FILE does not exist."
