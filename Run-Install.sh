@@ -16,8 +16,8 @@ PS3="Select the what version you want to install:"
 items=("Development" "Production")
 
 ## Select Version of code to download
-t=1
-while [ $t -le 1 ]; do
+
+while true; do
     select item in "${items[@]}" Quit
     do
         case $REPLY in
@@ -63,7 +63,6 @@ while [ $t -le 1 ]; do
                 ## Inform the user if the file has already been downloaded
                 echo "$FILE exists."
                 echo "Do you want to delete the old files and install a new version?"
-                echo
                 ## Ask the user for action input
                 read -p "Are you sure? " -n 1 -r
                 ## Move to a new line
