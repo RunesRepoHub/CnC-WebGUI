@@ -7,10 +7,8 @@ user=$(id -u -n)
 
 if [ $user == "root" ]; then
 
-    path=~/CnC-WebGUI/Functions/Server/Getting-started.sh
+    path=/$user/CnC-WebGUI/Functions/Server/Getting-started.sh
 
-else 
-    path=/home/$user/CnC-WebGUI/Functions/Server/Getting-started.sh
 fi
 
 ## Compare Local and repo versions
