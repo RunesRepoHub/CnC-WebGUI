@@ -9,12 +9,45 @@ while true; do
     do
         case $REPLY in
             1) 
-            git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
-            bash ~/CnC-WebGUI/Functions/Install-Develop.sh; 
+            FILE=~/CnC-WebGUI/Functions/Install-Develop.sh
+            if [ -f "$FILE" ]; then
+                echo "$FILE exists. Do you want to delete the old files and install a new version?"
+                read -p "Are you sure? " -n 1 -r
+                echo    # (optional) move to a new line
+                if [[ $REPLY =~ ^[Yy]$ ]]
+                then
+                    # do dangerous stuff
+                    rm -r ~/CnC-WebGUI
+                    git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
+                    bash ~/CnC-WebGUI/Functions/Install-Develop.sh;
+                   
+                fi
+            else 
+                echo "$FILE does not exist."
+                git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
+                bash ~/CnC-WebGUI/Functions/Install-Develop.sh;
+            fi 
             break 2;;
             2) 
-            git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
-            bash ~/CnC-WebGUI/Functions/Install-Production.sh; 
+
+            FILE=~/CnC-WebGUI/Functions/Install-Production.sh
+            if [ -f "$FILE" ]; then
+                echo "$FILE exists. Do you want to delete the old files and install a new version?"
+                read -p "Are you sure? " -n 1 -r
+                echo    # (optional) move to a new line
+                if [[ $REPLY =~ ^[Yy]$ ]]
+                then
+                    # do dangerous stuff
+                    rm -r ~/CnC-WebGUI
+                    git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
+                    bash ~/CnC-WebGUI/Functions/Install-Production.sh;
+                   
+                fi
+            else 
+                echo "$FILE does not exist."
+                git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
+                bash ~/CnC-WebGUI/Functions/Install-Production.sh;
+            fi 
             break 2;;
             $((${#items[@]}+1))) echo "We're done!"; break 2;;
             *) echo "Ooops - unknown choice $REPLY"; break;
