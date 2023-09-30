@@ -7,7 +7,7 @@ LOCAL_Version=$(cat ~/CnC-WebGUI/Functions/Version.txt)
 if [ $GIT_Version == "$LOCAL_Version" ]; then
 ## If local version is up to date with repo just run:
 
-    bash ~/CnC-WebGUI/Functions/Server/Getting-started.sh
+    bash ~/CnC-WebGUI/Functions/Server/Debian/Getting-started.sh
 
 ## If the local version is behind the repo version
 elif [ $GIT_Version > "$LOCAL_Version" ] ; then 
@@ -26,12 +26,12 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         ## 
-        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Server/Update.sh -P ~/ > /dev/null 2>&1
-        bash ~/CnC-WebGUI/Functions/Server/Update.sh
+        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Server/Update/Update.sh -P ~/ > /dev/null 2>&1
+        bash ~/CnC-WebGUI/Functions/Server/Update/Update.sh
 
         sleep 5
 
-        bash ~/CnC-WebGUI/Functions/Server/Getting-started.sh
+        bash ~/CnC-WebGUI/Functions/Server/Debian/Getting-started.sh
 
     fi 
 else 
