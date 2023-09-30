@@ -1,9 +1,10 @@
+userprofile=$(id -u -n)
+
 ## Get Version from repo 
 GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Version.txt)
 ## Get Local Version
 LOCAL_Version=$(cat /home/$userprofile/CnC-WebGUI/Functions/Version.txt)
 
-userprofile=$(id -u -n)
 
 ## Compare Local and repo versions
 if [ $GIT_Version == "$LOCAL_Version" ]; then
