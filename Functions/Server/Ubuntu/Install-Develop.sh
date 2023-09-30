@@ -1,4 +1,5 @@
 user=$(id -u -n)
+cd ~
 ## Get Version from repo 
 GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Version.txt)
 ## Get Local Version
