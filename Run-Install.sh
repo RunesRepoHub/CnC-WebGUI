@@ -17,7 +17,7 @@ items=("Development" "Production")
 
 ## Select Version of code to download
 
-while [ $t == 0 ]; do
+while true; do
     select item in "${items[@]}" Quit
     do
         case $REPLY in
@@ -44,7 +44,6 @@ while [ $t == 0 ]; do
                     git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
                     ## Runs the installation script
                     bash ~/CnC-WebGUI/Functions/Install-Develop.sh;
-                    ((i = i + 1))
                 fi
             else 
                 ## If the files has not been download before
@@ -53,7 +52,6 @@ while [ $t == 0 ]; do
                 git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
                 ## Runs the installation script
                 bash ~/CnC-WebGUI/Functions/Install-Develop.sh;
-                ((i = i + 1))
             fi 
             break 2;;
             2) 
@@ -79,7 +77,6 @@ while [ $t == 0 ]; do
                     git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
                     ## Runs the installation script
                     bash ~/CnC-WebGUI/Functions/Install-Production.sh;
-                    ((i = i + 1))
                 fi
             else 
                 ## If the files has not been download before
@@ -88,7 +85,6 @@ while [ $t == 0 ]; do
                 git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
                 ## Runs the installation script
                 bash ~/CnC-WebGUI/Functions/Install-Production.sh;
-                ((i = i + 1))
             fi 
             break 2;;
             ## When quiting the script
