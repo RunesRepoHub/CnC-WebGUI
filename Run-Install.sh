@@ -16,8 +16,8 @@ PS3="Select the what version you want to install:"
 items=("Development" "Production")
 
 ## Select Version of code to download
-
-while true; do
+t=1
+while [ $t -le 1]; do
     select item in "${items[@]}" Quit
     do
         case $REPLY in
