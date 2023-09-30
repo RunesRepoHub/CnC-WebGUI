@@ -92,9 +92,9 @@ while [ $t == 0 ]; do
             fi 
             break 2;;
             ## When quiting the script
-            $((${#items[@]}+1))) ((i = i + 1)) echo "We're done!"; break 2;;
+            $((${#items[@]}+1))) echo "We're done!"; break 2;;
             ## Wrong input
-            *) echo "Ooops - unknown choice $REPLY" ((i = i + 1)); break;
+            *) echo "Ooops - unknown choice $REPLY"; break;
         esac
     done
 done
