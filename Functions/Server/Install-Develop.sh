@@ -1,16 +1,14 @@
-userprofile=$(id -u -n)
-
 ## Get Version from repo 
 GIT_Version=$(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Version.txt)
 ## Get Local Version
-LOCAL_Version=$(cat /home/$userprofile/CnC-WebGUI/Functions/Version.txt)
+LOCAL_Version=$(cat /home/$USER/CnC-WebGUI/Functions/Version.txt)
 
 
 ## Compare Local and repo versions
 if [ $GIT_Version == "$LOCAL_Version" ]; then
 ## If local version is up to date with repo just run:
 
-    bash /home/$userprofile/CnC-WebGUI/Functions/Server/Getting-started.sh
+    bash /home/$USER/CnC-WebGUI/Functions/Server/Getting-started.sh
 
 elif [ $GIT_Version > "$LOCAL_Version" ]; then 
 
@@ -28,12 +26,12 @@ elif [ $GIT_Version > "$LOCAL_Version" ]; then
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         # do dangerous stuff
-        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Server/Update.sh -P /home/$userprofile/ > /dev/null 2>&1
-        bash /home/$userprofile/CnC-WebGUI/Functions/Server/Update.sh
+        wget https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Production/Functions/Server/Update.sh -P /home/$USER/ > /dev/null 2>&1
+        bash /home/$USER/CnC-WebGUI/Functions/Server/Update.sh
 
         sleep 5
 
-        bash /home/$userprofile/CnC-WebGUI/Functions/Server/Getting-started.sh
+        bash /home/$USER/CnC-WebGUI/Functions/Server/Getting-started.sh
     fi 
 else 
     echo "An Error was incountered"
