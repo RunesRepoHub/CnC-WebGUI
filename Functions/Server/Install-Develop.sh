@@ -8,9 +8,9 @@ if [ $GIT_Version == "$LOCAL_Version" ]; then
 ## If local version is up to date with repo just run:
 
 
-    sudo chmod u+x ~/CnC-WebGUI/Functions/Server/Getting-started.sh
+    sudo chmod u+x /home/rune/CnC-WebGUI/Functions/Server/Getting-started.sh
 
-    sudo -i ~/CnC-WebGUI/Functions/Server/Getting-started.sh
+    sudo -i /home/runeCnC-WebGUI/Functions/Server/Getting-started.sh
 
 
 elif [ $GIT_Version > "$LOCAL_Version" ] ; then 
