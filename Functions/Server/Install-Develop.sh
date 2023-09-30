@@ -12,7 +12,7 @@ if [ $GIT_Version == "$LOCAL_Version" ]; then
 
     bash /home/$userprofile/CnC-WebGUI/Functions/Server/Getting-started.sh
 
-elif [ $GIT_Version > "$LOCAL_Version" ] ; then 
+elif [ $GIT_Version > "$LOCAL_Version" ]; then 
 
     ## Inform user of the updated version
     echo "There is a newer version of CnC-WebGUI"
