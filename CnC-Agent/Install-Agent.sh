@@ -52,7 +52,7 @@ elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user == "root" ]]; then
 ## Check if OS is Ubuntu 22.04 and "normal user"
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user != "root" ]]; then
     
-    ## Run Debian Installer
+    ## Run Ubuntu Installer
     bash ~/CnC-WebGUI/CnC-Agent/Installers/Ubuntu-Installer.sh
 
 else
