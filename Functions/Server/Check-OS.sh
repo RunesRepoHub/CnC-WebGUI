@@ -28,7 +28,7 @@ else
     VER=$(uname -r)
 fi
 
-user=$(whoami)
+user=$(id -u -n)
 
 
 ## Check if OS is Debian 10 
