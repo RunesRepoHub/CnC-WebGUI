@@ -1,6 +1,6 @@
 #!/bin/bash
 clear 
-
+echo
 PS3="Select the what you want to install on this server:"
 
 items=("Server" "Agent" "Uninstall CnC-WebGUI")
