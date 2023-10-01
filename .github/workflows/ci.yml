@@ -19,10 +19,10 @@ jobs:
     - name: Build the Docker image
       run: |
         cd CnC-WebGUI/MySQL-Docker/
-        docker build . -t CnC-WebGUI-MySQL -f Dockerfile
+        docker build . -t cnc-webgui-mysql -f Dockerfile
 
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
         cd CnC-WebGUI/Nginx-Docker/
-        docker build . -t CnC-WebGUI-Nginx -f Dockerfile
+        docker build . -t cnc-webgui-nginx -f Dockerfile
