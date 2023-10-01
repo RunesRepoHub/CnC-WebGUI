@@ -1,32 +1,34 @@
 me=$(basename "$0")
 export DEBIAN_FRONTEND=noninteractive
+
+filename='~/CnC-WebGUI/Logs/Debian-Installer.log'
+
 ## Update and install gnupg
 clear
 echo "Installing CnC-Agent"
-apt update > /dev/null 2>&1
-apt install gnupg -y > /dev/null 2>&1
-apt install nmap -y > /dev/null 2>&1
+apt update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+apt install gnupg -y > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+apt install nmap -y > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
 ## Download MySQL
 clear
 echo "Installing MySQL"
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1
-dpkg -i /tmp/mysql-apt-config_0.8.22-1_all.deb > /dev/null 2>&1
-apt update > /dev/null 2>&1
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+dpkg -i /tmp/mysql-apt-config_0.8.22-1_all.deb > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+apt update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
 ## Install and set up MySQL
 clear 
 echo "Setting Up MySQL"
 
-debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1
-debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1
+debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
-apt-get -y install mysql-server > /dev/null 2>&1
-apt-get update > /dev/null 2>&1
+apt-get -y install mysql-server > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+apt-get update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
-systemctl stop mysql > /dev/null 2>&1
-systemctl disable mysql > /dev/null 2>&1
-
+systemctl stop mysql > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
+systemctl disable mysql > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
 ## Get database IP address
 clear 
@@ -71,6 +73,9 @@ if [[ $result == "up" ]]; then
 
     ## Run Packages Reporting for the first time
     bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh
+
+    rm file
+
 else 
     echo "No Access To MySQL Server";
 fi

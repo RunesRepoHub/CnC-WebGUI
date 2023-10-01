@@ -4,7 +4,6 @@ databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 
 hostname=$(echo $HOSTNAME)
 
-
 ip_address=$(hostname -I | awk '{print $1}')
 
 mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
