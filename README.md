@@ -3,8 +3,6 @@
 
 **Docker containers made from scratch to collect data from the Linux server.**
 
-**Testing**
-
 ## Video Demo
 
 [See how to deploy the code](https://media.rp-helpdesk.com/view?m=CLXrOulOT)
