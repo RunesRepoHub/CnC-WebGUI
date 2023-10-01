@@ -17,9 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file CnC-WebGUI/MySQL-Docker/Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file &CnC-WebGUI/MySQL-Docker/Dockerfile --tag my-image-name:$(date +%s)
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file CnC-WebGUI/Nginx-Docker/Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file /CnC-WebGUI/Nginx-Docker/Dockerfile --tag my-image-name:$(date +%s)
