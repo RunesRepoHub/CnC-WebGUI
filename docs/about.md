@@ -1,6 +1,6 @@
 # About RP-Helpdesk Docs
 
-![pic](img/about.png)
+![pic](../img/about.png)
 
 !!! success "About RP-Helpdesk Docs"
 
