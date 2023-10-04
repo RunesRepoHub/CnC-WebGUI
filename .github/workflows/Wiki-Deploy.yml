@@ -1,4 +1,4 @@
-name: ci 
+name: Wiki Auto Deploy 
 on:
   push:
     branches:
