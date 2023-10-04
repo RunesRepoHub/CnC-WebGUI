@@ -2,8 +2,8 @@ name: ci
 on:
   push:
     branches:
-      - master 
-      - main
+      - Dev 
+      - Production
 permissions:
   contents: write
 jobs:
