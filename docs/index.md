@@ -1,16 +1,21 @@
-# Welcome To RP-Helpdesk Docs
----------------
+## Installation
+### Docker images
+The images has not been made public yet, so if you want to use this right now. You will have to build the images yourself.
 
-![pic](../img/Logo-(Motto)-larger.png)
+Run this one line command for a automated install.
 
-!!! success "**Here you can find the documentation that we have used to make our servers and services run.**"
+```
+bash <(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Run-Install.sh)
+```
+This should make the two docker images and after they have been made it will use the docker-compose file to start the two dockers. When the two dockers are up and running, check the you don't have errors on the website.
 
----------------
-![pic2](../img/logo2.png)
+> (The WebGUI will give php errors at startup because it is still waiting for the database to come online) When it has come online you can then install the Agent to the servers you want to moniter.
 
-!!! warning "**These guides are made for our own infrastructur, so they may not work for you.**"
+### Install Agent
+Run the following commands on a Debian 10/11 server to install the agent.
 
-------------------
-![pic1](../img/logo3.png)
+The docker web and db containers has to be running.
 
-!!! info "**Learn more about the software and OS's we use.**"
+```
+bash <(wget -qO- https://git.rp-helpdesk.com/Rune/CnC-WebGUI/raw/branch/Dev/Functions/Run-Install.sh)
+```
