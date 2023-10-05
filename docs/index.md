@@ -1,5 +1,23 @@
 ## Installation
 
+### Requriements 
+
+**OS**
+Supported:
+
+* Debian 10 (Tested) (Web/DB & Agent)
+* Debian 11 (Tested) (Web/DB & Agent)
+* Ubuntu 22.04 (Tested) (Web/DB & Agent)
+
+>***This has been setup as root on fresh installs***
+
+**Web/db Server**
+* Git install on the web/db server
+* Docker + Docker-compose installed on the web/db server
+
+**Agent Devices**
+* No packages requried now (May change in the future)
+
 #### Supported Platforms:
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) 
 
