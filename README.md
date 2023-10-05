@@ -6,6 +6,8 @@
 
 **Docker containers made from scratch to collect data from the Linux server.**
 
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
+
 ## Wiki
 
 [Get started or get help via my wiki](https://christian-rune.github.io/CnC-WebGUI/)
