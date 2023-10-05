@@ -8,7 +8,7 @@ nav:
     - Introduction:
       - Introduction To CnC-WebGUI:
         - CnC-WebGUI Information: 'index.md'
-        - CnC-WebGUI Installation: 'about.md'
+        - CnC-WebGUI Installation: 'install.md'
 theme:
   icon:
       logo: fontawesome/brands/gitkraken
