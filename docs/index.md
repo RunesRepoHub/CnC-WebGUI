@@ -6,8 +6,7 @@
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white) ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white) 
 
 ### Requriements 
-**OS**
-Supported:
+**OS Supported:**
 
 * Debian 10 (Tested) (Web/DB & Agent)
 * Debian 11 (Tested) (Web/DB & Agent)
@@ -16,10 +15,12 @@ Supported:
 >***This has been setup as root on fresh installs***
 
 **Web/db Server**
+
 * Git install on the web/db server
 * Docker + Docker-compose installed on the web/db server
 
 **Agent Devices**
+
 * No packages requried now (May change in the future)
 
 ### Made With:
