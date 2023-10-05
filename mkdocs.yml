@@ -5,10 +5,10 @@ repo_url: https://github.com/orgs/christian-rune/repositories
 edit_uri: https://github.com/orgs/christian-rune/RPH-Docs/edit/main/docs/
 use_directory_urls: false
 nav:
-    - Introduction:
-      - Introduction To CnC-WebGUI:
-        - CnC-WebGUI Information: 'index.md'
-        - CnC-WebGUI Installation: 'install.md'
+    - CnC-WebGUI Documentation:
+      - Getting Started With CnC-WebGUI:
+        - What is CnC-WebGUI?: 'index.md'
+        - How to Install CnC-WebGUI: 'install.md'
 theme:
   icon:
       logo: fontawesome/brands/gitkraken
