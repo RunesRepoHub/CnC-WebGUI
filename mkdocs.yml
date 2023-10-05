@@ -8,6 +8,7 @@ nav:
     - CnC-WebGUI Documentation:
       - Getting Started With CnC-WebGUI:
         - What is CnC-WebGUI?: 'index.md'
+        - Requirements CnC-WebGUI: 'install.md'
         - How to Install CnC-WebGUI: 'install.md'
 theme:
   icon:

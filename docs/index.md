@@ -1,28 +1,21 @@
-## Getting Started With CnC-WebGUI
+# Getting Started With CnC-WebGUI
 
-### Supported Platforms:
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) 
+>! Warning
+> This is still an internal tools and has not been made available to the public yet. It is also still under development and is not yet production ready.
 
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white) ![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white) 
+### Basic Operation Procedures (BOP)
 
-### Requriements 
-**OS Supported:**
+* Collect CPU, RAM and Disk usage.
+* Collect data on docker version and other SOP (standard operation procedure) software version.
+* Uptimer and warning.
+ 
 
-* Debian 10 (Tested) (Web/DB & Agent)
-* Debian 11 (Tested) (Web/DB & Agent)
-* Ubuntu 22.04 (Tested) (Web/DB & Agent)
+### Advanced Operation Procedures (AOP)
+* ~~Change basic configs~~
+* ~~Reboot/shutdown/update/upgrade~~
+* Overview of cron jobs
+* ~~Change and update cron jobs~~
+* Tailscale VPN
+* Docker images sync vulnerability scan
 
->***This has been setup as root on fresh installs***
-
-**Web/db Server**
-
-* Git install on the web/db server
-* Docker + Docker-compose installed on the web/db server
-
-**Agent Devices**
-
-* No packages requried now (May change in the future)
-
-### Made With:
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white) ![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
 
