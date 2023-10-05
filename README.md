@@ -1,5 +1,8 @@
 # CnC-WebGUI
+
 **WebGUI for giving overview to my Linux servers**
+
+![Debian](https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 
 **Docker containers made from scratch to collect data from the Linux server.**
 
@@ -10,10 +13,6 @@
 ## Video Demo
 
 [See how to deploy the code](https://media.rp-helpdesk.com/view?m=CLXrOulOT)
-
-## Wiki
-
-[See my wiki for the code](https://wiki.rp-helpdesk.com)
 
 ### Requriements 
 
