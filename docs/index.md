@@ -1,7 +1,6 @@
 # Getting Started With CnC-WebGUI
 
->! Warning
-> This is still an internal tools and has not been made available to the public yet. It is also still under development and is not yet production ready.
+This is still an internal tools and has not been made available to the public yet. It is also still under development and is not yet production ready.
 
 ### Basic Operation Procedures (BOP)
 
