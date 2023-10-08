@@ -14,7 +14,7 @@
 
 ## Wiki
 
-[Get started or get help via my wiki](https://christian-rune.github.io/CnC-WebGUI/)
+[Get started or get help via my wiki](https://runesrepohub.github.io/CnC-WebGUI/)
 
 ## Video Demo
 
