@@ -11,7 +11,7 @@ nav:
         - Requirements CnC-WebGUI: 'requirement.md'
         - How to Install CnC-WebGUI: 'install.md'
       - Understand The Source Code:
-        - What is CnC-WebGUI?: 'crud.md'
+        - The CRUD API Docker: 'crud.md'
 theme:
   icon:
       logo: fontawesome/brands/gitkraken
