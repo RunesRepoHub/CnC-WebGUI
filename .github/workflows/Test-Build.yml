@@ -26,3 +26,9 @@ jobs:
       run: |
         cd CnC-WebGUI/Nginx-Docker/
         docker build . -t cnc-webgui-nginx -f Dockerfile
+
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        cd CnC-WebGUI/Nodejs-Docker/
+        docker build . -t cnc-webgui-api -f Dockerfile

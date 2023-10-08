@@ -1,7 +1,8 @@
 version: "3.2"
 services:
   cnc-webgui-db:
-    image: cnc-mysql:${version}
+    container_name: mysql_db
+    image: cnc-mysql:1.2
     restart: always
     ports:
       - "3306:3306"
@@ -10,22 +11,41 @@ services:
       - MYSQL_DATABASE=machines
       - MYSQL_ROOT_HOST=%
     command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - CnC-network
     volumes:
-      - ~/CnC-WebGUI/src:/cnc-webgui/db
+      - dbdata:/var/lib/mysql
+  api:
+    image: 192.168.1.140:5000/cnc-node-api:1.2
+    restart: always
+    ports:
+      - "4000:3000"
+    environment:
+      - MYSQL_HOST=mysql_db
+    depends_on:
+      - cnc-webgui-db
+    networks:
+      - CnC-network
+    volumes:
+      - dbdata:/var/lib/api
   web:
-    image: cnc-web:${version}
+    image: cnc-web:1.2
     environment:
       - MYSQL_ROOT_PASSWORD=12Marvel
       - MYSQL_USER=root
       - MYSQL_PASSWORD=12Marvel
       - MYSQL_DATABASE=machines
-      - MYSQL_HOST=db
+      - MYSQL_HOST=mysql_db
     restart: always
     ports:
       - "8080:80"
     depends_on:
       - cnc-webgui-db
+    networks:
+      - CnC-network
     volumes:
-      - dbdata:/var/lib/mysql
+      - dbdata:/var/lib/web
 volumes:
   dbdata:
+networks:
+  CnC-network:
