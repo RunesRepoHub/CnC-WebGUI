@@ -7,10 +7,10 @@ const port = 3000;
 
 // MySQL Connection
 const db = mysql.createConnection({
-  host: '192.168.1.45',
+  host: '192.168.1.100',
   user: 'root',
-  password: 'RuneProduction',
-  database: 'CnC-WebGUI-test',
+  password: '12Marvel',
+  database: 'machines',
 });
 
 db.connect((err) => {
