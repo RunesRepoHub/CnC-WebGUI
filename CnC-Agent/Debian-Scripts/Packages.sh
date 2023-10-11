@@ -17,6 +17,21 @@ CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}')
 CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}')
 
 
+# Set default values for variables if they are empty or unset
+[ -z "$HOSTNAME" ] && HOSTNAME="Not Installed"
+[ -z "$GIT" ] && GIT="Not Installed"
+[ -z "$WGET" ] && WGET="Not Installed"
+[ -z "$SUDO" ] && SUDO="Not Installed"
+[ -z "$PYTHON" ] && PYTHON="Not Installed"
+[ -z "$PYTHON3" ] && PYTHON3="Not Installed"
+[ -z "$NETTOOLS" ] && NETTOOLS="Not Installed"
+[ -z "$MYSQL" ] && MYSQL="Not Installed"
+[ -z "$LIBPYTHON" ] && LIBPYTHON="Not Installed"
+[ -z "$DOCKERCECLI" ] && DOCKERCECLI="Not Installed"
+[ -z "$DOCKERCOMPOSEPLUGIN" ] && DOCKERCOMPOSEPLUGIN="Not Installed"
+[ -z "$CURL" ] && CURL="Not Installed"
+[ -z "$CONTAINERD" ] && CONTAINERD="Not Installed"
+
 # Define your REST API endpoint for querying and updating data
 API_ENDPOINT="http://$databaseip:3000/create/packages"
 
@@ -47,11 +62,8 @@ response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_END
 echo "API response: $response"
 
 # Check the response from the API
-if [[ "$response" == *"SyntaxError"* ]]; then
-    echo "API returned a JSON parsing error."
-    # Handle this error case appropriately
-elif [[ "$response" == "Data updated" ]]; then
+if [ "$response" == "Data updated" ]; then
     echo "Data updated from $me."
 else
-    echo "Data insertion or unknown response from $me."
+    echo "Data inserted from $me."
 fi
