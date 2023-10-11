@@ -28,11 +28,11 @@ DATA='{
     "sudo": "'"$SUDO"'",
     "python": "'"$PYTHON"'",
     "python3": "'"$PYTHON3"'",
-    "net_tools": "'"$NET_TOOLS"'",
+    "nettools": "'"$NETTOOLS"'",
     "mysql": "'"$MYSQL"'",
     "libpython": "'"$LIBPYTHON"'",
-    "docker_ce_cli": "'"$DOCKER_CE_CLI"'",
-    "docker_compose_plugin": "'"$DOCKER_COMPOSE_PLUGIN"'",
+    "dockercecli": "'"$DOCKERCECLI"'",
+    "dockercomposeplugin": "'"$DOCKERCOMPOSEPLUGIN"'",
     "curl": "'"$CURL"'",
     "containerd": "'"$CONTAINERD"'"
 }'

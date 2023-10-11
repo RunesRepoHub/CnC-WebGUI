@@ -50,7 +50,7 @@ DATA='{
     "hostname": "'"$hostname"'",
     "ipaddress": "'"$ip_address"'",
     "macaddress": "'"$mac_address"'",
-    "disto": "'"$disto"'",
+    "distro": "'"$distro"'",
     "packages": "'"$packages"'"
 }'
 
