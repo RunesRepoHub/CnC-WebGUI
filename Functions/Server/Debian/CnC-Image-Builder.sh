@@ -15,9 +15,9 @@ echo "version=$version" > ~/CnC-WebGUI/CnC-WebGUI/.env
 
 
 docker network create -d bridge cncnetwork
-docker build -t cnc-web:$version /root/Development/CnC-WebGUI/CnC-WebGUI/Nginx-Docke
-docker build -t cnc-pg:$version /root/Development/CnC-WebGUI/CnC-WebGUI/Postgress-Docker
-docker build -t cnc-node-api:$version /root/Development/CnC-WebGUI/CnC-WebGUI/Nodejs-Docker
+docker build -t cnc-web:1.2 /root/Development/CnC-WebGUI/CnC-WebGUI/Nginx-Docke
+docker build -t cnc-pg:1.2 /root/Development/CnC-WebGUI/CnC-WebGUI/Postgress-Docker
+docker build -t cnc-node-api:1.2 /root/Development/CnC-WebGUI/CnC-WebGUI/Nodejs-Docker
 
 clear
 
