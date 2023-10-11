@@ -31,7 +31,7 @@ elif [ $GIT_Version > "$LOCAL_Version" ] ; then
 
         sleep 5
 
-        bash ~/CnC-WebGUI/Functions/Server/Debian/Getting-started.sh
+        
 
     fi 
 else 

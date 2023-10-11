@@ -41,17 +41,17 @@ while true; do
                     ## Remove old files
                     rm -r ~/CnC-WebGUI
                     ## Clones new files
-                    git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
+                    git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     ## Runs the installation script
-                    bash ~/CnC-WebGUI/Functions/Server/Debian/Install-Develop.sh;
+                    bash ~/CnC-WebGUI/Functions/Server/Debian/Getting-started.sh;
                 fi
             else 
                 ## If the files has not been download before
                 echo "$FILE does not exist."
                 ## Clones new files
-                git clone --branch Dev https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git;
+                git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 ## Runs the installation script
-                bash ~/CnC-WebGUI/Functions/Server/Debian/Install-Develop.sh;
+                bash ~/CnC-WebGUI/Functions/Server/Debian/Getting-started.sh;
             fi 
             break 2;;
             2) 
@@ -73,17 +73,17 @@ while true; do
                     ## Remove old files
                     rm -r ~/CnC-WebGUI
                     ## Clones new files
-                    git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
+                    git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git
                     ## Runs the installation script
-                    bash ~/CnC-WebGUI/Functions/Server/Debian/Install-Production.sh;
+                    bash ~/CnC-WebGUI/Functions/Server/Debian/Getting-started.sh;
                 fi
             else 
                 ## If the files has not been download before
                 echo "$FILE does not exist."
                 ## Clones new files
-                git clone --branch Production https://git.rp-helpdesk.com/Rune/CnC-WebGUI.git
+                git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git
                 ## Runs the installation script
-                bash ~/CnC-WebGUI/Functions/Server/Debian/Install-Production.sh;
+                bash bash ~/CnC-WebGUI/Functions/Server/Debian/Getting-started.sh;
             fi 
             break 2;;
             ## When quiting the script

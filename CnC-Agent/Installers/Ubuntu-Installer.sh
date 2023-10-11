@@ -10,26 +10,6 @@ sudo apt update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 sudo apt install gnupg -y > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 sudo apt install nmap -y > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
 
-## Download MySQL
-clear
-echo "Installing MySQL"
-sudo wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb -P /tmp > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-sudo dpkg -i /tmp/mysql-apt-config_0.8.22-1_all.deb > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-sudo apt update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-
-## Install and set up MySQL
-clear 
-echo "Setting Up MySQL"
-
-sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/root-pass password 12Marvel" > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-sudo debconf-set-selections <<< "mysql-community-server mysql-community-server/re-root-pass password 12Marvel" > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-
-sudo apt-get -y install mysql-server > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-sudo apt-get update > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-
-sudo systemctl stop mysql > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-sudo systemctl disable mysql > /dev/null 2>&1 >> ~/CnC-WebGUI/Logs/Debian-Installer.log
-
 ## Get database IP address
 clear 
 read -p "Database IP: " databaseip
@@ -77,6 +57,6 @@ if [[ $result == "up" ]]; then
     sudo rm file
 
 else 
-    echo "No Access To MySQL Server";
+    echo "No Access To Database Server";
 fi
 
