@@ -47,9 +47,11 @@ response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_END
 echo "API response: $response"
 
 # Check the response from the API
-if [ "$response" == "Data updated" ]; then
+if [[ "$response" == *"SyntaxError"* ]]; then
+    echo "API returned a JSON parsing error."
+    # Handle this error case appropriately
+elif [[ "$response" == "Data updated" ]]; then
     echo "Data updated from $me."
 else
-    echo "Data inserted from $me."
+    echo "Data insertion or unknown response from $me."
 fi
-
