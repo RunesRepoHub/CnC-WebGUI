@@ -42,40 +42,24 @@ fi
 
 disto="$OS $VER"
 
-# MySQL server credentials
-DB_HOST="$databaseip"
-DB_USER="root"
-DB_PASS="12Marvel"
-DB_NAME="machines"
+# Define your REST API endpoint for updating/inserting data
+API_ENDPOINT="http://$databaseip:3000/create/info"
 
-# Function to update data in the database
-update_data() {
-    local hostname="$hostname"
-    local ip_address="$ip_address"
-    local mac_address="$mac_address"
-    local disto="$disto"
-    local packages="$packages"
-    
-    # Update the data in the database
-    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
-    UPDATE info
-    SET packages='$packages'
-    WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';
-EOF
-}
+# Define the data to be sent to the API
+DATA='{
+    "hostname": "'"$hostname"'",
+    "ipaddress": "'"$ip_address"'",
+    "macaddress": "'"$mac_address"'",
+    "disto": "'"$disto"'",
+    "packages": "'"$packages"'"
+}'
 
-# Check if the data exists in the database
-result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';" 2>/dev/null)
+# Send a POST request to the API to update or insert data
+response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
 
-# If data exists, update it; otherwise, insert a new record
-if [ -n "$result" ]; then
-    update_data "$hostname" "$ip_address" "$mac_address" "$disto" "$packages"
+# Check the response from the API
+if [ "$response" == "Data updated" ]; then
     echo "Data updated from $me."
 else
-    # Insert new data into the database
-    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
-    INSERT INTO info (hostname, ip_address, mac_address, disto, packages)
-    VALUES ('$hostname', '$ip_address', '$mac_address', '$disto', '$packages');
-EOF
     echo "Data inserted from $me."
 fi
