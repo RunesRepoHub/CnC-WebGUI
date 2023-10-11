@@ -28,13 +28,13 @@ do
     VAR1="$hn"
     if [ $i == 1 ]; then
     VAR2="$job1"
-    curl -X POST -H "Content-Type: application/json" -d '{"hostname": "'$hn'", "cronjobsscripts": "'$VAR2'"}' http://$databaseip:3000/create/cronjobs
+    curl -X POST -H "Content-Type: application/json" -d '{"hostname": '$hn', "cronjobsscripts": '$VAR2'}' http://$databaseip:3000/create/cronjobs
     elif [ $i == 2 ]; then
     VAR2="$job2"
-    curl -X POST -H "Content-Type: application/json" -d '{"hostname": "'$hn'", "cronjobsscripts": "'$VAR2'"}' http://$databaseip:3000/create/cronjobs
+    curl -X POST -H "Content-Type: application/json" -d '{"hostname": '$hn', "cronjobsscripts": '$VAR2'}' http://$databaseip:3000/create/cronjobs
     elif [ $i == 3 ]; then
     VAR2="$job3"
-    curl -X POST -H "Content-Type: application/json" -d '{"hostname": "'$hn'", "cronjobsscripts": "'$VAR2'"}' http://$databaseip:3000/create/cronjobs
+    curl -X POST -H "Content-Type: application/json" -d '{"hostname": '$hn', "cronjobsscripts": '$VAR2'}' http://$databaseip:3000/create/cronjobs
     else
         echo "" > /dev/null 2>&1
     fi
