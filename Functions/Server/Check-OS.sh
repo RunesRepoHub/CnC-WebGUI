@@ -6,27 +6,6 @@ apt-get upgrade -y
 apt-get install git
 
 
-# Check the Linux distribution and version
-if [ -f /etc/os-release ]; then
-  . /etc/os-release
-  if [[ $ID == "debian" && ($VERSION_ID == "9" || $VERSION_ID == "10" || $VERSION_ID == "11") ]]; then
-    install_docker_cli
-    install_docker_compose
-  elif [[ $ID == "ubuntu" && $VERSION_ID == "22.04" ]]; then
-    install_docker_cli
-    install_docker_compose
-  else
-    echo "Unsupported distribution or version."
-    exit 1
-  fi
-else
-  echo "Unable to determine the Linux distribution and version."
-  exit 1
-fi
-
-echo "Docker CLI and Docker Compose installation completed."
-
-
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release
