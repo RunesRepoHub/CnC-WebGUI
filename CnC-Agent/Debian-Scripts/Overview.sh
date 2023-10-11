@@ -40,7 +40,7 @@ else
     VER=$(uname -r)
 fi
 
-disto="$OS $VER"
+distro="$OS $VER"
 
 # Define your REST API endpoint for updating/inserting data
 API_ENDPOINT="http://$databaseip:3000/create/info"
