@@ -40,7 +40,7 @@ if (!$result) {
     echo "<th>python</th>";
     echo "<th>python3</th>";
     echo "<th>net-tools</th>";
-    echo "<th>postgresql</th>";
+    echo "<th>mysql</th>";
     echo "<th>libpython</th>";
     echo "<th>docker-ce-cli</th>";
     echo "<th>docker-compose-plugin</th>";
@@ -57,7 +57,7 @@ if (!$result) {
       echo "<td>" . $row['python'] . "</td>";
       echo "<td>" . $row['python3'] . "</td>";
       echo "<td>" . $row['nettools'] . "</td>";
-      echo "<td>" . $row['postgresql'] . "</td>";
+      echo "<td>" . $row['mysql'] . "</td>";
       echo "<td>" . $row['libpython'] . "</td>";
       echo "<td>" . $row['dockercecli'] . "</td>";
       echo "<td>" . $row['dockercomposeplugin'] . "</td>";

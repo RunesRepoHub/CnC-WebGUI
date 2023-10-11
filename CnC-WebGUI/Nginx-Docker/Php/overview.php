@@ -38,17 +38,17 @@ if (!$result) {
     echo "<th>Hostname</th>";
     echo "<th>IP Address</th>";
     echo "<th>MAC Address</th>";
-    echo "<th>Disto</th>";
+    echo "<th>Distro</th>";
     echo "<th>Package Updates</th>";
     echo "</tr>";
 
     while ($row = pg_fetch_assoc($result)) {
       echo "<tr>";
-      echo "<td>" . $row['machineid'] . "</td>";
+      echo "<td>" . $row['id'] . "</td>";
       echo "<td>" . $row['hostname'] . "</td>";
       echo "<td>" . $row['ipaddress'] . "</td>";
       echo "<td>" . $row['macaddress'] . "</td>";
-      echo "<td>" . $row['disto'] . "</td>";
+      echo "<td>" . $row['distro'] . "</td>";
       echo "<td>" . $row['packages'] . "</td>";
       echo "</tr>";
     }
