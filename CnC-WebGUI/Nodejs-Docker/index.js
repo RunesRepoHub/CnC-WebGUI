@@ -1,80 +1,75 @@
 const express = require('express');
-const mysql = require('mysql');
-const bodyParser = require('body-parser');
+const { Pool } = require('pg');
 
 const app = express();
 const port = 3000;
 
-// MySQL Connection
-const db = mysql.createConnection({
-  host: '192.168.1.100',
+const pool = new Pool({
   user: 'root',
-  password: '12Marvel',
+  host: 'cnc-db',
   database: 'machines',
+  password: '12Marvel',
+  port: 5432,
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL:', err);
-    return;
+app.use(express.json());
+
+// Create a new item
+app.post('/cronjob', async (req, res) => {
+  const { hostname, cronjobsscripts } = req.body; // Updated variable names
+
+  // Check if 'hostname' is provided in the request body
+  if (!hostname) {
+    return res.status(400).json({ error: 'Missing hostname in request body' });
   }
-  console.log('Connected to MySQL database');
+
+  const query = 'INSERT INTO cronjobs (hostname, cronjobsscripts) VALUES ($1, $2) RETURNING *';
+
+  try {
+    const { rows } = await pool.query(query, [hostname, cronjobsscripts]);
+    res.status(201).json(rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// Routes
-app.get('/items', (req, res) => {
-  db.query('SELECT * FROM cronjobs', (err, results) => {
-    if (err) {
-      console.error('Error fetching data:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
-    res.json(results);
-  });
+// Retrieve all items
+app.get('/cronjob', async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM cronjobs');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
-app.post('/items', (req, res) => {
-  const { name, description } = req.body;
-  db.query('INSERT INTO cronjobs (hostname, cron_jobs_scripts) VALUES (?, ?)', [name, description], (err, results) => {
-    if (err) {
-      console.error('Error inserting data:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
-    res.json({ message: 'Item added successfully', id: results.insertId });
-  });
-});
-
-app.put('/items/:id', (req, res) => {
+// Update an item
+app.put('/cronjob/:id', async (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
-  db.query('UPDATE cronjobs SET name=?, description=? WHERE id=?', [name, description, id], (err, results) => {
-    if (err) {
-      console.error('Error updating data:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
-    res.json({ message: 'Item updated successfully', id });
-  });
+  const query = 'UPDATE cronjob SET name = $1, description = $2 WHERE id = $3 RETURNING *';
+
+  try {
+    const { rows } = await pool.query(query, [name, description, id]);
+    res.json(rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
-app.delete('/items/:id', (req, res) => {
+// Delete an item
+app.delete('/cronjob/:id', async (req, res) => {
   const { id } = req.params;
-  db.query('DELETE FROM cronjobs WHERE id=?', [id], (err, results) => {
-    if (err) {
-      console.error('Error deleting data:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
-    res.json({ message: 'Item deleted successfully', id });
-  });
+  const query = 'DELETE FROM cronjob WHERE id = $1';
+
+  try {
+    await pool.query(query, [id]);
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
-// Start the server
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Node.js API is running on port ${port}`);
 });
