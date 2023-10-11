@@ -36,6 +36,6 @@ do
         echo "" > /dev/null 2>&1
     fi
 
-    curl -X POST -H "Content-Type: application/json" -d '{"hostname": "'$hn'", "cronjobsscripts": "'$VAR2'"}' http://192.168.1.100:3000/create/cronjobs
+    curl -X POST -H "Content-Type: application/json" -d '{"hostname": "'$hn'", "cronjobsscripts": "'$VAR2'"}' http://$databaseip:3000/create/cronjobs
     ((i = i + 1))
 done
