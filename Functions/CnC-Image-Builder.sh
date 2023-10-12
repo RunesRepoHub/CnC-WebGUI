@@ -1,5 +1,5 @@
 # Source the configuration script
-source /root/CnC-WebGUI/config.sh
+source ../CnC-WebGUI/config.sh
 
 version=$(cat "$ver_path" | awk '{ print substr( $0, 9 ) }')
 ip_address=$(hostname -I | awk '{print $1}')

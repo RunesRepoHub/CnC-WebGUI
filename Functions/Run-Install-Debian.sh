@@ -42,7 +42,7 @@ while true; do
                     ## Clones new files
                     git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     # Source the configuration script
-                    source /root/CnC-WebGUI/config.sh;
+                    source ../CnC-WebGUI/config.sh;
                     ## Runs the installation script
                     bash "$get_start";
                 fi
@@ -52,7 +52,7 @@ while true; do
                 ## Clones new files
                 git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 # Source the configuration script
-                source /root/CnC-WebGUI/config.sh;
+                source ../CnC-WebGUI/config.sh;
                 ## Runs the installation script
                 bash "$get_start";
             fi 
@@ -78,7 +78,7 @@ while true; do
                     ## Clones new files
                     git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     # Source the configuration script
-                    source /root/CnC-WebGUI/config.sh;
+                    source ../CnC-WebGUI/config.sh;
                     ## Runs the installation script
                     bash "$get_start";
                 fi
@@ -88,7 +88,7 @@ while true; do
                 ## Clones new files
                 git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 # Source the configuration script
-                source /root/CnC-WebGUI/config.sh;
+                source ../CnC-WebGUI/config.sh;
                 ## Runs the installation script
                 bash "$get_start";
             fi 
