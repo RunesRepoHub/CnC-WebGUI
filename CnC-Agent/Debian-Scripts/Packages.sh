@@ -23,7 +23,7 @@ API_ENDPOINT="http://$databaseip:3000/create/packages"
 # Define the data to be sent to the API
 DATA=$(cat <<EOF
 {
-    "hostname": "$(if [ -n "$HOSTNAME" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "hostname": "$HOSTNAME",
     "git": "$(if [ -n "$GIT" ]; then echo "Installed"; else echo "Not Installed"; fi)",
     "wget": "$(if [ -n "$WGET" ]; then echo "Installed"; else echo "Not Installed"; fi)",
     "sudo": "$(if [ -n "$SUDO" ]; then echo "Installed"; else echo "Not Installed"; fi)",
