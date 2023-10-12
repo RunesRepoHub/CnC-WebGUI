@@ -1,3 +1,4 @@
+source ~/CnC-WebGUI/config.sh
 me=$(basename "$0")
 export DEBIAN_FRONTEND=noninteractive
 

@@ -1,3 +1,4 @@
+source ~/CnC-WebGUI/config.sh
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release
@@ -35,19 +36,19 @@ user=$(whoami)
 if [[ $OS == "Debian GNU/Linux" && $VER == "10" ]]; then
     
     ## Run Debian Installer
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Installer.sh
+    bash "$deb_ins"
 
 ## Check if OS is Debian 10     
 elif [[ $OS == "Debian GNU/Linux" && $VER == "11" ]]; then
     
     ## Run Debian Installer
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Installer.sh
+    bash "$deb_ins"
 
 ## Check if OS is Ubuntu 22.04 and root user
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user == "root" ]]; then
     
     ## Run Debian Installer
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Installer.sh
+    bash "$deb_ins"
 
 else
 echo "Unsupported OS"
