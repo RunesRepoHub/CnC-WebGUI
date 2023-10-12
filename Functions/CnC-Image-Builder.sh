@@ -13,7 +13,6 @@ docker build -t cnc-web:$version "$web_path"
 docker build -t cnc-pg:$version "$pg_path"
 docker build -t cnc-node-api:$version "$apt_path"
 
-clear
 
 docker compose -f "$compose" -p cnc-webgui down
 docker compose -f "$compose" -p cnc-webgui up -d

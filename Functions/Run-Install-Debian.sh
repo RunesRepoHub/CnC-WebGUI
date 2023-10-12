@@ -1,5 +1,4 @@
 #!/bin/bash
-clear
 echo "The Development Version is undergoing constant updates and changes to the code and will therefor not always work as it should... THIS HAS BEEN YOUR WARNING"
 echo 
 echo "The Production Version will only see massive update and changes to the code" 
@@ -26,7 +25,7 @@ while true; do
             FILE=~/CnC-WebGUI
             if [ -d "$FILE" ]; then
                 ## Clear screen for better overview
-                clear
+                
                 ## Inform the user if the file has already been downloaded
                 echo "$FILE exists."
                 echo "Do you want to delete the old files and install a new version?"
@@ -63,7 +62,7 @@ while true; do
             FILE=~/CnC-WebGUI
             if [ -d "$FILE" ]; then
                 ## Clear screen for better overview
-                clear
+                
                 ## Inform the user if the file has already been downloaded
                 echo "$FILE exists."
                 echo "Do you want to delete the old files and install a new version?"
