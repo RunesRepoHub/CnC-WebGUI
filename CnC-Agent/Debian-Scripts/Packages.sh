@@ -1,4 +1,8 @@
-databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+# Source the configuration script
+source ~/CnC-WebGUI/config.sh
+
+
+databaseip=$(cat "$dbip")
 me=$(basename "$0")
 
 

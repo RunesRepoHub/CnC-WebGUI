@@ -1,8 +1,6 @@
 me=$(basename "$0")
 export DEBIAN_FRONTEND=noninteractive
 
-filename='~/CnC-WebGUI/Logs/Debian-Installer.log'
-
 ## Get database IP address
 clear 
 read -p "Database IP: " databaseip
@@ -20,32 +18,44 @@ fi
 
 if [[ $result == "up" ]]; then
     ## Save database IP address
-    touch ~/CnC-WebGUI/CnC-Agent/.databaseip
-    echo "$databaseip" > ~/CnC-WebGUI/CnC-Agent/.databaseip
+    touch "$dbip"
+    echo "$databaseip" > "$dbip"
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh /usr/bin/ > /dev/null 2>&1
+    ln -s "$pack_cron" /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file >/dev/null 2>&1; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh >/dev/null 2>&1' >> file; crontab file
+    # Define the cron job command using the sourced path
+    cron_job_command="00 00 * * * ruby "$pack_cron" >/dev/null 2>&1"
+    
+    # Set up the cron job
+    { crontab -l; echo "$cron_job_command"; } | crontab -
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh
+    bash "$pack_cron"
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh /usr/bin/ > /dev/null 2>&1
+    ln -s "$over_cron" /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh >/dev/null 2>&1' >> file; crontab file
+    # Define the cron job command using the sourced path
+    cron_job_command="00 00 * * * ruby "$over_cron" >/dev/null 2>&1"
+    
+    # Set up the cron job
+    { crontab -l; echo "$cron_job_command"; } | crontab -
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh
+    bash "$over_cron"
 
     ## Check/Setup Packages Reporting via cron 
-    ln -s ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh /usr/bin/ > /dev/null 2>&1
+    ln -s "$cron_cron" /usr/bin/ > /dev/null 2>&1
 
-    crontab -l > file; echo '00 00 * * * ruby ~CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh >/dev/null 2>&1' >> file; crontab file
+    # Define the cron job command using the sourced path
+    cron_job_command="00 00 * * * ruby "$cron_cron" >/dev/null 2>&1"
+    
+    # Set up the cron job
+    { crontab -l; echo "$cron_job_command"; } | crontab -
 
     ## Run Packages Reporting for the first time
-    bash ~/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh
+    bash "$cron_cron"
 
     rm file
 
