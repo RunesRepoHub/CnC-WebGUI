@@ -2,9 +2,6 @@ databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 me=$(basename "$0")
 
 
-# Define your REST API endpoint for querying and updating data
-API_ENDPOINT="http://$databaseip:3000/create/packages"
-
 # Escape double quotes in variables
 HOSTNAME=$(echo "$HOSTNAME" | sed 's/"/\\"/g')
 GIT=$(apt list --installed 2>/dev/null | grep -i git/ | awk '{print $2}' | sed 's/"/\\"/g')
