@@ -10,9 +10,9 @@ while true; do
     select item in "${items[@]}" Quit
     do
         case $REPLY in
-            1) bash $func_dir/CnC-Image-Builder.sh; break;;
-            2) bash $agen_dir/Install-Agent.sh; break 2;;
-            3) bash $func_dir/Uninstall.sh; break 2;;
+            1) bash "$func_dir"/CnC-Image-Builder.sh; break;;
+            2) bash "$agen_dir"/Install-Agent.sh; break 2;;
+            3) bash "$func_dir"/Uninstall.sh; break 2;;
             $((${#items[@]}+1))) echo "We're done!"; break 2;;
             *) echo "Ooops - unknown choice $REPLY"; break;
         esac
