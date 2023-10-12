@@ -5,8 +5,7 @@ source ~/CnC-WebGUI/config.sh
 me=$(basename "$0")
 export DEBIAN_FRONTEND=noninteractive
 
-## Get database IP address
-clear 
+## Get database IP address 
 read -p "Database IP: " databaseip
 
 # IP address and port to check
