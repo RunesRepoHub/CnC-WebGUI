@@ -2,20 +2,23 @@ databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
 me=$(basename "$0")
 
 
-HOSTNAME=$(echo $HOSTNAME)
-GIT=$(apt list --installed 2>/dev/null | grep -i git/ | awk '{print $2}')
-WGET=$(apt list --installed 2>/dev/null | grep -i wget | awk '{print $2}')
-SUDO=$(apt list --installed 2>/dev/null | grep -i sudo | awk '{print $2}')
-PYTHON=$(apt list --installed 2>/dev/null | grep -i python/ | awk '{print $2}')
-PYTHON3=$(apt list --installed 2>/dev/null | grep -i python3/ | awk '{print $2}')
-NET_TOOLS=$(apt list --installed 2>/dev/null | grep -i net-tools | awk '{print $2}')
-MYSQL=$(apt list --installed 2>/dev/null | grep -i mysql-server/ | awk '{print $2}')
-LIBPYTHON=$(apt list --installed 2>/dev/null | grep -i libpython3.7/ | awk '{print $2}')
-DOCKER_CE_CLI=$(apt list --installed 2>/dev/null | grep -i docker-ce-cli | awk '{print $2}')
-DOCKER_COMPOSE_PLUGIN=$(apt list --installed 2>/dev/null | grep -i docker-compose-plugin | awk '{print $2}')
-CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}')
-CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}')
+# Define your REST API endpoint for querying and updating data
+API_ENDPOINT="http://$databaseip:3000/create/packages"
 
+# Escape double quotes in variables
+HOSTNAME=$(echo "$HOSTNAME" | sed 's/"/\\"/g')
+GIT=$(apt list --installed 2>/dev/null | grep -i git/ | awk '{print $2}' | sed 's/"/\\"/g')
+WGET=$(apt list --installed 2>/dev/null | grep -i wget | awk '{print $2}' | sed 's/"/\\"/g')
+SUDO=$(apt list --installed 2>/dev/null | grep -i sudo | awk '{print $2}' | sed 's/"/\\"/g')
+PYTHON=$(apt list --installed 2>/dev/null | grep -i python/ | awk '{print $2}' | sed 's/"/\\"/g')
+PYTHON3=$(apt list --installed 2>/dev/null | grep -i python3/ | awk '{print $2}' | sed 's/"/\\"/g')
+NETTOOLS=$(apt list --installed 2>/dev/null | grep -i net-tools | awk '{print $2}' | sed 's/"/\\"/g')
+MYSQL=$(apt list --installed 2>/dev/null | grep -i mysql-server/ | awk '{print $2}' | sed 's/"/\\"/g')
+LIBPYTHON=$(apt list --installed 2>/dev/null | grep -i libpython3.7/ | awk '{print $2}' | sed 's/"/\\"/g')
+DOCKERCECLI=$(apt list --installed 2>/dev/null | grep -i docker-ce-cli | awk '{print $2}' | sed 's/"/\\"/g')
+DOCKERCOMPOSEPLUGIN=$(apt list --installed 2>/dev/null | grep -i docker-compose-plugin | awk '{print $2}' | sed 's/"/\\"/g')
+CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}' | sed 's/"/\\"/g')
+CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}' | sed 's/"/\\"/g')
 
 # Set default values for variables if they are empty or unset
 [ -z "$HOSTNAME" ] && HOSTNAME="Not Installed"
