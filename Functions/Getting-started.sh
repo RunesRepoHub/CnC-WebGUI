@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source the configuration script
-source /root/CnC-WebGUI/config.sh
+source ~/CnC-WebGUI/config.sh
 
 clear
 PS3="Select what you want to install on this server:"
