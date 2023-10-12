@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Global Variables
-dbip="~/CnC-WebGUI/CnC-Agent/.databaseip"
+dbip="/root/CnC-WebGUI/CnC-Agent/.databaseip"
 
 # Getting-started.sh
 CnC_Image_Builder="bash ~/CnC-WebGUI/Functions/CnC-Image-Builder.sh"
@@ -10,4 +10,4 @@ Uninstall=""
 
 
 # Cronjob.sh 
-crontxt="~/CnC-WebGUI/CnC-Agent/cron.txt"
+crontxt="/root/CnC-WebGUI/CnC-Agent/cron.txt"
