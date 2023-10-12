@@ -1,7 +1,7 @@
 #!/bin/bash
 source ~/CnC-WebGUI/config.sh
 
-databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+databaseip=$(cat source "$dbip")
 hn=$(echo $HOSTNAME)
 me=$(basename "$0")
 
@@ -12,4 +12,4 @@ crontab -l > $crontxt
 while IFS= read -r line; do
     # Send the cron job data to the database
     curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$line\"}" "http://$databaseip:3000/create/cronjobs"
-done < $crontxt
+done < source "$crontxt"
