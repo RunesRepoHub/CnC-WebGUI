@@ -23,7 +23,7 @@ while true; do
         case $REPLY in
             1)
             ## Check if this version has been downloaded before 
-            FILE=~/CnC-WebGUI
+            FILE=/root/CnC-WebGUI
             if [ -d "$FILE" ]; then
                 ## Clear screen for better overview
                 clear
@@ -43,7 +43,7 @@ while true; do
                     ## Clones new files
                     git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     # Source the configuration script
-                    source ~/CnC-WebGUI/config.sh;
+                    source /root/CnC-WebGUI/config.sh;
                     ## Runs the installation script
                     bash "$get_start";
                 fi
@@ -53,14 +53,14 @@ while true; do
                 ## Clones new files
                 git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 # Source the configuration script
-                source ~/CnC-WebGUI/config.sh;
+                source /root/CnC-WebGUI/config.sh;
                 ## Runs the installation script
                 bash "$get_start";
             fi 
             break 2;;
             2) 
             ## Check if this version has been downloaded before
-            FILE=~/CnC-WebGUI
+            FILE=/root/CnC-WebGUI
             if [ -d "$FILE" ]; then
                 ## Clear screen for better overview
                 clear
@@ -75,11 +75,11 @@ while true; do
                 if [[ $REPLY =~ ^[Yy]$ ]]
                 then
                     ## Remove old files
-                    rm -r ~/CnC-WebGUI
+                    rm -r /root/CnC-WebGUI
                     ## Clones new files
                     git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     # Source the configuration script
-                    source ~/CnC-WebGUI/config.sh;
+                    source /root/CnC-WebGUI/config.sh;
                     ## Runs the installation script
                     bash "$get_start";
                 fi
@@ -89,7 +89,7 @@ while true; do
                 ## Clones new files
                 git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 # Source the configuration script
-                source ~/CnC-WebGUI/config.sh;
+                source /root/CnC-WebGUI/config.sh;
                 ## Runs the installation script
                 bash "$get_start";
             fi 
