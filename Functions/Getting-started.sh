@@ -1,20 +1,21 @@
 #!/bin/bash
+
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
-clear 
-PS3="Select the what you want to install on this server:"
+clear
+PS3="Select what you want to install on this server:"
 
-items=("Server" "Agent" "Uninstall CnC-WebGUI") 
+items=("Server" "Agent" "Uninstall CnC-WebGUI")
 while true; do
     select item in "${items[@]}" Quit
     do
         case $REPLY in
-            1) $CnC_Image_Builder; break;;
-            2) $Install_Agent; break 2;;
-            3) $Uninstall; break 2;;
+            1) source "$CnC_Image_Builder"; break;;
+            2) source "$Install_Agent"; break 2;;
+            3) source "$Uninstall"; break 2;;
             $((${#items[@]}+1))) echo "We're done!"; break 2;;
-            *) echo "Ooops - unknown choice $REPLY"; break;
+            *) echo "Oops - unknown choice $REPLY"; break;
         esac
     done
 done
