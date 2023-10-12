@@ -39,19 +39,19 @@ API_ENDPOINT="http://$databaseip:3000/create/packages"
 # Define the data to be sent to the API
 DATA=$(cat <<EOF
 {
-    "hostname": "'"$HOSTNAME"'",
-    "git": "'"$GIT"'",
-    "wget": "'"$SUDO"'",
-    "sudo": "'"$PYTHON"'",
-    "python": "'"$PYTHON3"'"
-    "python3": "'"$PYTHON3"'"
-    "nettools": "'"$NETTOOLS"'"
-    "mysql": "'"$MYSQL"'"
-    "libpython": "'"$LIBPYTHON"'"
-    "dockercecli": "'"$DOCKERCECLI"'"
-    "dockercomposeplugin": "'"$DOCKERCOMPOSEPLUGIN"'"
-    "curl": "'"$CURL"'"
-    "containerd": "'"$CONTAINERD"'"
+    "hostname": "$HOSTNAME",
+    "git": "$GIT",
+    "wget": "$SUDO",
+    "sudo": "$PYTHON",
+    "python": "$PYTHON3",
+    "python3": "$PYTHON3",
+    "nettools": "$NETTOOLS",
+    "mysql": "$MYSQL",
+    "libpython": "$LIBPYTHON",
+    "dockercecli": "$DOCKERCECLI",
+    "dockercomposeplugin": "$DOCKERCOMPOSEPLUGIN",
+    "curl": "$CURL",
+    "containerd": "$CONTAINERD"
 }
 EOF
 )
