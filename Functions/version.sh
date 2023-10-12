@@ -1,4 +1,4 @@
 source ~/CnC-WebGUI/config.sh
-touch "$ver_path"
-echo "$Version" > "$ver_path"
+touch ~/CnC-WebGUI/CnC-WebGUI/.env
+echo source "$Version" > ~/CnC-WebGUI/CnC-WebGUI/.env
 
