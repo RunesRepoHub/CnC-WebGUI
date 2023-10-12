@@ -58,8 +58,6 @@ if [[ $result == "up" ]]; then
     ## Run Packages Reporting for the first time
     bash "$cron_cron"
 
-    rm file
-
 else 
     echo "No Access To MySQL Server";
 fi
