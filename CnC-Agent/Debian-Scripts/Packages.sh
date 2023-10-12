@@ -32,23 +32,24 @@ CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{pr
 [ -z "$CURL" ] && CURL="Not Installed"
 [ -z "$CONTAINERD" ] && CONTAINERD="Not Installed"
 
-# Define your REST API endpoint for querying and updating data
+
+# Define your REST API endpoint for updating/inserting data
 API_ENDPOINT="http://$databaseip:3000/create/packages"
 
 # Define the data to be sent to the API
 DATA='{
     "hostname": "'"$HOSTNAME"'",
     "git": "'"$GIT"'",
-    "wget": "'"$WGET"'",
-    "sudo": "'"$SUDO"'",
-    "python": "'"$PYTHON"'",
-    "python3": "'"$PYTHON3"'",
-    "nettools": "'"$NETTOOLS"'",
-    "mysql": "'"$MYSQL"'",
-    "libpython": "'"$LIBPYTHON"'",
-    "dockercecli": "'"$DOCKERCECLI"'",
-    "dockercomposeplugin": "'"$DOCKERCOMPOSEPLUGIN"'",
-    "curl": "'"$CURL"'",
+    "wget": "'"$SUDO"'",
+    "sudo": "'"$PYTHON"'",
+    "python": "'"$PYTHON3"'"
+    "python3": "'"$PYTHON3"'"
+    "nettools": "'"$NETTOOLS"'"
+    "mysql": "'"$MYSQL"'"
+    "libpython": "'"$LIBPYTHON"'"
+    "dockercecli": "'"$DOCKERCECLI"'"
+    "dockercomposeplugin": "'"$DOCKERCOMPOSEPLUGIN"'"
+    "curl": "'"$CURL"'"
     "containerd": "'"$CONTAINERD"'"
 }'
 
