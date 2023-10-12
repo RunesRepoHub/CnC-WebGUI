@@ -37,7 +37,8 @@ CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{pr
 API_ENDPOINT="http://$databaseip:3000/create/packages"
 
 # Define the data to be sent to the API
-DATA='{
+DATA=$(cat <<EOF
+{
     "hostname": "'"$HOSTNAME"'",
     "git": "'"$GIT"'",
     "wget": "'"$SUDO"'",
@@ -51,7 +52,9 @@ DATA='{
     "dockercomposeplugin": "'"$DOCKERCOMPOSEPLUGIN"'"
     "curl": "'"$CURL"'"
     "containerd": "'"$CONTAINERD"'"
-}'
+}
+EOF
+)
 
 # Debugging: Print the data being sent
 echo "Sending data: $DATA"
