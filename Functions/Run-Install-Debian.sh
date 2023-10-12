@@ -1,5 +1,4 @@
 #!/bin/bash
-bash /root/CnC-WebGUI/config.sh
 echo "The Development Version is undergoing constant updates and changes to the code and will therefor not always work as it should... THIS HAS BEEN YOUR WARNING"
 echo 
 echo "The Production Version will only see massive update and changes to the code" 
@@ -43,7 +42,7 @@ while true; do
                     ## Clones new files
                     git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     # Source the configuration script
-                    source ~/CnC-WebGUI/config.sh;
+                    source /root/CnC-WebGUI/config.sh;
                     ## Runs the installation script
                     bash "$get_start";
                 fi
@@ -53,7 +52,7 @@ while true; do
                 ## Clones new files
                 git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 # Source the configuration script
-                source ~/CnC-WebGUI/config.sh;
+                source /root/CnC-WebGUI/config.sh;
                 ## Runs the installation script
                 bash "$get_start";
             fi 
@@ -79,7 +78,7 @@ while true; do
                     ## Clones new files
                     git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     # Source the configuration script
-                    source ~/CnC-WebGUI/config.sh;
+                    source /root/CnC-WebGUI/config.sh;
                     ## Runs the installation script
                     bash "$get_start";
                 fi
@@ -89,7 +88,7 @@ while true; do
                 ## Clones new files
                 git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 # Source the configuration script
-                source ~/CnC-WebGUI/config.sh;
+                source /root/CnC-WebGUI/config.sh;
                 ## Runs the installation script
                 bash "$get_start";
             fi 

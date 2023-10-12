@@ -1,6 +1,6 @@
 #!/bin/bash
 # Source the configuration script
-source ~/CnC-WebGUI/config.sh
+source /root/CnC-WebGUI/config.sh
 
 
 
