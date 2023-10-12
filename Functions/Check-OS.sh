@@ -1,6 +1,6 @@
 #!/bin/bash
-# Source the configuration script
-source ~/CnC-WebGUI/config.sh
+# Easy url access
+debian="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/Run-Install-Debian.sh"
 
 
 # Install needed tools for installation script to work
@@ -45,28 +45,28 @@ user=$(id -u -n)
 if [[ $OS == "Debian GNU/Linux" && $VER == "10" ]]; then
     
     ## Run Debian Installer
-    bash <(wget -qO- "$deb_url_ins")
+    bash <(wget -qO- "$debian")
 
 
 ## Check if OS is Debian 10     
 elif [[ $OS == "Debian GNU/Linux" && $VER == "11" ]]; then
     
     ## Run Debian Installer
-    bash <(wget -qO- "$deb_url_ins")
+    bash <(wget -qO- "$debian")
 
 
 ## Check if OS is Ubuntu 22.04 and root user
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user == "root" ]]; then
     
     ## Run Debian Installer
-    bash <(wget -qO- "$deb_url_ins")
+    bash <(wget -qO- "$debian")
 
 
 ## Check if OS is Ubuntu 22.04 and "normal user"
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user != "root" ]]; then
     
     ## Run Ubuntu Installer
-    bash <(wget -qO- "$deb_url_ins")
+    bash <(wget -qO- "$debian")
 
 
 else
