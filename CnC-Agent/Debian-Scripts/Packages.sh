@@ -17,25 +17,25 @@ DOCKERCOMPOSEPLUGIN=$(apt list --installed 2>/dev/null | grep -i docker-compose-
 CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}' | sed 's/"/\\"/g')
 CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}' | sed 's/"/\\"/g')
 
-# Define your REST API endpoint for updating/inserting data
+# Define your REST API endpoint for querying and updating data
 API_ENDPOINT="http://$databaseip:3000/create/packages"
 
 # Define the data to be sent to the API
 DATA=$(cat <<EOF
 {
-    "hostname": "$HOSTNAME",
-    "git": "$GIT",
-    "wget": "$WGET",
-    "sudo": "$SUDO",
-    "python": "$PYTHON",
-    "python3": "$PYTHON3",
-    "nettools": "$NETTOOLS",
-    "mysql": "$MYSQL",
-    "libpython": "$LIBPYTHON",
-    "dockercecli": "$DOCKERCECLI",
-    "dockercomposeplugin": "$DOCKERCOMPOSEPLUGIN",
-    "curl": "$CURL",
-    "containerd": "$CONTAINERD"
+    "hostname": "$(if [ -n "$HOSTNAME" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "git": "$(if [ -n "$GIT" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "wget": "$(if [ -n "$WGET" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "sudo": "$(if [ -n "$SUDO" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "python": "$(if [ -n "$PYTHON" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "python3": "$(if [ -n "$PYTHON3" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "nettools": "$(if [ -n "$NETTOOLS" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "mysql": "$(if [ -n "$MYSQL" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "libpython": "$(if [ -n "$LIBPYTHON" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "dockercecli": "$(if [ -n "$DOCKERCECLI" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "dockercomposeplugin": "$(if [ -n "$DOCKERCOMPOSEPLUGIN" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "curl": "$(if [ -n "$CURL" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "containerd": "$(if [ -n "$CONTAINERD" ]; then echo "Installed"; else echo "Not Installed"; fi)"
 }
 EOF
 )
@@ -55,8 +55,3 @@ if [ "$response" == "Data updated" ]; then
 else
     echo "Data inserted from $me."
 fi
-
-
-
-
-
