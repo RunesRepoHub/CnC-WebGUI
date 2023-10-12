@@ -1,5 +1,4 @@
 #!/bin/bash
-bash /root/CnC-WebGUI/Functions/version.sh
 # Install needed tools for installation script to work
 apt-get install sudo
 apt-get install git
