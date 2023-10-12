@@ -1,10 +1,7 @@
 #!/bin/bash
 
 # Version tag
-
 Version="1.2"
-
-echo "$Version" > "$ver_path"
 
 # Global Variables
 dbip="/root/CnC-WebGUI/CnC-Agent/.databaseip"
