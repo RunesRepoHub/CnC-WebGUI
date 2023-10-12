@@ -1,6 +1,9 @@
 #!/bin/bash
+# Source the configuration script
+source ~/CnC-WebGUI/config.sh
+
 me=$(basename "$0")
-databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+databaseip=$(cat "$dbip")
 
 hostname=$(echo $HOSTNAME)
 
