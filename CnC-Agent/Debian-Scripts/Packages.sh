@@ -17,22 +17,6 @@ DOCKERCOMPOSEPLUGIN=$(apt list --installed 2>/dev/null | grep -i docker-compose-
 CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}' | sed 's/"/\\"/g')
 CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}' | sed 's/"/\\"/g')
 
-# Set default values for variables if they are empty or unset
-[ -z "$HOSTNAME" ] && HOSTNAME="Not Installed"
-[ -z "$GIT" ] && GIT="Not Installed"
-[ -z "$WGET" ] && WGET="Not Installed"
-[ -z "$SUDO" ] && SUDO="Not Installed"
-[ -z "$PYTHON" ] && PYTHON="Not Installed"
-[ -z "$PYTHON3" ] && PYTHON3="Not Installed"
-[ -z "$NETTOOLS" ] && NETTOOLS="Not Installed"
-[ -z "$MYSQL" ] && MYSQL="Not Installed"
-[ -z "$LIBPYTHON" ] && LIBPYTHON="Not Installed"
-[ -z "$DOCKERCECLI" ] && DOCKERCECLI="Not Installed"
-[ -z "$DOCKERCOMPOSEPLUGIN" ] && DOCKERCOMPOSEPLUGIN="Not Installed"
-[ -z "$CURL" ] && CURL="Not Installed"
-[ -z "$CONTAINERD" ] && CONTAINERD="Not Installed"
-
-
 # Define your REST API endpoint for updating/inserting data
 API_ENDPOINT="http://$databaseip:3000/create/packages"
 
@@ -41,9 +25,9 @@ DATA=$(cat <<EOF
 {
     "hostname": "$HOSTNAME",
     "git": "$GIT",
-    "wget": "$SUDO",
-    "sudo": "$PYTHON",
-    "python": "$PYTHON3",
+    "wget": "$WGET",
+    "sudo": "$SUDO",
+    "python": "$PYTHON",
     "python3": "$PYTHON3",
     "nettools": "$NETTOOLS",
     "mysql": "$MYSQL",
@@ -71,3 +55,8 @@ if [ "$response" == "Data updated" ]; then
 else
     echo "Data inserted from $me."
 fi
+
+
+
+
+
