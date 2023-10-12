@@ -9,7 +9,7 @@ The images has not been made public yet, so if you want to use this right now. Y
 Run this one line command for a automated install.
 
 ```
-bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/Server/Check-OS.sh))
+bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/Server/Check-OS.sh)
 ```
 This should make the two docker images and after they have been made it will use the docker-compose file to start the two dockers. When the two dockers are up and running, check the you don't have errors on the website.
 
@@ -21,5 +21,5 @@ Run the following commands on a Debian 10/11 server to install the agent.
 The docker web and db containers has to be running.
 
 ```
-bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/Server/Check-OS.sh))
+bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/Server/Check-OS.sh)
 ```
