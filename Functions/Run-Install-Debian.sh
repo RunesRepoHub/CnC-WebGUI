@@ -41,20 +41,16 @@ while true; do
                     rm -r ~/CnC-WebGUI
                     ## Clones new files
                     git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
-                    # Source the configuration script
-                    source ../CnC-WebGUI/config.sh;
                     ## Runs the installation script
-                    bash "$get_start";
+                    bash ~/CnC-WebGUI/Functions/Getting-started.sh;
                 fi
             else 
                 ## If the files has not been download before
                 echo "$FILE does not exist."
                 ## Clones new files
                 git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
-                # Source the configuration script
-                source ../CnC-WebGUI/config.sh;
                 ## Runs the installation script
-                bash "$get_start";
+                bash ~/CnC-WebGUI/Functions/Getting-started.sh;
             fi 
             break 2;;
             2) 
@@ -77,20 +73,16 @@ while true; do
                     rm -r ~/CnC-WebGUI
                     ## Clones new files
                     git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
-                    # Source the configuration script
-                    source ../CnC-WebGUI/config.sh;
                     ## Runs the installation script
-                    bash "$get_start";
+                    bash ~/CnC-WebGUI/Functions/Getting-started.sh;
                 fi
             else 
                 ## If the files has not been download before
                 echo "$FILE does not exist."
                 ## Clones new files
                 git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
-                # Source the configuration script
-                source ../CnC-WebGUI/config.sh;
                 ## Runs the installation script
-                bash "$get_start";
+                bash ~/CnC-WebGUI/Functions/Getting-started.sh;
             fi 
             break 2;;
             ## When quiting the script
