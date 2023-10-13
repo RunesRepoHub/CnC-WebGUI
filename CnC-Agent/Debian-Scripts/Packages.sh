@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
@@ -24,17 +22,30 @@ CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{pr
 # Define your REST API endpoint for querying and updating data
 API_ENDPOINT="http://$databaseip:3000/create/packages"
 
-# Send a GET request to check if data already exists
-get_response=$(curl -s "$API_ENDPOINT")
+# Define the data to be sent to the API
+DATA=$(cat <<EOF
+{
+    "hostname": "$HOSTNAME"
+}
+EOF
+)
 
-# If the data doesn't exist (empty response), insert new data; otherwise, update it
-if [ -z "$get_response" ]; then
-    update_type="Data inserted"
+# Debugging: Print the data being sent
+echo "Sending data: $DATA"
+
+# Send a POST request to the API to retrieve data for the given hostname
+response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
+
+# Check if data for the hostname already exists
+if [ -z "$response" ]; then
+  echo "No existing data found for $HOSTNAME. Inserting new data."
+  INSERT_DATA=true
 else
-    update_type="Data updated"
+  echo "Existing data found for $HOSTNAME. Updating data."
+  INSERT_DATA=false
 fi
 
-# Define the data to be sent to the API
+# Update or insert data based on the flag
 DATA=$(cat <<EOF
 {
     "hostname": "$HOSTNAME",
@@ -54,14 +65,14 @@ DATA=$(cat <<EOF
 EOF
 )
 
-# Debugging: Print the data being sent
-echo "Sending data: $DATA"
-
-# Send a POST request to the API to update or insert data
-response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
+# Send a POST request to insert or update data
+if [ "$INSERT_DATA" = true ]; then
+  echo "Inserting new data for $HOSTNAME."
+  response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
+else
+  echo "Updating existing data for $HOSTNAME."
+  response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT/$HOSTNAME")
+fi
 
 # Debugging: Print the response from the API
 echo "API response: $response"
-
-# Check the response from the API
-echo "$update_type from $me."
