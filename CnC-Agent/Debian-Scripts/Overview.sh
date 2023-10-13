@@ -10,8 +10,6 @@ hostname=$(echo $HOSTNAME)
 
 # Define the URL for reading data
 READ_API_ENDPOINT="http://192.168.1.169:3000/read/info/$hostname"
-id=$(curl http://192.168.1.169:3000/read/info/$hostname | jq -r .id)
-
 
 # Fetch existing data from the API
 existing_data=$(curl -s "$READ_API_ENDPOINT")
@@ -51,7 +49,7 @@ if [ -n "$existing_data" ]; then
   }'
 
   # Send a PUT request to update the data
-  UPDATE_API_ENDPOINT="http://192.168.1.169:3000/update/info/$id"
+  UPDATE_API_ENDPOINT="http://192.168.1.169:3000/update/info/$hostname"
   response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$UPDATE_API_ENDPOINT")
 
   if [ "$response" == "Data updated" ]; then
