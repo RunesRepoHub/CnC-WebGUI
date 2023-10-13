@@ -1,75 +1,61 @@
-#!/bin/bash
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
+
 databaseip=$(cat "$dbip")
 me=$(basename "$0")
-hn=$(echo $HOSTNAME)
 
-# Fetch existing data from the API
-existing_data=$(curl -s "http://$databaseip:3000/read/packages/$hn")
 
-# Check if data already exists
-if [ -n "$existing_data" ]; then
-  echo "Data for hostname $hn exists. Updating..."
-  # Extract existing data and compare with new data
-  existing_git=$(echo "$existing_data" | jq -r .git)
-  existing_wget=$(echo "$existing_data" | jq -r .wget)
-  # Add more variables for other fields as needed
+# Escape double quotes in variables
+HOSTNAME=$(echo "$HOSTNAME" | sed 's/"/\\"/g')
+GIT=$(apt list --installed 2>/dev/null | grep -i git/ | awk '{print $2}' | sed 's/"/\\"/g')
+WGET=$(apt list --installed 2>/dev/null | grep -i wget | awk '{print $2}' | sed 's/"/\\"/g')
+SUDO=$(apt list --installed 2>/dev/null | grep -i sudo | awk '{print $2}' | sed 's/"/\\"/g')
+PYTHON=$(apt list --installed 2>/dev/null | grep -i python/ | awk '{print $2}' | sed 's/"/\\"/g')
+PYTHON3=$(apt list --installed 2>/dev/null | grep -i python3/ | awk '{print $2}' | sed 's/"/\\"/g')
+NETTOOLS=$(apt list --installed 2>/dev/null | grep -i net-tools | awk '{print $2}' | sed 's/"/\\"/g')
+MYSQL=$(apt list --installed 2>/dev/null | grep -i mysql-server/ | awk '{print $2}' | sed 's/"/\\"/g')
+LIBPYTHON=$(apt list --installed 2>/dev/null | grep -i libpython3.7/ | awk '{print $2}' | sed 's/"/\\"/g')
+DOCKERCECLI=$(apt list --installed 2>/dev/null | grep -i docker-ce-cli | awk '{print $2}' | sed 's/"/\\"/g')
+DOCKERCOMPOSEPLUGIN=$(apt list --installed 2>/dev/null | grep -i docker-compose-plugin | awk '{print $2}' | sed 's/"/\\"/g')
+CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}' | sed 's/"/\\"/g')
+CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}' | sed 's/"/\\"/g')
 
-  # Compare existing data with new data
-  if [ "$existing_git" != "Installed" ]; then
-    git_status="Not Installed"
-  else
-    git_status="Installed"
-  fi
+# Define your REST API endpoint for querying and updating data
+API_ENDPOINT="http://$databaseip:3000/create/packages"
 
-  if [ "$existing_wget" != "Installed" ]; then
-    wget_status="Not Installed"
-  else
-    wget_status="Installed"
-  fi
-  # Add more comparisons for other fields as needed
-
-  # Prepare the data for update
-  DATA=$(cat <<EOF
+# Define the data to be sent to the API
+DATA=$(cat <<EOF
 {
-    "hostname": "$hn",
-    "git": "$git_status",
-    "wget": "$wget_status",
-    # Add more fields here
+    "hostname": "$HOSTNAME",
+    "git": "$(if [ -n "$GIT" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "wget": "$(if [ -n "$WGET" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "sudo": "$(if [ -n "$SUDO" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "python": "$(if [ -n "$PYTHON" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "python3": "$(if [ -n "$PYTHON3" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "nettools": "$(if [ -n "$NETTOOLS" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "mysql": "$(if [ -n "$MYSQL" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "libpython": "$(if [ -n "$LIBPYTHON" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "dockercecli": "$(if [ -n "$DOCKERCECLI" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "dockercomposeplugin": "$(if [ -n "$DOCKERCOMPOSEPLUGIN" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "curl": "$(if [ -n "$CURL" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "containerd": "$(if [ -n "$CONTAINERD" ]; then echo "Installed"; else echo "Not Installed"; fi)"
 }
 EOF
 )
 
-  # Send a PUT request to update the data
-  response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "http://$databaseip:3000/update/packages/$hn")
+# Debugging: Print the data being sent
+echo "Sending data: $DATA"
 
-  if [ "$response" == "Data updated" ]; then
+# Send a POST request to the API to update or insert data
+response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
+
+# Debugging: Print the response from the API
+echo "API response: $response"
+
+# Check the response from the API
+if [ "$response" == "Data updated" ]; then
     echo "Data updated from $me."
-  else
-    echo "Data update failed."
-  fi
 else
-  echo "Data for hostname $hn does not exist. Inserting..."
-
-  # Prepare the data for insertion
-  DATA=$(cat <<EOF
-{
-    "hostname": "$hn",
-    "git": "Installed",
-    "wget": "Installed",
-    # Add more fields here
-}
-EOF
-)
-
-  # Send a POST request to insert the data
-  response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "http://$databaseip:3000/create/packages")
-
-  if [ "$response" == "Data inserted" ]; then
     echo "Data inserted from $me."
-  else
-    echo "Data insert failed."
-  fi
 fi
