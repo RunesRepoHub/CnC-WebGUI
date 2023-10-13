@@ -2,6 +2,8 @@
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
+id=$(curl http://192.168.1.169:3000/read/info/$hostname | jq -r .id)
+
 me=$(basename "$0")
 databaseip=$(cat "$dbip")
 
@@ -49,7 +51,7 @@ if [ -n "$existing_data" ]; then
   }'
 
   # Send a PUT request to update the data
-  UPDATE_API_ENDPOINT="http://192.168.1.169:3000/update/info/$hostname"
+  UPDATE_API_ENDPOINT="http://192.168.1.169:3000/update/info/$id"
   response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$UPDATE_API_ENDPOINT")
 
   if [ "$response" == "Data updated" ]; then
