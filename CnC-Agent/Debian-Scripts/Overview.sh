@@ -8,113 +8,67 @@ databaseip=$(cat "$dbip")
 hostname=$(echo $HOSTNAME)
 
 ip_address=$(hostname -I | awk '{print $1}')
+
 mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
+
 packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
 
 if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
     . /etc/os-release
     OS=$NAME
     VER=$VERSION_ID
-# ... (other OS detection code)
+elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
+elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
+elif [ -f /etc/debian_version ]; then
+    # Older Debian/Ubuntu/etc.
+    OS=Debian
+    VER=$(cat /etc/debian_version)
+elif [ -f /etc/SuSe-release ]; then
+    # Older SuSE/etc.
+    ...
+elif [ -f /etc/redhat-release ]; then
+    # Older Red Hat, CentOS, etc.
+    ...
+else
+    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    OS=$(uname -s)
+    VER=$(uname -r)
+fi
 
 distro="$OS $VER"
-fi
 
-# Check for hostname in database 
-check_db_hostname=$(curl http://192.168.1.169:3000/read/info/debiantemplate | jq -r '.hostname')
+# Define your REST API endpoint for updating/inserting data
+API_ENDPOINT="http://$databaseip:3000/create/info"
 
-# Define your REST API endpoints
-INFO_ENDPOINT="http://$databaseip:3000/read/info/$hostname"
-CREATE_INFO_ENDPOINT="http://$databaseip:3000/create/info"
-
-if [ "$hostname" == "$check_db_hostname" ]; then 
-
-p="put"
-
-else 
-
-p="post"
-
-fi
-
-
+# Define the data to be sent to the API
 DATA='{
-      "hostname": "'"$hostname"'",
-      "ipaddress": "'"$ip_address"'",
-      "macaddress": "'"$mac_address"'",
-      "distro": "'"$distro"'",
-      "packages": "'"$packages"'"
-  }'
+    "hostname": "'"$hostname"'",
+    "ipaddress": "'"$ip_address"'",
+    "macaddress": "'"$mac_address"'",
+    "distro": "'"$distro"'",
+    "packages": "'"$packages"'"
+}'
 
+# Debugging: Print the data being sent
+echo "Sending data: $DATA"
 
-response=$(curl -X $p -H "Content-Type: application/json" -d "$DATA" "$CREATE_INFO_ENDPOINT")
+# Send a POST request to the API to update or insert data
+response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
 
-if [ "$response" == "Data inserted" ]; then
-    echo "Data inserted from $me."
+# Debugging: Print the response from the API
+echo "API response: $response"
+
+# Check the response from the API
+if [ "$response" == "Data updated" ]; then
+    echo "Data updated from $me."
 else
-    echo "Data insert failed."
+    echo "Data inserted from $me."
 fi
-
-
-
-
-# # Fetch existing data from the API
-# existing_data=$(curl -s "$INFO_ENDPOINT")
-
-# if [ -n "$existing_data" ]; then
-#   echo "Data for hostname $hostname exists. Updating..."
-
-#   ip_address=$(hostname -I | awk '{print $1}')
-#   mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
-#   packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
-
-#   # Prepare the data for update
-#   DATA='{
-#       "hostname": "'"$hostname"'",
-#       "ipaddress": "'"$ip_address"'",
-#       "macaddress": "'"$mac_address"'",
-#       "packages": "'"$packages"'"
-#   }'
-
-#   # Send a PUT request to update the data
-#   response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$INFO_ENDPOINT")
-
-#   if [ "$response" == "Data updated" ]; then
-#     echo "Data updated from $me."
-#   else
-#     echo "Data update failed."
-#   fi
-# else
-#   echo "Data for hostname $hostname does not exist. Inserting..."
-
-#   # Insert the data
-#   ip_address=$(hostname -I | awk '{print $1}')
-#   mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
-#   packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
-
-#   if [ -f /etc/os-release ]; then
-#       . /etc/os-release
-#       OS=$NAME
-#       VER=$VERSION_ID
-#   # ... (other OS detection code)
-
-#   distro="$OS $VER"
-#   fi
-
-#   DATA='{
-#       "hostname": "'"$hostname"'",
-#       "ipaddress": "'"$ip_address"'",
-#       "macaddress": "'"$mac_address"'",
-#       "distro": "'"$distro"'",
-#       "packages": "'"$packages"'"
-#   }'
-
-#   # Send a POST request to insert the data
-#   response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$CREATE_INFO_ENDPOINT")
-
-#   if [ "$response" == "Data inserted" ]; then
-#     echo "Data inserted from $me."
-#   else
-#     echo "Data insert failed."
-#   fi
-# fi
