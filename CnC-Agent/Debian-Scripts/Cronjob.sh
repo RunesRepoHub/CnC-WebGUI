@@ -1,8 +1,4 @@
 #!/bin/bash
-
-# Define the URL to fetch data from
-data_url="http://192.168.1.169:3000/read/cronjobs/$hostname"
-
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
@@ -10,6 +6,9 @@ source ~/CnC-WebGUI/config.sh
 databaseip=$(cat "$dbip")
 hn=$(echo $HOSTNAME)
 me=$(basename "$0")
+
+# Define the URL to fetch data from
+data_url="http://192.168.1.169:3000/read/cronjobs/$hn"
 
 # Capture the user's crontab and save it to a file
 crontab -l > "$crontxt"
