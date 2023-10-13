@@ -10,7 +10,7 @@ me=$(basename "$0")
 existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
 
 # Create an array to store unique cron jobs
-unique_cronjobs=(Overview, Cronjob, Packages)
+unique_cronjobs=(00 00 * * * ruby /root/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh >/dev/null 2>&1, 00 00 * * * ruby /root/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh >/dev/null 2>&1, 00 00 * * * ruby /root/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh >/dev/null 2>&1)
 
 # Read the user's crontab and store unique cron jobs in the array
 while IFS= read -r line; do
