@@ -1,5 +1,4 @@
 #!/bin/bash
-bash ~/CnC-WebGUI/Functions/version.sh
 echo "The Development Version is undergoing constant updates and changes to the code and will therefor not always work as it should... THIS HAS BEEN YOUR WARNING"
 echo 
 echo "The Production Version will only see massive update and changes to the code" 
