@@ -45,17 +45,17 @@ EOF
 )
 
 # Debugging: Print the data being sent
-echo "Sending data: $DATA"
+# echo "Sending data: $DATA"
 
 # Send a POST request to the API to update or insert data
 response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
 
 # Debugging: Print the response from the API
-echo "API response: $response"
+# echo "API response: $response"
 
 # Check the response from the API
-if [ "$response" == "Data updated" ]; then
-    echo "Data updated from $me."
-else
-    echo "Data inserted from $me."
-fi
+# if [ "$response" == "Data updated" ]; then
+#     echo "Data updated from $me."
+# else
+#     echo "Data inserted from $me."
+# fi

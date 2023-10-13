@@ -35,5 +35,6 @@ echo " "
 echo " "
 echo "This server can be used by CnC-Agents via this IP Address: $ip_address"
 echo " "
-echo " "
 echo "And the WebGUI, can be accessed via $ip_address:8080"
+echo
+echo
