@@ -38,9 +38,6 @@ p="post"
 fi
 
 
-
-
-
 DATA='{
       "hostname": "'"$hostname"'",
       "ipaddress": "'"$ip_address"'",
