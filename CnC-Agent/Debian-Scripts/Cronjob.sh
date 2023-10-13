@@ -6,44 +6,29 @@ databaseip=$(cat "$dbip")
 hn=$(echo $HOSTNAME)
 me=$(basename "$0")
 
-# Fetch existing data from the API based on "id"
-existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
+# Function to update variables from API response
+update_variables() {
+    local data="$1"
+    ip_address=$(jq -r '.ip_address' <<< "$data")
+    mac_address=$(jq -r '.mac_address' <<< "$data")
+    distro=$(jq -r '.distro' <<< "$data")
+    packages=$(jq -r '.packages' <<< "$data")
+}
 
-# Get the user's crontab
-user_crontab=$(crontab -l)
-
-# Prepare the data for insertion or update
-DATA='{
-    "hostname": "'"$hn"'",
-    "id": "'"$id"'",
-    "cronjobsscripts": "'"$user_crontab"'"
-}'
-
-# Check if data already exists
-if [ -n "$existing_data" ]; then
-    echo "Data for id $id exists. Updating..."
-    # Extract the existing crontab data
-    existing_cronjobs=$(echo "$existing_data" | jq -r .cronjobsscripts)
-
-    # Compare existing data with new data
-    if [ "$existing_cronjobs" != "$user_crontab" ]; then
-        # Send a PUT request to update the data
-        response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "http://192.168.1.169:3000/update/cronjobs/$hn")
-
-        if [ "$response" == "Data updated" ]; then
-            echo "Data updated from $me."
-        else
-            echo "Data update failed."
-        fi
-    fi
+# Read data from the API and update variables
+response=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
+if [[ $? -eq 0 ]]; then
+    update_variables "$response"
 else
-    echo "Data for id $id does not exist. Inserting..."
-    # Send a POST request to insert the data
-    response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "http://192.168.1.169:3000/create/cronjobs")
-
-    if [ "$response" == "Data inserted" ]; then
-        echo "Data inserted from $me."
-    else
-        echo "Data insert failed."
-    fi
+    echo "Failed to fetch data from the API."
+    exit 1
 fi
+
+# Capture the user's crontab and save it to a file
+crontab -l > "$crontxt"
+
+# Process each line of the crontab
+while IFS= read -r line; do
+    # Send the cron job data to the database
+    curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$line\"}" "http://$databaseip:3000/create/cronjobs" >/dev/null 2>&1
+done < "$crontxt"
