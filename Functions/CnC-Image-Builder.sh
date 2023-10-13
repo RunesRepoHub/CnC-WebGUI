@@ -11,22 +11,9 @@ echo
 echo
 echo
 
-docker_network_ls=$(docker network ls | grep -i cnc-webgui_cncnetwork)
-
-if [ "$docker_network_ls" == "cnc-webgui_cncnetwork" ]; then
-
 docker build -t cnc-web:$version "$web_path"
 docker build -t cnc-pg:$version "$pg_path"
 docker build -t cnc-node-api:$version "$apt_path"
-
-else 
-
-docker network create -d bridge cnc-webgui_cncnetwork
-docker build -t cnc-web:$version "$web_path"
-docker build -t cnc-pg:$version "$pg_path"
-docker build -t cnc-node-api:$version "$apt_path"
-
-fi
 
 docker compose -f "$compose" -p cnc-webgui down
 docker compose -f "$compose" -p cnc-webgui up -d

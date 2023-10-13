@@ -24,6 +24,8 @@ services:
       - cnc-db
     networks:
       - cncnetwork
+    volumes:
+      - dbdata:/var/lib/api
   cnc-web:
     image: cnc-web:1.2
     restart: always
@@ -38,5 +40,4 @@ services:
 volumes:
   dbdata:
 networks:
-  cncnetwork: 
-          external: true
+  cncnetwork:
