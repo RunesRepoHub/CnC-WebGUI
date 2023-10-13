@@ -13,7 +13,7 @@ echo
 
 docker_network_ls=$(docker network ls | grep -i cnc-webgui_cncnetwork)
 
-if [ "$docker_network_ls" == "cnc-webgui_cncnetwork"]; then
+if [ "$docker_network_ls" == "cnc-webgui_cncnetwork" ]; then
 
 docker build -t cnc-web:$version "$web_path"
 docker build -t cnc-pg:$version "$pg_path"

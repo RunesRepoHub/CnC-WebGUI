@@ -45,6 +45,8 @@ while true; do
                     ## Remove old files
                     rm -r ~/CnC-WebGUI
                     ## Clones new files
+                    echo
+                    echo
                     git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     ## Runs the installation script
                     bash ~/CnC-WebGUI/Functions/Getting-started.sh;
@@ -53,6 +55,8 @@ while true; do
                 ## If the files has not been download before
                 echo "$FILE does not exist."
                 ## Clones new files
+                echo
+                echo
                 git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 ## Runs the installation script
                 bash ~/CnC-WebGUI/Functions/Getting-started.sh;
@@ -77,6 +81,8 @@ while true; do
                     ## Remove old files
                     rm -r ~/CnC-WebGUI
                     ## Clones new files
+                    echo
+                    echo
                     git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     ## Runs the installation script
                     bash ~/CnC-WebGUI/Functions/Getting-started.sh;
@@ -85,6 +91,8 @@ while true; do
                 ## If the files has not been download before
                 echo "$FILE does not exist."
                 ## Clones new files
+                echo
+                echo
                 git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 ## Runs the installation script
                 bash ~/CnC-WebGUI/Functions/Getting-started.sh;
