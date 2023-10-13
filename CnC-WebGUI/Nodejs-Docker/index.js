@@ -40,12 +40,11 @@ app.post('/create/:table', (req, res) => {
   handleDatabaseOperation(query, values, res);
 });
 
-// Retrieve all items (Generic function for different tables)
-app.get('/read/:table', (req, res) => {
-  const { table } = req.params;
-  const query = `SELECT * FROM ${table}`;
+app.get('/read/:table/:hostname', (req, res) => {
+  const { table, hostname } = req.params;
+  const query = `SELECT * FROM ${table} WHERE hostname = $1`;
 
-  handleDatabaseOperation(query, [], res);
+  handleDatabaseOperation(query, [hostname], res);
 });
 
 // Update an item (Generic function for different tables)
