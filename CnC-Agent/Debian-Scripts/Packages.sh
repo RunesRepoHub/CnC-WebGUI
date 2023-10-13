@@ -5,12 +5,14 @@ source ~/CnC-WebGUI/config.sh
 databaseip=$(cat "$dbip")
 me=$(basename "$0")
 
+hostname=$(echo $HOSTNAME)
+
 # Fetch existing data from the API
-existing_data=$(curl -s "http://$databaseip:3000/read/packages/$HOSTNAME")
+existing_data=$(curl -s "http://$databaseip:3000/read/packages/$hostname")
 
 # Check if data already exists
 if [ -n "$existing_data" ]; then
-  echo "Data for hostname $HOSTNAME exists. Updating..."
+  echo "Data for hostname $hostname exists. Updating..."
   # Extract existing data and compare with new data
   existing_git=$(echo "$existing_data" | jq -r .git)
   existing_wget=$(echo "$existing_data" | jq -r .wget)
@@ -33,7 +35,7 @@ if [ -n "$existing_data" ]; then
   # Prepare the data for update
   DATA=$(cat <<EOF
 {
-    "hostname": "$HOSTNAME",
+    "hostname": "$hostname",
     "git": "$git_status",
     "wget": "$wget_status",
     # Add more fields here
@@ -42,7 +44,7 @@ EOF
 )
 
   # Send a PUT request to update the data
-  response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "http://$databaseip:3000/update/packages/$HOSTNAME")
+  response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "http://$databaseip:3000/update/packages/$hostname")
 
   if [ "$response" == "Data updated" ]; then
     echo "Data updated from $me."
@@ -50,12 +52,12 @@ EOF
     echo "Data update failed."
   fi
 else
-  echo "Data for hostname $HOSTNAME does not exist. Inserting..."
+  echo "Data for hostname $hostname does not exist. Inserting..."
 
   # Prepare the data for insertion
   DATA=$(cat <<EOF
 {
-    "hostname": "$HOSTNAME",
+    "hostname": "$hostname",
     "git": "Installed",
     "wget": "Installed",
     # Add more fields here
