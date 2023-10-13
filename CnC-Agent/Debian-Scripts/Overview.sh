@@ -2,8 +2,6 @@
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
-id=$(curl http://192.168.1.169:3000/read/info/$hostname | jq -r .id)
-
 me=$(basename "$0")
 databaseip=$(cat "$dbip")
 
@@ -12,6 +10,8 @@ hostname=$(echo $HOSTNAME)
 
 # Define the URL for reading data
 READ_API_ENDPOINT="http://192.168.1.169:3000/read/info/$hostname"
+id=$(curl http://192.168.1.169:3000/read/info/$hostname | jq -r .id)
+
 
 # Fetch existing data from the API
 existing_data=$(curl -s "$READ_API_ENDPOINT")
