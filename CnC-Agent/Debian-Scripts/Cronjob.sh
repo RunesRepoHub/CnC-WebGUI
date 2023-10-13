@@ -10,7 +10,7 @@ me=$(basename "$0")
 existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
 
 # Create an array to store unique cron jobs
-unique_cronjobs=(00 00 * * * ruby /root/CnC-WebGUI/CnC-Agent/Debian-Scripts/Cronjob.sh >/dev/null 2>&1, 00 00 * * * ruby /root/CnC-WebGUI/CnC-Agent/Debian-Scripts/Overview.sh >/dev/null 2>&1, 00 00 * * * ruby /root/CnC-WebGUI/CnC-Agent/Debian-Scripts/Packages.sh >/dev/null 2>&1)
+unique_cronjobs=(Packages.sh, Overview.sh, Cronjob.sh)
 
 # Read the user's crontab and store unique cron jobs in the array
 while IFS= read -r line; do
@@ -20,46 +20,45 @@ while IFS= read -r line; do
     fi
 done < <(crontab -l)
 
-# Process each unique cron job
-for line in "${unique_cronjobs[@]}"; do
-    # Check if data already exists
-    if [ -n "$existing_data" ]; then
-        echo "Data for hostname $hn exists. Updating..."
-        # Extract existing crontab data
-        existing_cronjobs=$(echo "$existing_data" | jq -r .cronjobsscripts)
+# Get the "id" from the existing data
+existing_id=$(echo "$existing_data" | jq -r .id)
 
-        # Compare existing data with new data
-        if [ "$existing_cronjobs" != "$line" ]; then
-            # Prepare the data for update
-            DATA='{
-                "hostname": "'"$hn"'",
-                "cronjobsscripts": "'"$line"'"
-            }'
+# Check if data already exists
+if [ -n "$existing_data" ]; then
+    echo "Data with id $existing_id exists. Updating..."
+    # Extract existing crontab data
+    existing_cronjobs=$(echo "$existing_data" | jq -r .cronjobsscripts)
 
-            # Send a PUT request to update the data
-            response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "http://192.168.1.169:3000/update/cronjobs/$hn")
-
-            if [ "$response" == "Data updated" ]; then
-                echo "Data updated from $me."
-            else
-                echo "Data update failed."
-            fi
-        fi
-    else
-        echo "Data for hostname $hn does not exist. Inserting..."
-        # Prepare the data for insertion
+    # Compare existing data with new data
+    if [ "$existing_cronjobs" != "${unique_cronjobs[*]}" ]; then
+        # Prepare the data for update
         DATA='{
-            "hostname": "'"$hn"'",
-            "cronjobsscripts": "'"$line"'"
+            "id": "'"$existing_id"'",
+            "cronjobsscripts": "'"$unique_cronjobs[*]"'"
         }'
 
-        # Send a POST request to insert the data
-        response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "http://192.168.1.169:3000/create/cronjobs")
+        # Send a PUT request to update the data
+        response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "http://192.168.1.169:3000/update/cronjobs/$existing_id")
 
-        if [ "$response" == "Data inserted" ]; then
-            echo "Data inserted from $me."
+        if [ "$response" == "Data updated" ]; then
+            echo "Data updated from $me."
         else
-            echo "Data insert failed."
+            echo "Data update failed."
         fi
     fi
-done
+else
+    echo "Data for id $existing_id does not exist. Inserting..."
+    # Prepare the data for insertion
+    DATA='{
+        "cronjobsscripts": "'"$unique_cronjobs[*]"'"
+    }'
+
+    # Send a POST request to insert the data
+    response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "http://192.168.1.169:3000/create/cronjobs")
+
+    if [ "$response" == "Data inserted" ]; then
+        echo "Data inserted from $me."
+    else
+        echo "Data insert failed."
+    fi
+fi
