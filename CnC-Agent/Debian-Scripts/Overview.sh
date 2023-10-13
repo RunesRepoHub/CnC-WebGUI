@@ -52,6 +52,7 @@ else
   # ... (other OS detection code)
 
   distro="$OS $VER"
+  fi
 
   DATA='{
       "hostname": "'"$hostname"'",
