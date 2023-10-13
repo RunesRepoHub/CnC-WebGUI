@@ -40,6 +40,14 @@ app.post('/create/:table', (req, res) => {
   handleDatabaseOperation(query, values, res);
 });
 
+app.get('/read/:table/:id', (req, res) => {
+  const { table, id } = req.params;
+  const query = `SELECT * FROM ${table} WHERE id = $1`;
+  const values = [id];
+
+  handleDatabaseOperation(query, values, res);
+});
+
 app.get('/read/:table/:hostname', (req, res) => {
   const { table, hostname } = req.params;
   const query = `SELECT * FROM ${table} WHERE hostname = $1`;

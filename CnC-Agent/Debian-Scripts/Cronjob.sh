@@ -12,24 +12,21 @@ crontab -l > "$crontxt"
 # Fetch existing data from the URL
 existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
 
-# Create an array of existing cron job lines
-IFS=$'\n' read -r -a existing_cronjobs <<< "$existing_data"
+# Extract the "cronjobsscripts" field from the existing data
+existing_cronjobs=$(echo "$existing_data" | jq -r '.cronjobsscripts')
 
-# Process each line of the crontab
-while IFS= read -r line; do
-    # Flag to check if line is already in existing_cronjobs
-    line_exists=0
+# Save the existing cron jobs to a temporary file
+echo "$existing_cronjobs" > "$existing_cronjobs_file"
 
-    # Check if the line exists in existing_cronjobs
-    for existing_line in "${existing_cronjobs[@]}"; do
-        if [[ "$line" == "$existing_line" ]]; then
-            line_exists=1
-            break
-        fi
-    done
+# Use 'diff' to compare the crontab with existing data
+if diff -q "$crontxt" "$existing_cronjobs_file" >/dev/null; then
+    echo "Cron jobs are up to date. No changes required."
+else
+    echo "Updating cron jobs..."
+    
+    # Update the database with the new crontab
+    curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$(cat "$crontxt")\"}" "http://$databaseip:3000/update/cronjobs/$id" >/dev/null 2>&1
+fi
 
-    # If the line doesn't exist, add it to the database
-    if [ $line_exists -eq 0 ]; then
-        curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$line\"}" "http://$databaseip:3000/create/cronjobs" >/dev/null 2>&1
-    fi
-done < "$crontxt"
+# Clean up the temporary file
+rm -f "$existing_cronjobs_file"
