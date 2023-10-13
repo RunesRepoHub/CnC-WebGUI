@@ -1,10 +1,10 @@
-#!/bin/bash
-
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
-me=$(basename "$0")
+
 databaseip=$(cat "$dbip")
+me=$(basename "$0")
+
 
 # Escape double quotes in variables
 HOSTNAME=$(echo "$HOSTNAME" | sed 's/"/\\"/g')
@@ -22,22 +22,7 @@ CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}' | sed
 CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}' | sed 's/"/\\"/g')
 
 # Define your REST API endpoint for querying and updating data
-QUERY_ENDPOINT="http://$databaseip:3000/read/packages"
-UPDATE_ENDPOINT="http://$databaseip:3000/update/packages/$HOSTNAME"
-INSERT_ENDPOINT="http://$databaseip:3000/create/packages"
-
-# Use a GET request to check if data for the current hostname exists
-existing_data=$(curl -X GET -H "Content-Type: application/json" "$QUERY_ENDPOINT/$HOSTNAME")
-
-if [ -z "$existing_data" ]; then
-    # Data doesn't exist, use POST to insert new entry
-    API_ENDPOINT="$INSERT_ENDPOINT"
-    METHOD="POST"
-else
-    # Data exists, use PUT to update the existing entry
-    API_ENDPOINT="$UPDATE_ENDPOINT"
-    METHOD="PUT"
-fi
+API_ENDPOINT="http://$databaseip:3000/create/packages"
 
 # Define the data to be sent to the API
 DATA=$(cat <<EOF
@@ -59,4 +44,18 @@ DATA=$(cat <<EOF
 EOF
 )
 
-# Debug
+# Debugging: Print the data being sent
+echo "Sending data: $DATA"
+
+# Send a POST request to the API to update or insert data
+response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
+
+# Debugging: Print the response from the API
+echo "API response: $response"
+
+# Check the response from the API
+if [ "$response" == "Data updated" ]; then
+    echo "Data updated from $me."
+else
+    echo "Data inserted from $me."
+fi
