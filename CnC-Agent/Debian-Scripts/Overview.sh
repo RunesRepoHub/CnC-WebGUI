@@ -8,6 +8,22 @@ databaseip=$(cat "$dbip")
 # Set the hostname variable
 hostname=$(echo $HOSTNAME)
 
+# Set the variables you want to compare or insert/update
+ip_address=$(hostname -I | awk '{print $1}')
+mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
+packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
+
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$NAME
+    VER=$VERSION_ID
+else
+    OS="Unknown"
+    VER="Unknown"
+fi
+
+distro="$OS $VER"
+
 # Define the URL for reading data
 READ_API_ENDPOINT="http://192.168.1.169:3000/read/info/$hostname"
 
