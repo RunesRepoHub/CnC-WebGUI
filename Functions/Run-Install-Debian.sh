@@ -1,8 +1,6 @@
 #!/bin/bash
 echo
 echo
-echo
-echo
 echo "---------------------------------------------------------------"
 echo "The Development Version is undergoing constant updates and changes to the code and will therefor not always work as it should... THIS HAS BEEN YOUR WARNING"
 echo
@@ -15,11 +13,10 @@ echo " * Debian 9,10,11"
 echo
 echo " * Ubuntu 20.04,22.04"
 echo 
-echo
 echo "---------------------------------------------------------------"
-ceho
 echo 'This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try me best to avoid it, but this is a headsup and warning to backup before updating'
 echo 
+echo
 PS3="Select the what version you want to install:"
 
 items=("Development" "Production")
@@ -104,5 +101,3 @@ while true; do
 done
 echo "---------------------------------------------------------------"
 echo 
-echo 
-echo
