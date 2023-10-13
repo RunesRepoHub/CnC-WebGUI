@@ -61,7 +61,7 @@ DATA='{
 #echo "Sending data: $DATA"
 
 # Send a POST request to the API to update or insert data
-response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
+response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT" >/dev/null 2>&1)
 
 # Debugging: Print the response from the API
 #echo "API response: $response"
