@@ -15,11 +15,8 @@ existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
 # Process each line of the crontab
 while IFS= read -r line; do
     # Check if the line exists in the existing data
-    if [[ "$existing_data" == *"$line"* ]]; then
-        # Line already exists, skip it
-        continue
+    if [[ "$existing_data" != *"$line"* ]]; then
+        # Line does not exist in existing data, so add it
+        curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$line\"}" "http://$databaseip:3000/create/cronjobs" >/dev/null 2>&1
     fi
-    
-    # Send the new cron job data to the database
-    curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$line\"}" "http://$databaseip:3000/create/cronjobs" >/dev/null 2>&1
 done < "$crontxt"
