@@ -27,7 +27,7 @@ check_db_hostname=$(curl http://192.168.1.169:3000/read/info/debiantemplate | jq
 INFO_ENDPOINT="http://$databaseip:3000/read/info/$hostname"
 CREATE_INFO_ENDPOINT="http://$databaseip:3000/create/info"
 
-if [ "$hostname" == "$check_db_hostname"]; then 
+if [ "$hostname" == "$check_db_hostname" ]; then 
 
 p="put"
 
