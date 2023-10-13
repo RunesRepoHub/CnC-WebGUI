@@ -7,68 +7,58 @@ databaseip=$(cat "$dbip")
 
 hostname=$(echo $HOSTNAME)
 
-ip_address=$(hostname -I | awk '{print $1}')
+# Check if the hostname already exists in the database
+existing_data=$(curl -s "http://$databaseip:3000/read/hostname/$hostname")
 
-mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
+if [ -n "$existing_data" ]; then
+    # Hostname exists, update the data
+    ip_address=$(hostname -I | awk '{print $1}')
+    mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
+    packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
 
-packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        OS=$NAME
+        VER=$VERSION_ID
+    elif type lsb_release >/dev/null 2>&1; then
+        OS=$(lsb_release -si)
+        VER=$(lsb_release -sr)
+    # Add other OS version checks here if needed
+    else
+        OS=$(uname -s)
+        VER=$(uname -r)
+    fi
 
-if [ -f /etc/os-release ]; then
-    # freedesktop.org and systemd
-    . /etc/os-release
-    OS=$NAME
-    VER=$VERSION_ID
-elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
-    OS=$(lsb_release -si)
-    VER=$(lsb_release -sr)
-elif [ -f /etc/lsb-release ]; then
-    # For some versions of Debian/Ubuntu without lsb_release command
-    . /etc/lsb-release
-    OS=$DISTRIB_ID
-    VER=$DISTRIB_RELEASE
-elif [ -f /etc/debian_version ]; then
-    # Older Debian/Ubuntu/etc.
-    OS=Debian
-    VER=$(cat /etc/debian_version)
-elif [ -f /etc/SuSe-release ]; then
-    # Older SuSE/etc.
-    ...
-elif [ -f /etc/redhat-release ]; then
-    # Older Red Hat, CentOS, etc.
-    ...
+    distro="$OS $VER"
+
+    # Define your REST API endpoint for updating data
+    API_ENDPOINT="http://$databaseip:3000/update/info/$hostname"
+
+    # Define the data to be sent to the API
+    DATA='{
+        "hostname": "'"$hostname"'",
+        "ipaddress": "'"$ip_address"'",
+        "macaddress": "'"$mac_address"'",
+        "distro": "'"$distro"'",
+        "packages": "'"$packages"'"
+    }'
+
+    # Debugging: Print the data being sent
+    echo "Updating data: $DATA"
+
+    # Send a POST request to the API to update data
+    response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
+
+    # Debugging: Print the response from the API
+    echo "API response: $response"
+
+    if [ "$response" == "Data updated" ]; then
+        echo "Data updated from $me."
+    else
+        echo "Data update failed from $me."
+    fi
 else
-    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-    OS=$(uname -s)
-    VER=$(uname -r)
-fi
-
-distro="$OS $VER"
-
-# Define your REST API endpoint for updating/inserting data
-API_ENDPOINT="http://$databaseip:3000/create/info"
-
-# Define the data to be sent to the API
-DATA='{
-    "hostname": "'"$hostname"'",
-    "ipaddress": "'"$ip_address"'",
-    "macaddress": "'"$mac_address"'",
-    "distro": "'"$distro"'",
-    "packages": "'"$packages"'"
-}'
-
-# Debugging: Print the data being sent
-echo "Sending data: $DATA"
-
-# Send a POST request to the API to update or insert data
-response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
-
-# Debugging: Print the response from the API
-echo "API response: $response"
-
-# Check the response from the API
-if [ "$response" == "Data updated" ]; then
-    echo "Data updated from $me."
-else
-    echo "Data inserted from $me."
+    # Hostname doesn't exist, insert new data
+    echo "Hostname $hostname doesn't exist in the database. Inserting new data..."
+    source ~/CnC-WebGUI/insert_script.sh
 fi

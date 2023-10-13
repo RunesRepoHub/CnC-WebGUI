@@ -1,10 +1,10 @@
+#!/bin/bash
+
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
-
 databaseip=$(cat "$dbip")
 me=$(basename "$0")
-
 
 # Escape double quotes in variables
 HOSTNAME=$(echo "$HOSTNAME" | sed 's/"/\\"/g')
@@ -23,6 +23,16 @@ CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{pr
 
 # Define your REST API endpoint for querying and updating data
 API_ENDPOINT="http://$databaseip:3000/create/packages"
+
+# Send a GET request to check if data already exists
+get_response=$(curl -s "$API_ENDPOINT")
+
+# If the data doesn't exist (empty response), insert new data; otherwise, update it
+if [ -z "$get_response" ]; then
+    update_type="Data inserted"
+else
+    update_type="Data updated"
+fi
 
 # Define the data to be sent to the API
 DATA=$(cat <<EOF
@@ -54,8 +64,4 @@ response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_END
 echo "API response: $response"
 
 # Check the response from the API
-if [ "$response" == "Data updated" ]; then
-    echo "Data updated from $me."
-else
-    echo "Data inserted from $me."
-fi
+echo "$update_type from $me."
