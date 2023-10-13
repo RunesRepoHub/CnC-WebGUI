@@ -10,7 +10,7 @@ me=$(basename "$0")
 existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
 
 # Create an array to store unique cron jobs
-unique_cronjobs=()
+unique_cronjobs=(Overview, Cronjob, Packages)
 
 # Read the user's crontab and store unique cron jobs in the array
 while IFS= read -r line; do
