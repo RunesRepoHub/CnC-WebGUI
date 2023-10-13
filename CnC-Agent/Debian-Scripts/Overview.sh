@@ -47,7 +47,7 @@ fi
 distro="$OS $VER"
 
 # Define your REST API endpoint for querying data
-API_ENDPOINT="http://$databaseip:3000/read/packages/"
+API_ENDPOINT="http://$databaseip:3000/read/packages/$hostname"
 
 # Send a GET request to the API to retrieve data
 existing_data=$(curl -X GET -H "Content-Type: application/json" "$API_ENDPOINT")
@@ -56,20 +56,25 @@ existing_data=$(curl -X GET -H "Content-Type: application/json" "$API_ENDPOINT")
 if [ -z "$existing_data" ]; then
     # Data is empty, use POST to insert data
     # Define your REST API endpoint for inserting data
-    API_ENDPOINT="http://$databaseip:3000/create/info"
+    API_ENDPOINT="http://$databaseip:3000/create/packages"
     METHOD="POST"
-    updated_data=$existing_data
-else
-    # Data exists, use PUT to update the existing entry
-    # Define your REST API endpoint for updating data
-    API_ENDPOINT="http://$databaseip:3000/update/info/"
-    METHOD="PUT"
     updated_data=$(cat <<EOF
 {
     "hostname": "$hostname",
     "ipaddress": "$ip_address",
     "macaddress": "$mac_address",
     "distro": "$distro",
+    "packages": "$packages"
+}
+EOF
+)
+else
+    # Data exists, use PUT to update the existing entry
+    # Define your REST API endpoint for updating data
+    API_ENDPOINT="http://$databaseip:3000/update/packages/$hostname"
+    METHOD="PUT"
+    updated_data=$(cat <<EOF
+{
     "packages": "$packages"
 }
 EOF

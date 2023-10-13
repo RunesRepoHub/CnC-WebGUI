@@ -49,12 +49,34 @@ app.get('/read/:table', (req, res) => {
 });
 
 // Update an item (Generic function for different tables)
-app.put('/update/:table/:id', (req, res) => {
-  const { table, id } = req.params;
+app.put('/update/packages/:hostname', (req, res) => {
+  const { hostname } = req.params;
   const data = req.body;
   const columns = Object.keys(data);
-  const query = `UPDATE ${table} SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE id = $${columns.length + 1} RETURNING *`;
-  const values = [...Object.values(data), id];
+  const query = `UPDATE packages SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
+  const values = [...Object.values(data), hostname];
+
+  handleDatabaseOperation(query, values, res);
+});
+
+// Update an item for "info" table
+app.put('/update/info/:hostname', (req, res) => {
+  const { hostname } = req.params;
+  const data = req.body;
+  const columns = Object.keys(data);
+  const query = `UPDATE info SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
+  const values = [...Object.values(data), hostname];
+
+  handleDatabaseOperation(query, values, res);
+});
+
+// Update an item for "cronjobs" table
+app.put('/update/cronjobs/:hostname', (req, res) => {
+  const { hostname } = req.params;
+  const data = req.body;
+  const columns = Object.keys(data);
+  const query = `UPDATE cronjobs SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
+  const values = [...Object.values(data), hostname];
 
   handleDatabaseOperation(query, values, res);
 });
