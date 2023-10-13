@@ -32,7 +32,7 @@ if [ -n "$existing_data" ]; then
   # Send a PUT request to update the data
   response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$INFO_ENDPOINT")
 
-  if [ "$response" == "Data updated" ]; then
+  if [ "$response" == "$DATA" ]; then
     echo "Data updated from $me."
   else
     echo "Data update failed."
@@ -65,7 +65,7 @@ else
   # Send a POST request to insert the data
   response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$CREATE_INFO_ENDPOINT")
 
-  if [ "$response" == "Data inserted" ]; then
+  if [ "$response" == "$DATA" ]; then
     echo "Data inserted from $me."
   else
     echo "Data insert failed."
