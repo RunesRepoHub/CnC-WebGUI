@@ -9,11 +9,14 @@ me=$(basename "$0")
 # Capture the user's crontab and save it to a file
 crontab -l > "$crontxt"
 
-# Fetch existing data from the URL
-existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
+# Fetch existing data from the URL and strip any leading/trailing whitespaces
+existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn" | tr -d '[:space:]')
 
 # Process each line of the crontab
 while IFS= read -r line; do
+    # Strip any leading/trailing whitespaces from the line
+    line=$(echo "$line" | tr -d '[:space:]')
+
     # Check if the line exists in the existing data
     if [[ "$existing_data" != *"$line"* ]]; then
         # Line does not exist in existing data, so add it
