@@ -69,13 +69,13 @@ app.put('/update/info/:hostname', (req, res) => {
   handleDatabaseOperation(query, values, res);
 });
 
-// Update an item for "cronjobs" table
-app.put('/update/cronjobs/:hostname', (req, res) => {
-  const { hostname } = req.params;
+// Update an item for "cronjobs" table based on "id"
+app.put('/update/cronjobs/:id', (req, res) => {
+  const { id } = req.params;
   const data = req.body;
   const columns = Object.keys(data);
-  const query = `UPDATE cronjobs SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
-  const values = [...Object.values(data), hostname];
+  const query = `UPDATE cronjobs SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE id = $${columns.length + 1} RETURNING *`;
+  const values = [...Object.values(data), id];
 
   handleDatabaseOperation(query, values, res);
 });
