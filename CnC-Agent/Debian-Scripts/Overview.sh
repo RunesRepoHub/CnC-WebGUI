@@ -2,10 +2,24 @@
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
+ip_address=$(hostname -I | awk '{print $1}')
+mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
+packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
 me=$(basename "$0")
 databaseip=$(cat "$dbip")
 
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$NAME
+    VER=$VERSION_ID
+# ... (other OS detection code)
+
+distro="$OS $VER"
+fi
+
 hostname=$(echo $HOSTNAME)
+
+tpdata='{"id": " ","hostname":"'$hostname'"}
 
 # Define your REST API endpoints
 INFO_ENDPOINT="http://$databaseip:3000/read/info/$hostname"

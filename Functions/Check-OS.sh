@@ -2,6 +2,7 @@
 # Install needed tools for installation script to work
 apt-get install sudo
 apt-get install git
+apt-get install jq -y
 
 
 if [ -f /etc/os-release ]; then
