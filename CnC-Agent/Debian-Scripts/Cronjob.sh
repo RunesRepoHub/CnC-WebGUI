@@ -6,14 +6,22 @@ databaseip=$(cat "$dbip")
 hn=$(echo $HOSTNAME)
 me=$(basename "$0")
 
-# Capture the user's crontab and save it to a file
-crontab -l > "$crontxt"
-
 # Fetch existing data from the API
 existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
 
-# Process each line of the crontab
+# Create an array to store unique cron jobs
+unique_cronjobs=()
+
+# Read the user's crontab and store unique cron jobs in the array
 while IFS= read -r line; do
+    # Check if the cron job is not in the unique_cronjobs array
+    if [[ ! " ${unique_cronjobs[@]} " =~ " $line " ]]; then
+        unique_cronjobs+=("$line")
+    fi
+done < <(crontab -l)
+
+# Process each unique cron job
+for line in "${unique_cronjobs[@]}"; do
     # Check if data already exists
     if [ -n "$existing_data" ]; then
         echo "Data for hostname $hn exists. Updating..."
@@ -54,4 +62,4 @@ while IFS= read -r line; do
             echo "Data insert failed."
         fi
     fi
-done < "$crontxt"
+done
