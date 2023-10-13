@@ -24,7 +24,7 @@ if [ -n "$data" ]; then
         # Process each line of the crontab
         while IFS= read -r line; do
             # Send the cron job data to the database
-            curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$line\"}" "http://$databaseip:3000/update/cronjobs/$id" >/dev/null 2>&1
+            curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$line\"}" "http://$databaseip:3000/update/cronjobs/$hn" >/dev/null 2>&1
         done < "$crontxt"
     else
         echo "Hostname does not match data from the URL."
