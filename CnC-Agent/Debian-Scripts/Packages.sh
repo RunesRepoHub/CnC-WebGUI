@@ -1,8 +1,10 @@
+#!/bin/bash
+
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
-databaseip=$(cat "$dbip")
 me=$(basename "$0")
+databaseip=$(cat "$dbip")
 
 # Escape double quotes in variables
 HOSTNAME=$(echo "$HOSTNAME" | sed 's/"/\\"/g')
@@ -20,32 +22,24 @@ CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}' | sed
 CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}' | sed 's/"/\\"/g')
 
 # Define your REST API endpoint for querying and updating data
-API_ENDPOINT="http://$databaseip:3000/create/packages"
+QUERY_ENDPOINT="http://$databaseip:3000/read/packages"
+UPDATE_ENDPOINT="http://$databaseip:3000/update/packages/$HOSTNAME"
+INSERT_ENDPOINT="http://$databaseip:3000/create/packages"
 
-# Define the data to be sent to the API
-DATA=$(cat <<EOF
-{
-    "hostname": "$HOSTNAME"
-}
-EOF
-)
+# Use a GET request to check if data for the current hostname exists
+existing_data=$(curl -X GET -H "Content-Type: application/json" "$QUERY_ENDPOINT/$HOSTNAME")
 
-# Debugging: Print the data being sent
-echo "Sending data: $DATA"
-
-# Send a POST request to the API to retrieve data for the given hostname
-response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
-
-# Check if data for the hostname already exists
-if [ -z "$response" ]; then
-  echo "No existing data found for $HOSTNAME. Inserting new data."
-  INSERT_DATA=true
+if [ -z "$existing_data" ]; then
+    # Data doesn't exist, use POST to insert new entry
+    API_ENDPOINT="$INSERT_ENDPOINT"
+    METHOD="POST"
 else
-  echo "Existing data found for $HOSTNAME. Updating data."
-  INSERT_DATA=false
+    # Data exists, use PUT to update the existing entry
+    API_ENDPOINT="$UPDATE_ENDPOINT"
+    METHOD="PUT"
 fi
 
-# Update or insert data based on the flag
+# Define the data to be sent to the API
 DATA=$(cat <<EOF
 {
     "hostname": "$HOSTNAME",
@@ -65,14 +59,4 @@ DATA=$(cat <<EOF
 EOF
 )
 
-# Send a POST request to insert or update data
-if [ "$INSERT_DATA" = true ]; then
-  echo "Inserting new data for $HOSTNAME."
-  response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
-else
-  echo "Updating existing data for $HOSTNAME."
-  response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT/$HOSTNAME")
-fi
-
-# Debugging: Print the response from the API
-echo "API response: $response"
+# Debug
