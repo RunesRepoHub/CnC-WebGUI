@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
@@ -45,29 +46,46 @@ fi
 
 distro="$OS $VER"
 
-# Define your REST API endpoint for updating/inserting data
-API_ENDPOINT="http://$databaseip:3000/create/info"
+# Define your REST API endpoint for querying data
+API_ENDPOINT="http://$databaseip:3000/read/packages/"
 
-# Define the data to be sent to the API
-DATA='{
-    "hostname": "'"$hostname"'",
-    "ipaddress": "'"$ip_address"'",
-    "macaddress": "'"$mac_address"'",
-    "distro": "'"$distro"'",
-    "packages": "'"$packages"'"
-}'
+# Send a GET request to the API to retrieve data
+existing_data=$(curl -X GET -H "Content-Type: application/json" "$API_ENDPOINT")
+
+# Check if existing_data is empty
+if [ -z "$existing_data" ]; then
+    # Data is empty, use POST to insert data
+    # Define your REST API endpoint for inserting data
+    API_ENDPOINT="http://$databaseip:3000/create/info"
+    METHOD="POST"
+    updated_data=$existing_data
+else
+    # Data exists, use PUT to update the existing entry
+    # Define your REST API endpoint for updating data
+    API_ENDPOINT="http://$databaseip:3000/update/info/"
+    METHOD="PUT"
+    updated_data=$(cat <<EOF
+{
+    "hostname": "$hostname",
+    "ipaddress": "$ip_address",
+    "macaddress": "$mac_address",
+    "distro": "$distro",
+    "packages": "$packages"
+}
+EOF
+)
+fi
 
 # Debugging: Print the data being sent
-echo "Sending data: $DATA"
+echo "Sending data: $updated_data"
 
-# Send a POST request to the API to update or insert data
-response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT")
+# Send the appropriate request to update or insert data
+response=$(curl -X $METHOD -H "Content-Type: application/json" -d "$updated_data" "$API_ENDPOINT")
 
 # Debugging: Print the response from the API
 echo "API response: $response"
 
-# Check the response from the API
-if [ "$response" == "Data updated" ]; then
+if [ "$METHOD" == "PUT" ]; then
     echo "Data updated from $me."
 else
     echo "Data inserted from $me."
