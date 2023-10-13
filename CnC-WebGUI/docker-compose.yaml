@@ -39,3 +39,4 @@ volumes:
   dbdata:
 networks:
   cncnetwork: 
+          external: true
