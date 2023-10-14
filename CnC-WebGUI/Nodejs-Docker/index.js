@@ -40,49 +40,20 @@ app.post('/create/:table', (req, res) => {
   handleDatabaseOperation(query, values, res);
 });
 
-app.get('/read/:table/:id', (req, res) => {
-  const { table, id } = req.params;
-  const query = `SELECT * FROM ${table} WHERE id = $1`;
-  const values = [id];
+// Retrieve all items (Generic function for different tables)
+app.get('/read/:table', (req, res) => {
+  const { table } = req.params;
+  const query = `SELECT * FROM ${table}`;
 
-  handleDatabaseOperation(query, values, res);
-});
-
-app.get('/read/:table/:hostname', (req, res) => {
-  const { table, hostname } = req.params;
-  const query = `SELECT * FROM ${table} WHERE hostname = $1`;
-
-  handleDatabaseOperation(query, [hostname], res);
+  handleDatabaseOperation(query, [], res);
 });
 
 // Update an item (Generic function for different tables)
-app.put('/update/packages/:hostname', (req, res) => {
-  const { hostname } = req.params;
+app.put('/update/:table/:id', (req, res) => {
+  const { table, id } = req.params;
   const data = req.body;
   const columns = Object.keys(data);
-  const query = `UPDATE packages SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
-  const values = [...Object.values(data), hostname];
-
-  handleDatabaseOperation(query, values, res);
-});
-
-// Update an item for "info" table
-app.put('/update/info/:hostname', (req, res) => {
-  const { hostname } = req.params;
-  const data = req.body;
-  const columns = Object.keys(data);
-  const query = `UPDATE info SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
-  const values = [...Object.values(data), hostname];
-
-  handleDatabaseOperation(query, values, res);
-});
-
-// Update an item for "cronjobs" table
-app.put('/update/cronjobs/:id', (req, res) => {
-  const { id } = req.params;
-  const data = req.body;
-  const columns = Object.keys(data);
-  const query = `UPDATE cronjobs SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE id = $${columns.length + 1} RETURNING *`;
+  const query = `UPDATE ${table} SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE id = $${columns.length + 1} RETURNING *`;
   const values = [...Object.values(data), id];
 
   handleDatabaseOperation(query, values, res);
