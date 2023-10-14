@@ -10,7 +10,7 @@ read -p "Database IP: " databaseip
 
 # IP address and port to check
 ip_address="$databaseip"
-port="3306"
+port="5432"
 
 # Check if the port is open
 if nc -z -w 2 "$ip_address" "$port"; then
