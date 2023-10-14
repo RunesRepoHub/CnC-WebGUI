@@ -6,6 +6,9 @@ if [ -f "~/CnC-WebGUI/config.sh" ]; then
     config_file="~/CnC-WebGUI/config.sh"
 fi
 
+# Add a sleep to allow source check
+sleep 5
+
 # Source the configuration script
 source "$config_file"
 
