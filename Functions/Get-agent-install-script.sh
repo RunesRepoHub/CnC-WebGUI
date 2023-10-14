@@ -61,7 +61,7 @@ fi
 
 # Execute the Install-Agent script if it exists
 if [ -f "/root/CnC-Agent/Installers/Installers/Debian-Installer.sh" ]; then
-  bash "/root/CnC-Agent/Installers/Installers/Debian-Installer.sh"
+  bash /root/CnC-Agent/Installers/Installers/Debian-Installer.sh
 else
   echo "Error: Install-Agent.sh not found in the CnC-Agent directory."
 fi
