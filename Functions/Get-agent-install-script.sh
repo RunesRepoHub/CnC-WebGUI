@@ -59,6 +59,9 @@ else
   exit 1
 fi
 
+# Add a sleep to allow the copy to finish
+sleep 5
+
 
 # Define the URL of the file
 URL="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/config.sh"
