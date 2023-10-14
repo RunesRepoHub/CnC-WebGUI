@@ -59,6 +59,8 @@ else
   exit 1
 fi
 
+# Add a sleep to allow the copy to finish
+sleep 5
 
 # Define the URL of the file
 URL="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/config.sh"
@@ -81,7 +83,6 @@ fi
 
 # Add a sleep to allow the copy to finish
 sleep 5
-
 
 # Execute the Install-Agent script if it exists
 if [ -f "$target_directory/Debian-Installer.sh" ]; then
