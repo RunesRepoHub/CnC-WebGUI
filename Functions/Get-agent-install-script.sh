@@ -59,6 +59,10 @@ else
   exit 1
 fi
 
+# Add a sleep to allow the copy to finish
+sleep 5
+
+
 # Execute the Install-Agent script if it exists
 if [ -f "$target_directory/Installers/Debian-Installer.sh" ]; then
   bash "$target_directory/Installers/Debian-Installer.sh"
