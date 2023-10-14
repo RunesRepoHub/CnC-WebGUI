@@ -14,6 +14,7 @@ echo "---------------------------------------------------------------"
 echo 'This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try me best to avoid it, but this is a headsup and warning to backup before updating'
 echo
 
+mkdir ~/CnC-Agent
 
 # URL of the GitHub repository and the target directory
 repo_url="https://github.com/RunesRepoHub/CnC-WebGUI.git"
