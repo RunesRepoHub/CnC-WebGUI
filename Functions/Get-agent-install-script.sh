@@ -15,9 +15,15 @@ echo "---------------------------------------------------------------"
 echo 'This "software" is in "early access" so there will be a high likelihood of data loss when updating. I will try my best to avoid it, but this is a heads-up and warning to backup before updating'
 echo
 
-# Create the CnC-Agent directory if it doesn't exist
-if [ ! -d ~/CnC-Agent ]; then
-  mkdir ~/CnC-Agent
+# Define the target directory
+target_directory=~/CnC-Agent
+
+# Check if the target directory exists and is empty
+if [ -d "$target_directory" ] && [ -z "$(ls -A "$target_directory")" ]; then
+  echo "The target directory $target_directory exists and is empty."
+else
+  echo "Creating the target directory $target_directory..."
+  mkdir -p "$target_directory"
 fi
 
 # URL of the GitHub repository and the target directory
@@ -41,8 +47,8 @@ if [ -d "$PWD" ]; then
   # Download all scripts from the directory
   wget -r -np -nH --cut-dirs=2 --no-parent --reject "index.html*" -e robots=off "https://github.com/RunesRepoHub/CnC-WebGUI.git/blob/Production/CnC-Agent/"
 
-  # Instead of 'mv', use 'cp' to copy files to the target directory
-  cp -r ./* ~/CnC-Agent/
+  # Use 'cp' to copy files to the target directory
+  cp -r ./* "$target_directory/"
 
   # Clean up temporary files
   rm -rf "/tmp/CnC-WebGUI"
@@ -54,8 +60,8 @@ else
 fi
 
 # Execute the Install-Agent script if it exists
-if [ -f ~/CnC-Agent/Installers/Debian-Installer.sh ]; then
-  bash ~/CnC-Agent/Installers/Debian-Installer.sh
+if [ -f "$target_directory/Installers/Debian-Installer.sh" ]; then
+  bash "$target_directory/Installers/Debian-Installer.sh"
 else
   echo "Error: Install-Agent.sh not found in the CnC-Agent directory."
 fi
