@@ -62,6 +62,7 @@ fi
 # Add a sleep to allow the copy to finish
 sleep 5
 
+
 # Define the URL of the file
 URL="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/config.sh"
 
@@ -84,9 +85,10 @@ fi
 # Add a sleep to allow the copy to finish
 sleep 5
 
+
 # Execute the Install-Agent script if it exists
-if [ -f "$target_directory/Debian-Installer.sh" ]; then
-  bash "$target_directory/Debian-Installer.sh"
+if [ -f "$target_directory/Installers/Debian-Installer.sh" ]; then
+  bash "$target_directory/Installers/Debian-Installer.sh"
 else
   echo "Error: Install-Agent.sh not found in the CnC-Agent directory."
 fi
