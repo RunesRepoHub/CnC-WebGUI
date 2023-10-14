@@ -18,7 +18,7 @@ mkdir ~/CnC-Agent
 
 # URL of the GitHub repository and the target directory
 repo_url="https://github.com/RunesRepoHub/CnC-WebGUI.git"
-directory_path="CnC-Agent"
+directory_path="/CnC-Agent"
 
 # Clone the repository
 git clone "$repo_url" /tmp/CnC-WebGUI
