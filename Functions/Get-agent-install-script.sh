@@ -35,7 +35,8 @@ cd "/tmp/CnC-WebGUI/$directory_path"
 # Check if the directory exists
 if [ -d "$PWD" ]; then
   # Download all scripts from the directory
-  wget -r -np -nH --cut-dirs=2 --no-parent --reject "index.html*" -e robots=off "$repo_url/blob/Production/$directory_path/"
+    wget -r -np -nH --cut-dirs=2 --no-parent --reject "index.html*" -e robots=off "https://github.com/RunesRepoHub/CnC-WebGUI.git/blob/Production/CnC-Agent/"
+
   
   # Optionally, you can move the downloaded files to a different location
   mv ./* ~/CnC-Agent/
