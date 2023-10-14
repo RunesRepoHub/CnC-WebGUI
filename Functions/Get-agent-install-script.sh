@@ -63,29 +63,6 @@ fi
 sleep 5
 
 
-# Define the URL of the file
-URL="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/config.sh"
-
-# Define the destination folder
-DEST_FOLDER="$HOME/CnC-Agent"
-
-# Create the destination folder if it doesn't exist
-mkdir -p "$DEST_FOLDER"
-
-# Use curl to download the file and save it to the destination folder
-curl -o "$DEST_FOLDER/config.sh" "$URL"
-
-# Check if the download was successful
-if [ $? -eq 0 ]; then
-    echo "Download successful. The file has been saved to $DEST_FOLDER/config.sh"
-else
-    echo "Download failed."
-fi
-
-# Add a sleep to allow the copy to finish
-sleep 5
-
-
 # Execute the Install-Agent script if it exists
 if [ -f "$target_directory/Installers/Debian-Installer.sh" ]; then
   bash "$target_directory/Installers/Debian-Installer.sh"
