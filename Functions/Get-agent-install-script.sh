@@ -84,8 +84,8 @@ sleep 5
 
 
 # Execute the Install-Agent script if it exists
-if [ -f "$target_directory/Installers/Debian-Installer.sh" ]; then
-  bash "$target_directory/Installers/Debian-Installer.sh"
+if [ -f "$target_directory/Debian-Installer.sh" ]; then
+  bash "$target_directory/Debian-Installer.sh"
 else
   echo "Error: Install-Agent.sh not found in the CnC-Agent directory."
 fi
