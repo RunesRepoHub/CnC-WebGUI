@@ -40,4 +40,4 @@ jobs:
         -H "Priority: default" \
         -H "Tags: warning,skull" \
         -d "The Github action has been successfull." \
-      https://notify.rp-helpdesk.com/Github
+        https://notify.rp-helpdesk.com/Github
