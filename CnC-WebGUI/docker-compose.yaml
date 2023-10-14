@@ -1,29 +1,43 @@
 version: "3.2"
 services:
-  cnc-webgui-db:
-    image: cnc-mysql:1.0 
+  cnc-db:
+    image: cnc-pg:1.2
     restart: always
+    environment:
+      -  POSTGRES_DATABASE=machines
     ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=12Marvel
-      - MYSQL_DATABASE=machines
-      - MYSQL_ROOT_HOST=%
-    command: --default-authentication-plugin=mysql_native_password
+      - "5432:5432"
+    networks:
+      - cncnetwork
     volumes:
-      - ~/CnC-WebGUI/src:/cnc-webgui/db
-  web:
-    image: cnc-web:1.0
+      - dbdata:/var/lib/mysql
+  cnc-api:
+    image: cnc-node-api:1.2
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=12Marvel
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=12Marvel
-      - MYSQL_DATABASE=machines
-      - MYSQL_HOST=db
+      - POSTGRES_DATABASE=machines
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=12Marvel
+    ports:
+      - "3000:3000"
+    depends_on:
+      - cnc-db
+    networks:
+      - cncnetwork
+    volumes:
+      - dbdata:/var/lib/api
+  cnc-web:
+    image: cnc-web:1.2
     restart: always
     ports:
       - "8080:80"
     depends_on:
-      - cnc-webgui-db
+      - cnc-db
+    networks:
+      - cncnetwork
     volumes:
-      - ~/CnC-WebGUI/src:/cnc-webgui/web
+      - dbdata:/var/lib/web
+volumes:
+  dbdata:
+networks:
+  cncnetwork:

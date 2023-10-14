@@ -1,82 +1,105 @@
 #!/bin/bash
-me=$(basename "$0")
-databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+# Default configuration
+config_file="~/CnC-Agent/config.sh"
 
+# Check if CnC-WebGUI config exists
+if [ -f "~/CnC-WebGUI/config.sh" ]; then
+    config_file="~/CnC-WebGUI/config.sh"
+fi
+
+# Source the configuration script
+source "$config_file"
+
+me=$(basename "$0")
+databaseip=$(cat "$dbip")
+
+# Set the hostname variable
 hostname=$(echo $HOSTNAME)
 
-
+# Set the variables you want to compare or insert/update
 ip_address=$(hostname -I | awk '{print $1}')
-
 mac_address=$(cat /sys/class/net/*/address | sed -n '1 p')
-
 packages=$(apt-get -q -y --ignore-hold --allow-change-held-packages --allow-unauthenticated -s dist-upgrade | /bin/grep  ^Inst | wc -l)
 
 if [ -f /etc/os-release ]; then
-    # freedesktop.org and systemd
     . /etc/os-release
     OS=$NAME
     VER=$VERSION_ID
-elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
-    OS=$(lsb_release -si)
-    VER=$(lsb_release -sr)
-elif [ -f /etc/lsb-release ]; then
-    # For some versions of Debian/Ubuntu without lsb_release command
-    . /etc/lsb-release
-    OS=$DISTRIB_ID
-    VER=$DISTRIB_RELEASE
-elif [ -f /etc/debian_version ]; then
-    # Older Debian/Ubuntu/etc.
-    OS=Debian
-    VER=$(cat /etc/debian_version)
-elif [ -f /etc/SuSe-release ]; then
-    # Older SuSE/etc.
-    ...
-elif [ -f /etc/redhat-release ]; then
-    # Older Red Hat, CentOS, etc.
-    ...
 else
-    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-    OS=$(uname -s)
-    VER=$(uname -r)
+    OS="Unknown"
+    VER="Unknown"
 fi
 
-disto="$OS $VER"
+distro="$OS $VER"
 
-# MySQL server credentials
-DB_HOST="$databaseip"
-DB_USER="root"
-DB_PASS="12Marvel"
-DB_NAME="machines"
+# Define the URL for reading data
+READ_API_ENDPOINT="http://$databaseip:3000/read/info/$hostname"
 
-# Function to update data in the database
-update_data() {
-    local hostname="$hostname"
-    local ip_address="$ip_address"
-    local mac_address="$mac_address"
-    local disto="$disto"
-    local packages="$packages"
-    
-    # Update the data in the database
-    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
-    UPDATE info
-    SET packages='$packages'
-    WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';
-EOF
-}
+# Fetch existing data from the API
+existing_data=$(curl -s "$READ_API_ENDPOINT")
 
-# Check if the data exists in the database
-result=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N -e "SELECT hostname FROM info WHERE hostname='$hostname' AND ip_address='$ip_address' AND mac_address='$mac_address' AND disto='$disto';" 2>/dev/null)
+if [ -n "$existing_data" ]; then
+  echo "Data for hostname $hostname exists. Updating..."
+  # Extract existing data and compare with new data
+  existing_ip_address=$(echo "$existing_data" | jq -r .ipaddress)
+  existing_mac_address=$(echo "$existing_data" | jq -r .macaddress)
+  existing_distro=$(echo "$existing_data" | jq -r .distro)
+  existing_packages=$(echo "$existing_data" | jq -r .packages)
 
-# If data exists, update it; otherwise, insert a new record
-if [ -n "$result" ]; then
-    update_data "$hostname" "$ip_address" "$mac_address" "$disto" "$packages"
+  # Compare existing data with new data
+  if [ "$existing_ip_address" != "$ip_address" ]; then
+    ip_address="$existing_ip_address"
+  fi
+
+  if [ "$existing_mac_address" != "$mac_address" ]; then
+    mac_address="$existing_mac_address"
+  fi
+
+  if [ "$existing_distro" != "$distro" ]; then
+    distro="$existing_distro"
+  fi
+
+  if [ "$existing_packages" != "$packages" ]; then
+    packages="$existing_packages"
+  fi
+
+  # Prepare the data for update
+  DATA='{
+      "hostname": "'"$hostname"'",
+      "ipaddress": "'"$ip_address"'",
+      "macaddress": "'"$mac_address"'",
+      "distro": "'"$distro"'",
+      "packages": "'"$packages"'"
+  }'
+
+  # Send a PUT request to update the data
+  UPDATE_API_ENDPOINT="http://$databaseip:3000/update/info/$hostname"
+  response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$UPDATE_API_ENDPOINT")
+
+  if [ "$response" == "Data updated" ]; then
     echo "Data updated from $me."
+  else
+    echo "Data update failed."
+  fi
 else
-    # Insert new data into the database
-    mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" 2>/dev/null <<EOF
-    INSERT INTO info (hostname, ip_address, mac_address, disto, packages)
-    VALUES ('$hostname', '$ip_address', '$mac_address', '$disto', '$packages');
-EOF
+  echo "Data for hostname $hostname does not exist. Inserting..."
+
+  # Prepare the data for insertion
+  DATA='{
+      "hostname": "'"$hostname"'",
+      "ipaddress": "'"$ip_address"'",
+      "macaddress": "'"$mac_address"'",
+      "distro": "'"$distro"'",
+      "packages": "'"$packages"'"
+  }'
+
+  # Send a POST request to insert the data
+  CREATE_API_ENDPOINT="http://$databaseip:3000/create/info"
+  response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$CREATE_API_ENDPOINT")
+
+  if [ "$response" == "Data inserted" ]; then
     echo "Data inserted from $me."
+  else
+    echo "Data insert failed."
+  fi
 fi

@@ -1,0 +1,34 @@
+name: Docker Image Build Test
+
+on:
+  push:
+    branches: 
+    - Dev
+    - master
+  pull_request:
+    branches: [ "Dev" ]
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        cd CnC-WebGUI/Postgress-Docker/
+        docker build . -t cnc-webgui-pg -f Dockerfile
+
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        cd CnC-WebGUI/Nginx-Docker/
+        docker build . -t cnc-webgui-nginx -f Dockerfile
+
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        cd CnC-WebGUI/Nodejs-Docker/
+        docker build . -t cnc-webgui-api -f Dockerfile

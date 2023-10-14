@@ -5,13 +5,15 @@
 <?php
 echo '<body style="background-color:#242323">';
 
-include '/var/mysql.php';
+// Include your PostgreSQL database configuration
+include '/var/postgresql.php';
 
-// Create connection
-$link = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if($link === false){
-  die("ERROR: Could not connect. " . mysqli_connect_error());
+// Create a PostgreSQL connection
+$conn = pg_connect("host=$servername port=5432 dbname=$dbname user=$username password=$password");
+
+// Check the PostgreSQL connection
+if (!$conn) {
+  die("ERROR: Could not connect to the PostgreSQL database.");
 }
 
 echo "<center>";
@@ -21,42 +23,48 @@ echo str_repeat('&nbsp;', 5);
 
 // Attempt select query execution
 $sql = "SELECT * FROM info";
-if($result = mysqli_query($link, $sql)){
-  if(mysqli_num_rows($result) > 0){
+$result = pg_query($conn, $sql);
+
+if (!$result) {
+  echo "ERROR: Could not execute the query.";
+} else {
+  $num_rows = pg_num_rows($result);
+
+  if ($num_rows > 0) {
     echo "<center>";
-        echo "<table align='center' cellspacing=3 cellpadding=4 border=1 bgcolor=dddddd>";
-          echo "<tr>";
-              echo "<th>Machine ID</th>";
-              echo "<th>Hostname</th>";
-              echo "<th>IP Address</th>";
-              echo "<th>MAC Address</th>";
-              echo "<th>Disto</th>";
-              echo "<th>Package Updates</th>";
-          echo "</tr>";
-      while($row = mysqli_fetch_array($result)){
-          echo "<tr>";
-              echo "<td>" . $row['machine_id'] . "</td>";
-              echo "<td>" . $row['hostname'] . "</td>";
-              echo "<td>" . $row['ip_address'] . "</td>";
-              echo "<td>" . $row['mac_address'] . "</td>";
-              echo "<td>" . $row['disto'] . "</td>";
-              echo "<td>" . $row['packages'] . "</td>";
-          echo "</tr>";
+    echo "<table align='center' cellspacing=3 cellpadding=4 border=1 bgcolor=dddddd>";
+    echo "<tr>";
+    echo "<th>Machine ID</th>";
+    echo "<th>Hostname</th>";
+    echo "<th>IP Address</th>";
+    echo "<th>MAC Address</th>";
+    echo "<th>Distro</th>";
+    echo "<th>Package Updates</th>";
+    echo "</tr>";
+
+    while ($row = pg_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td>" . $row['id'] . "</td>";
+      echo "<td>" . $row['hostname'] . "</td>";
+      echo "<td>" . $row['ipaddress'] . "</td>";
+      echo "<td>" . $row['macaddress'] . "</td>";
+      echo "<td>" . $row['distro'] . "</td>";
+      echo "<td>" . $row['packages'] . "</td>";
+      echo "</tr>";
+    }
+
+    echo "</table>";
     echo "</center>";
-      }
-      echo "</table>";
-      // Free result set
-      mysqli_free_result($result);
-  } else{
-      echo "No records matching your query were found.";
+  } else {
+    echo "No records matching your query were found.";
   }
-} else{
-  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+
+  // Free result set
+  pg_free_result($result);
 }
 
-
-// Close connection
-mysqli_close($link);
+// Close the PostgreSQL connection
+pg_close($conn);
 ?>
 
 </body>

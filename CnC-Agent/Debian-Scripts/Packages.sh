@@ -1,78 +1,70 @@
-databaseip=$(cat ~/CnC-WebGUI/CnC-Agent/.databaseip)
+# Source the configuration script
+# Default configuration
+config_file="~/CnC-Agent/config.sh"
+
+# Check if CnC-WebGUI config exists
+if [ -f "~/CnC-WebGUI/config.sh" ]; then
+    config_file="~/CnC-WebGUI/config.sh"
+fi
+
+# Source the configuration script
+source "$config_file"
+
+
+databaseip=$(cat "$dbip")
 me=$(basename "$0")
 
 
-HOSTNAME=$(echo $HOSTNAME)
-GIT=$(apt list --installed 2>/dev/null | grep -i git/ | awk '{print $2}')
-WGET=$(apt list --installed 2>/dev/null | grep -i wget | awk '{print $2}')
-SUDO=$(apt list --installed 2>/dev/null | grep -i sudo | awk '{print $2}')
-PYTHON=$(apt list --installed 2>/dev/null | grep -i python/ | awk '{print $2}')
-PYTHON3=$(apt list --installed 2>/dev/null | grep -i python3/ | awk '{print $2}')
-NET_TOOLS=$(apt list --installed 2>/dev/null | grep -i net-tools | awk '{print $2}')
-MYSQL=$(apt list --installed 2>/dev/null | grep -i mysql-server/ | awk '{print $2}')
-LIBPYTHON=$(apt list --installed 2>/dev/null | grep -i libpython3.7/ | awk '{print $2}')
-DOCKER_CE_CLI=$(apt list --installed 2>/dev/null | grep -i docker-ce-cli | awk '{print $2}')
-DOCKER_COMPOSE_PLUGIN=$(apt list --installed 2>/dev/null | grep -i docker-compose-plugin | awk '{print $2}')
-CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}')
-CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}')
+# Escape double quotes in variables
+HOSTNAME=$(echo "$HOSTNAME" | sed 's/"/\\"/g')
+GIT=$(apt list --installed 2>/dev/null | grep -i git/ | awk '{print $2}' | sed 's/"/\\"/g')
+WGET=$(apt list --installed 2>/dev/null | grep -i wget | awk '{print $2}' | sed 's/"/\\"/g')
+SUDO=$(apt list --installed 2>/dev/null | grep -i sudo | awk '{print $2}' | sed 's/"/\\"/g')
+PYTHON=$(apt list --installed 2>/dev/null | grep -i python/ | awk '{print $2}' | sed 's/"/\\"/g')
+PYTHON3=$(apt list --installed 2>/dev/null | grep -i python3/ | awk '{print $2}' | sed 's/"/\\"/g')
+NETTOOLS=$(apt list --installed 2>/dev/null | grep -i net-tools | awk '{print $2}' | sed 's/"/\\"/g')
+MYSQL=$(apt list --installed 2>/dev/null | grep -i mysql-server/ | awk '{print $2}' | sed 's/"/\\"/g')
+LIBPYTHON=$(apt list --installed 2>/dev/null | grep -i libpython3.7/ | awk '{print $2}' | sed 's/"/\\"/g')
+DOCKERCECLI=$(apt list --installed 2>/dev/null | grep -i docker-ce-cli | awk '{print $2}' | sed 's/"/\\"/g')
+DOCKERCOMPOSEPLUGIN=$(apt list --installed 2>/dev/null | grep -i docker-compose-plugin | awk '{print $2}' | sed 's/"/\\"/g')
+CURL=$(apt list --installed 2>/dev/null | grep -i curl/ | awk '{print $2}' | sed 's/"/\\"/g')
+CONTAINERD=$(apt list --installed 2>/dev/null | grep -i containerd.io | awk '{print $2}' | sed 's/"/\\"/g')
 
+# Define your REST API endpoint for querying and updating data
+API_ENDPOINT="http://$databaseip:3000/create/packages"
 
-# MySQL server credentials
-DB_HOST="$databaseip"
-DB_USER="root"
-DB_PASS="12Marvel"
-DB_NAME="machines"
+# Define the data to be sent to the API
+DATA=$(cat <<EOF
+{
+    "hostname": "$HOSTNAME",
+    "git": "$(if [ -n "$GIT" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "wget": "$(if [ -n "$WGET" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "sudo": "$(if [ -n "$SUDO" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "python": "$(if [ -n "$PYTHON" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "python3": "$(if [ -n "$PYTHON3" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "nettools": "$(if [ -n "$NETTOOLS" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "mysql": "$(if [ -n "$MYSQL" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "libpython": "$(if [ -n "$LIBPYTHON" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "dockercecli": "$(if [ -n "$DOCKERCECLI" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "dockercomposeplugin": "$(if [ -n "$DOCKERCOMPOSEPLUGIN" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "curl": "$(if [ -n "$CURL" ]; then echo "Installed"; else echo "Not Installed"; fi)",
+    "containerd": "$(if [ -n "$CONTAINERD" ]; then echo "Installed"; else echo "Not Installed"; fi)"
+}
+EOF
+)
 
+# Debugging: Print the data being sent
+# echo "Sending data: $DATA"
 
-# Query the MySQL database for existing data
-existing_data=$(mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "SELECT * FROM packages WHERE hostname='$HOSTNAME'" 2>/dev/null)
+# Send a POST request to the API to update or insert data
+response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$API_ENDPOINT" >/dev/null 2>&1) 
 
-# Check if data for the current hostname already exists
-if [ -n "$existing_data" ]; then
-    # Update the existing record
-    mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e 2>/dev/null "UPDATE packages SET
-        git='$GIT',
-        wget='$WGET',
-        sudo='$SUDO',
-        python='$PYTHON',
-        python3='$PYTHON3',
-        net_tools='$NET_TOOLS',
-        mysql='$MYSQL',
-        libpython='$LIBPYTHON',
-        docker_ce_cli='$DOCKER_CE_CLI',
-        docker_compose_plugin='$DOCKER_COMPOSE_PLUGIN',
-        curl='$CURL',
-        containerd='$CONTAINERD'
-        WHERE hostname='$HOSTNAME'" 
-else
-    # Insert a new record
-    mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "INSERT INTO packages (
-        hostname,
-        git,
-        wget,
-        sudo,
-        python,
-        python3,
-        net_tools,
-        mysql,
-        libpython,
-        docker_ce_cli,
-        docker_compose_plugin,
-        curl,
-        containerd
-    ) VALUES (
-        '$HOSTNAME',
-        '$GIT',
-        '$WGET',
-        '$SUDO',
-        '$PYTHON',
-        '$PYTHON3',
-        '$NET_TOOLS',
-        '$MYSQL',
-        '$LIBPYTHON',
-        '$DOCKER_CE_CLI',
-        '$DOCKER_COMPOSE_PLUGIN',
-        '$CURL',
-        '$CONTAINERD'
-    )" 2>/dev/null
-fi
+# Debugging: Print the response from the API
+# echo "API response: $response"
+
+# Check the response from the API
+# if [ "$response" == "Data updated" ]; then
+#     echo "Data updated from $me."
+# else
+#     echo "Data inserted from $me."
+# fi
