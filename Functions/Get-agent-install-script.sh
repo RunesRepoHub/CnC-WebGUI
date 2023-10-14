@@ -38,7 +38,7 @@ if [ -d "$PWD" ]; then
   wget -r -np -nH --cut-dirs=2 --no-parent --reject "index.html*" -e robots=off "$repo_url/blob/Production/$directory_path/"
   
   # Optionally, you can move the downloaded files to a different location
-  mv ./* /CnC-Agent/
+  mv ./* ~/CnC-Agent/
 
   # Clean up temporary files
   rm -rf "/tmp/CnC-WebGUI"
