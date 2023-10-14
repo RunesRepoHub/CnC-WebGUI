@@ -1,16 +1,9 @@
-# Default configuration
-config_file="~/CnC-Agent/config.sh"
-
-# Check if CnC-WebGUI config exists
-if [ -f "~/CnC-WebGUI/config.sh" ]; then
-    config_file="~/CnC-WebGUI/config.sh"
-fi
+# Source the configuration script
+source ~/CnC-WebGUI/config.sh
+source ~/CnC-Agent/config.sh
 
 # Add a sleep to allow source check
 sleep 5
-
-# Source the configuration script
-source "$config_file"
 
 
 me=$(basename "$0")
