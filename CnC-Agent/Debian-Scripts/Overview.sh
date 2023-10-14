@@ -25,7 +25,7 @@ fi
 distro="$OS $VER"
 
 # Define the URL for reading data
-READ_API_ENDPOINT="http://192.168.1.169:3000/read/info/$hostname"
+READ_API_ENDPOINT="http://$databaseip:3000/read/info/$hostname"
 
 # Fetch existing data from the API
 existing_data=$(curl -s "$READ_API_ENDPOINT")
@@ -65,7 +65,7 @@ if [ -n "$existing_data" ]; then
   }'
 
   # Send a PUT request to update the data
-  UPDATE_API_ENDPOINT="http://192.168.1.169:3000/update/info/$hostname"
+  UPDATE_API_ENDPOINT="http://$databaseip:3000/update/info/$hostname"
   response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$UPDATE_API_ENDPOINT")
 
   if [ "$response" == "Data updated" ]; then
@@ -86,7 +86,7 @@ else
   }'
 
   # Send a POST request to insert the data
-  CREATE_API_ENDPOINT="http://192.168.1.169:3000/create/info"
+  CREATE_API_ENDPOINT="http://$databaseip:3000/create/info"
   response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$CREATE_API_ENDPOINT")
 
   if [ "$response" == "Data inserted" ]; then
