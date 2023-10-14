@@ -38,3 +38,7 @@ CREATE TABLE cronjobs (
   hostname varchar(255) NOT NULL,
   cronjobsscripts text
 );
+
+
+ALTER TABLE cronjobs
+ADD CONSTRAINT unique_hostname_script UNIQUE (hostname, cronjobsscripts);

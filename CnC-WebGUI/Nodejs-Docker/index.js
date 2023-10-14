@@ -42,27 +42,11 @@ app.post('/create/:table', (req, res) => {
 
 app.post('/create/cronjobs', async (req, res) => {
   const data = req.body;
-  const hostname = data.hostname;
-  const cronjobScript = data.cronjobsscripts;
 
-  // Check if the same cron job entry already exists for the hostname and cron job script
-  const checkQuery = 'SELECT * FROM cronjobs WHERE hostname = $1 AND cronjobsscripts = $2';
-  const checkValues = [hostname, cronjobScript];
+  const query = `INSERT INTO cronjobs (hostname, cronjobsscripts) VALUES ($1, $2) RETURNING *`;
+  const values = [data.hostname, data.cronjobsscripts];
 
-  try {
-    const { rows } = await pool.query(checkQuery, checkValues);
-
-    if (rows.length > 0) {
-      return res.status(409).json({ error: 'Cron job entry already exists for this hostname and script' });
-    } else {
-      // If it doesn't exist, proceed to insert the data
-      const query = `INSERT INTO cronjobs (hostname, cronjobsscripts) VALUES ($1, $2) RETURNING *`;
-      const values = [hostname, cronjobScript];
-      handleDatabaseOperation(query, values, res);
-    }
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+  handleDatabaseOperation(query, values, res);
 });
 
 
