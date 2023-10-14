@@ -12,17 +12,14 @@ crontab -l > "$crontxt"
 # Fetch existing data from the URL
 existing_data=$(curl -s "http://192.168.1.169:3000/read/cronjobs/$hn")
 
-# Extract the "cronjobsscripts" field from the existing data
-existing_cronjobs=$(echo "$existing_data" | jq -r '.cronjobsscripts')
-
-# Save the existing cron jobs to a temporary file
-echo "$existing_cronjobs" > "$existing_cronjobs_file"
+# Extract the "id" from the existing data
+id=$(echo "$existing_data" | jq -r '.id')
 
 # Use 'diff' to compare the crontab with existing data
 if [ -s "$crontxt" ] && ! diff -q "$crontxt" "$existing_cronjobs_file" >/dev/null; then
     echo "Updating cron jobs..."
     
-    # Update the database with the new crontab
+    # Update the database with the new crontab and the corresponding "id"
     update_response=$(curl -X POST -H "Content-Type: application/json" -d "{\"hostname\": \"$hn\", \"cronjobsscripts\": \"$(cat "$crontxt")\"}" "http://$databaseip:3000/update/cronjobs/$id")
     
     if [ "$update_response" = "Data update failed." ]; then
