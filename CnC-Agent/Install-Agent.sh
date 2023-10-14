@@ -1,5 +1,14 @@
 # Source the configuration script
-source ~/CnC-WebGUI/config.sh
+# Default configuration
+config_file="~/CnC-Agent/config.sh"
+
+# Check if CnC-WebGUI config exists
+if [ -f "~/CnC-WebGUI/config.sh" ]; then
+    config_file="~/CnC-WebGUI/config.sh"
+fi
+
+# Source the configuration script
+source "$config_file"
 
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
