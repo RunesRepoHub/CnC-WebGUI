@@ -1,4 +1,5 @@
 #!/bin/bash
+bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/docker-install-script.sh)
 echo
 echo
 echo "---------------------------------------------------------------"
