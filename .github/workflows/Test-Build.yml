@@ -38,6 +38,6 @@ jobs:
         curl \
         -H "Title: CnC-WebGUI Successfully Built" \
         -H "Priority: default" \
-        -H "Tags: warning,skull" \
+        -H "Tags: green_circle,magic_wand" \
         -d "The Github action has been successfull." \
         https://notify.rp-helpdesk.com/Github
