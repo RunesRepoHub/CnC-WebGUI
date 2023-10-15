@@ -32,3 +32,12 @@ jobs:
       run: |
         cd CnC-WebGUI/Nodejs-Docker/
         docker build . -t cnc-webgui-api -f Dockerfile
+
+    - name: Send Notification ntfy
+      run: |
+        curl \
+        -H "Title: CnC-WebGUI Successfully Built" \
+        -H "Priority: default" \
+        -H "Tags: green_circle,magic_wand" \
+        -d "The Github action has been successfull." \
+        https://notify.rp-helpdesk.com/Github
