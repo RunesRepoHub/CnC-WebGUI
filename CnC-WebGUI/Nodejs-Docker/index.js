@@ -1,110 +1,66 @@
-const express = require('express');
+  const express = require('express');
 const { Pool } = require('pg');
-
 const app = express();
 const port = 3000;
 
-const pool = new Pool({
+const dbConfig = {
   user: 'root',
   host: 'cnc-db',
   database: 'machines',
   password: '12Marvel',
   port: 5432,
-});
+};
+
+const pool = new Pool(dbConfig);
 
 app.use(express.json());
 
-// Reusable function to handle database operations
-async function handleDatabaseOperation(query, values, res) {
-  try {
-    const { rows } = await pool.query(query, values);
-    res.status(201).json(rows[0]);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
-
-// Create a new item (Generic function for different tables)
-app.post('/create/:table', (req, res) => {
-  // ... (no change here)
-});
-
-app.post('/create/cronjobs', async (req, res) => {
-  // ... (no change here)
-});
-
-// Get existing data based on hostname
-app.get('/read/:table/:hostname', (req, res) => {
-  // ... (no change here)
-});
-
-// ...
-
-// Create or update data based on hostname (for packages table)
-app.post('/packages/:hostname', (req, res) => {
-  const { hostname } = req.params;
+app.post('/system-info', async (req, res) => {
   const data = req.body;
-  const query = `
-    INSERT INTO packages (hostname, git, wget, sudo, python, python3, nettools, mysql, libpython, dockercecli, dockercomposeplugin, curl, containerd)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
-    ON CONFLICT (hostname)
-    DO UPDATE SET
-    git = EXCLUDED.git,
-    wget = EXCLUDED.wget,
-    sudo = EXCLUDED.sudo,
-    python = EXCLUDED.python,
-    python3 = EXCLUDED.python3,
-    nettools = EXCLUDED.nettools,
-    mysql = EXCLUDED.mysql,
-    libpython = EXCLUDED.libpython,
-    dockercecli = EXCLUDED.dockercecli,
-    dockercomposeplugin = EXCLUDED.dockercomposeplugin,
-    curl = EXCLUDED.curl,
-    containerd = EXCLUDED.containerd
-    RETURNING *;
-  `;
-  const values = [
-    hostname,
-    data.git,
-    data.wget,
-    data.sudo,
-    data.python,
-    data.python3,
-    data.nettools,
-    data.mysql,
-    data.libpython,
-    data.dockercecli,
-    data.dockercomposeplugin,
-    data.curl,
-    data.containerd,
-  ];
 
-  handleDatabaseOperation(query, values, res);
+  try {
+    switch (data.type) {
+      case 'packages':
+        // Check if the package exists in the 'packages' table.
+        const packageExists = await pool.query('SELECT * FROM packages WHERE package_name = $1', [data.packageName]);
+        if (packageExists.rows.length === 0) {
+          // Insert if not found.
+          await pool.query('INSERT INTO packages (package_name) VALUES ($1)', [data.packageName]);
+        } else {
+          // Update if found.
+          await pool.query('UPDATE packages SET package_name = $1 WHERE package_name = $2', [data.packageName, data.packageName]);
+        }
+        break;
+      case 'cronjobs':
+        // Check if the cron job exists in the 'cronjobs' table (use a unique identifier).
+        const cronjobExists = await pool.query('SELECT * FROM cronjobs WHERE job_id = $1', [data.jobId]);
+        if (cronjobExists.rows.length === 0) {
+          // Insert if not found.
+          await pool.query('INSERT INTO cronjobs (job_id, job_description) VALUES ($1, $2)', [data.jobId, data.jobDescription]);
+        } else {
+          // Update if found.
+          await pool.query('UPDATE cronjobs SET job_description = $2 WHERE job_id = $1', [data.jobId, data.jobDescription]);
+        }
+        break;
+      case 'overview':
+        // Insert or update system overview information (consider using a primary key like IP).
+        await pool.query('INSERT INTO overview (ip, mac, hostname, distro) VALUES ($1, $2, $3, $4) ON CONFLICT (ip) DO UPDATE SET mac = $2, hostname = $3, distro = $4', [data.ip, data.mac, data.hostname, data.distro]);
+        break;
+      case 'usage':
+        // Insert or update usage metrics (use a timestamp as a unique identifier).
+        await pool.query('INSERT INTO usage (timestamp, cpu_usage, ram_usage, disk_usage) VALUES ($1, $2, $3, $4) ON CONFLICT (timestamp) DO UPDATE SET cpu_usage = $2, ram_usage = $3, disk_usage = $4', [data.timestamp, data.cpuUsage, data.ramUsage, data.diskUsage]);
+        break;
+      default:
+        return res.status(400).send('Invalid data type.');
+    }
+
+    res.status(200).send('Data received and inserted or updated.');
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('An error occurred.');
+  }
 });
-
-// ...
-
-
-// Update data based on hostname (for info table)
-app.put('/update/info/:hostname', (req, res) => {
-  // ... (no change here, similar to packages)
-});
-
-// Update data based on hostname (for cronjobs table)
-app.put('/update/cronjobs/:hostname', (req, res) => {
-  // ... (no change here, similar to packages)
-});
-
-// Delete data based on hostname (for packages table)
-app.delete('/delete/packages/:hostname', (req, res) => {
-  const { hostname } = req.params;
-  const query = 'DELETE FROM packages WHERE hostname = $1';
-
-  handleDatabaseOperation(query, [hostname], res);
-});
-
-// Add similar delete routes for info and cronjobs tables if needed
 
 app.listen(port, () => {
-  console.log(`Node.js API is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
