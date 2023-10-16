@@ -9,7 +9,7 @@ echo '<body style="background-color:#242323">';
 include '/postgresql.php';
 
 // Create a PostgreSQL connection
-$conn = pg_connect("host=$servername port=5432 dbname=$dbname user=$username password=$password");
+$conn = pg_connect("host=cnc-db port=5432 dbname=machines user=root password=12Marvel");
 
 // Check the PostgreSQL connection
 if (!$conn) {
