@@ -100,19 +100,19 @@ app.delete('/delete/:table/:id', (req, res) => {
 
 // Read all data for the "cronjobs" table
 app.get('/read/all/cronjobs', (req, res) => {
-  const query = 'SELECT * FROM cronjobs';
+  const query = 'SELECT * FROM cronjobs LIMIT 20';
   handleDatabaseOperation(query, [], res);
 });
 
 // Read all data for the "packages" table
 app.get('/read/all/packages', (req, res) => {
-  const query = 'SELECT * FROM packages';
+  const query = 'SELECT * FROM packages LIMIT 20';
   handleDatabaseOperation(query, [], res);
 });
 
 // Read all data for the "info" table
 app.get('/read/all/info', (req, res) => {
-  const query = 'SELECT * FROM info';
+  const query = 'SELECT * FROM info LIMIT 20';
   handleDatabaseOperation(query, [], res);
 });
 
