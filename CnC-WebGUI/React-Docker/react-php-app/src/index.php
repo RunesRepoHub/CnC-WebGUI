@@ -6,7 +6,7 @@
 echo '<body style="background-color:#242323">';
 
 // Include your PostgreSQL database configuration
-include '/var/postgresql.php';
+include '/postgresql.php';
 
 // Create a PostgreSQL connection
 $conn = pg_connect("host=$servername port=5432 dbname=$dbname user=$username password=$password");
