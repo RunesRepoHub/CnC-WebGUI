@@ -17,10 +17,10 @@ touch "$dbip"
 echo "$databaseip" > "$dbip"
 
 ## Check/Setup Packages Reporting via cron 
-ln -s "$pack_cron" /usr/bin/ > /dev/null 2>&1
+ln -s "$pack_cron" /usr/bin/
 
 # Define the cron job command using the sourced path
-cron_job_command1="00 00 * * * ruby "$pack_cron" >/dev/null 2>&1"
+cron_job_command1="00 00 * * * "$pack_cron""
 
 # Set up the cron job
 { crontab -l; echo "$cron_job_command1"; } | crontab -
@@ -29,10 +29,10 @@ cron_job_command1="00 00 * * * ruby "$pack_cron" >/dev/null 2>&1"
 bash "$pack_cron"
 
 ## Check/Setup Packages Reporting via cron 
-ln -s "$over_cron" /usr/bin/ > /dev/null 2>&1
+ln -s "$over_cron" /usr/bin/
 
 # Define the cron job command using the sourced path
-cron_job_command2="00 00 * * * ruby "$over_cron" >/dev/null 2>&1"
+cron_job_command2="00 00 * * * "$over_cron""
     
 # Set up the cron job
 { crontab -l; echo "$cron_job_command2"; } | crontab -
@@ -41,10 +41,10 @@ cron_job_command2="00 00 * * * ruby "$over_cron" >/dev/null 2>&1"
 bash "$over_cron"
 
 ## Check/Setup Packages Reporting via cron 
-ln -s "$cron_cron" /usr/bin/ > /dev/null 2>&1
+ln -s "$cron_cron" /usr/bin/
 
 # Define the cron job command using the sourced path
-cron_job_command3="00 00 * * * ruby "$cron_cron" >/dev/null 2>&1"
+cron_job_command3="00 00 * * * ruby "$cron_cron""
     
 # Set up the cron job
 { crontab -l; echo "$cron_job_command3"; } | crontab -
