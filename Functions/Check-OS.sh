@@ -1,7 +1,10 @@
 #!/bin/bash
 # Install needed tools for installation script to work
+echo "Install sudo"
 apt-get install sudo >/dev/null 2>&1
+echo "Install Git"
 apt-get install git -y >/dev/null 2>&1
+echo "Install jq"
 apt-get install jq -y >/dev/null 2>&1
 
 
