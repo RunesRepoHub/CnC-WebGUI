@@ -63,6 +63,7 @@ if (!$result) {
   pg_free_result($result);
 }
 
+echo json_encode($data);
 // Close the PostgreSQL connection
 pg_close($conn);
 ?>

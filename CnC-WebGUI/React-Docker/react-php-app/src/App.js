@@ -5,32 +5,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch data from the PHP page using the `fetch` API
-    fetch('/index.php')
-      .then((response) => response.text())
-      .then((html) => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        const rows = doc.querySelectorAll('table tr');
-        const rowData = [];
-
-        rows.forEach((row) => {
-          const columns = row.querySelectorAll('td');
-          if (columns.length === 6) {
-            const rowDataItem = {
-              id: columns[0].textContent,
-              hostname: columns[1].textContent,
-              ipaddress: columns[2].textContent,
-              macaddress: columns[3].textContent,
-              distro: columns[4].textContent,
-              packages: columns[5].textContent,
-            };
-            rowData.push(rowDataItem);
-          }
-        });
-
-        setData(rowData);
+    // Fetch data from the PHP page
+    fetch('/index.php') // Replace with the correct path
+      .then((response) => response.json()) // Assuming the PHP script returns JSON
+      .then((result) => {
+        setData(result);
         setLoading(false);
       })
       .catch((error) => {
