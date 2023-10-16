@@ -15,7 +15,16 @@ const pool = new Pool({
 app.use(express.json());
 
 // Reusable function to handle database operations
-async function handleDatabaseOperation(query, values, res) {
+async function handleDatabaseOperationAll(query, values, res) {
+  try {
+    const { rows } = await pool.query(query, values);
+    res.status(200).json(rows); // Return all rows
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function handleDatabaseOperationSingle(query, values, res) {
   try {
     const { rows } = await pool.query(query, values);
     res.status(201).json(rows[0]);
@@ -23,6 +32,7 @@ async function handleDatabaseOperation(query, values, res) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
 
 // Create a new item (Generic function for different tables)
 app.post('/create/:table', (req, res) => {
@@ -37,7 +47,7 @@ app.post('/create/:table', (req, res) => {
     return res.status(400).json({ error: 'No data provided' });
   }
 
-  handleDatabaseOperation(query, values, res);
+  handleDatabaseOperationSingle(query, values, res);
 });
 
 app.post('/create/cronjobs', async (req, res) => {
@@ -46,7 +56,7 @@ app.post('/create/cronjobs', async (req, res) => {
   const query = `INSERT INTO cronjobs (hostname, cronjobsscripts) VALUES ($1, $2) RETURNING *`;
   const values = [data.hostname, data.cronjobsscripts];
 
-  handleDatabaseOperation(query, values, res);
+  handleDatabaseOperationSingle(query, values, res);
 });
 
 
@@ -54,7 +64,7 @@ app.get('/read/:table/:hostname', (req, res) => {
   const { table, hostname } = req.params;
   const query = `SELECT * FROM ${table} WHERE hostname = $1`;
 
-  handleDatabaseOperation(query, [hostname], res);
+  handleDatabaseOperationSingle(query, [hostname], res);
 });
 
 // Update an item (Generic function for different tables)
@@ -65,7 +75,7 @@ app.put('/update/packages/:hostname', (req, res) => {
   const query = `UPDATE packages SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
   const values = [...Object.values(data), hostname];
 
-  handleDatabaseOperation(query, values, res);
+  handleDatabaseOperationSingle(query, values, res);
 });
 
 // Update an item for "info" table
@@ -76,7 +86,7 @@ app.put('/update/info/:hostname', (req, res) => {
   const query = `UPDATE info SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
   const values = [...Object.values(data), hostname];
 
-  handleDatabaseOperation(query, values, res);
+  handleDatabaseOperationSingle(query, values, res);
 });
 
 // Update an item for "cronjobs" table
@@ -87,7 +97,7 @@ app.put('/update/cronjobs/:hostname', (req, res) => {
   const query = `UPDATE cronjobs SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
   const values = [...Object.values(data), hostname];
 
-  handleDatabaseOperation(query, values, res);
+  handleDatabaseOperationSingle(query, values, res);
 });
 
 // Delete an item (Generic function for different tables)
@@ -95,25 +105,25 @@ app.delete('/delete/:table/:id', (req, res) => {
   const { table, id } = req.params;
   const query = `DELETE FROM ${table} WHERE id = $1`;
 
-  handleDatabaseOperation(query, [id], res);
+  handleDatabaseOperationSingle(query, [id], res);
 });
 
 // Read all data for the "cronjobs" table
 app.get('/read/all/cronjobs', (req, res) => {
   const query = 'SELECT * FROM cronjobs LIMIT 20';
-  handleDatabaseOperation(query, [], res);
+  handleDatabaseOperationAll(query, [], res);
 });
 
 // Read all data for the "packages" table
 app.get('/read/all/packages', (req, res) => {
   const query = 'SELECT * FROM packages LIMIT 20';
-  handleDatabaseOperation(query, [], res);
+  handleDatabaseOperationAll(query, [], res);
 });
 
 // Read all data for the "info" table
 app.get('/read/all/info', (req, res) => {
   const query = 'SELECT * FROM info LIMIT 20';
-  handleDatabaseOperation(query, [], res);
+  handleDatabaseOperationAll(query, [], res);
 });
 
 app.listen(port, () => {
