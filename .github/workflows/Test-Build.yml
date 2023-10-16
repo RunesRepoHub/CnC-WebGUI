@@ -37,8 +37,8 @@ jobs:
       uses: niniyas/ntfy-action@master
       if: failure()
       with:
-        url: '${{ NTFYURL }}'
-        topic: '${{ NTFYTOPIC }}'
+        url: '${{ secrets.NTFYURL }}'
+        topic: '${{ secrets.NTFYTOPIC }}'
         priority: 5
         tags: +1,partying_face,action,failed
         details: Workflow has failed!
@@ -47,8 +47,8 @@ jobs:
       uses: niniyas/ntfy-action@master
       if: success()
       with:
-        url: '${{ NTFYURL }}'
-        topic: '${{ NTFYTOPIC }}'
+        url: '${{ secrets.NTFYURL }}'
+        topic: '${{ secrets.NTFYTOPIC }}'
         priority: 3
         tags: +1,partying_face,action,successfully,completed
         details: Workflow has been successfully completed!
@@ -57,8 +57,8 @@ jobs:
       uses: niniyas/ntfy-action@master
       if: cancelled()
       with:
-        url: '${{ NTFYURL }}'
-        topic: '${{ NTFYTOPIC }}'
+        url: '${{ secrets.NTFYURL }}'
+        topic: '${{ secrets.NTFYTOPIC }}'
         priority: 3
         tags: +1,partying_face,action,cancelled
         details: Workflow has been cancelled!
