@@ -17,7 +17,7 @@ touch "$dbip"
 echo "$databaseip" > "$dbip"
 
 ## Check/Setup Packages Reporting via cron 
-ln -s "$pack_cron" /usr/bin/
+ln -s "$pack_cron" /usr/bin/ > /dev/null 2>&1
 
 # Define the cron job command using the sourced path
 cron_job_command1="00 00 * * * "$pack_cron""
@@ -29,7 +29,7 @@ cron_job_command1="00 00 * * * "$pack_cron""
 bash "$pack_cron"
 
 ## Check/Setup Packages Reporting via cron 
-ln -s "$over_cron" /usr/bin/
+ln -s "$over_cron" /usr/bin/ > /dev/null 2>&1
 
 # Define the cron job command using the sourced path
 cron_job_command2="00 00 * * * "$over_cron""
@@ -41,10 +41,10 @@ cron_job_command2="00 00 * * * "$over_cron""
 bash "$over_cron"
 
 ## Check/Setup Packages Reporting via cron 
-ln -s "$cron_cron" /usr/bin/
+ln -s "$cron_cron" /usr/bin/ > /dev/null 2>&1
 
 # Define the cron job command using the sourced path
-cron_job_command3="00 00 * * * ruby "$cron_cron""
+cron_job_command3="00 00 * * * "$cron_cron""
     
 # Set up the cron job
 { crontab -l; echo "$cron_job_command3"; } | crontab -
