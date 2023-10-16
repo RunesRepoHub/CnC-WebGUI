@@ -1,5 +1,7 @@
 #!/bin/bash
 # Install needed tools for installation script to work
+echo "Move to root directory"
+cd
 echo "Install sudo"
 apt-get install sudo >/dev/null 2>&1
 echo "Install Git"
