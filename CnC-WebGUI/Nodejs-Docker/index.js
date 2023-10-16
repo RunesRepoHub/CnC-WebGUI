@@ -1,5 +1,6 @@
 const express = require('express');
 const { Pool } = require('pg');
+const cors = require('cors'); // Import the CORS middleware
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,8 @@ const pool = new Pool({
 
 app.use(express.json());
 
+// Enable CORS for all routes
+app.use(cors());
 // Reusable function to handle database operations
 async function handleDatabaseOperation(query, values, res) {
   try {
@@ -48,7 +51,6 @@ app.post('/create/cronjobs', async (req, res) => {
 
   handleDatabaseOperation(query, values, res);
 });
-
 
 
 app.get('/read/:table/:hostname', (req, res) => {
@@ -100,7 +102,7 @@ app.delete('/delete/:table/:id', (req, res) => {
 });
 
 // Read all data for the "cronjobs" table
-app.get('/read/all/cronjobs', (req, res) => {
+app.get('/read//cronjobs', (req, res) => {
   const query = 'SELECT * FROM cronjobs';
 
   handleDatabaseOperation(query, [], res);
@@ -114,7 +116,7 @@ app.get('/read/all/packages', (req, res) => {
 });
 
 // Read all data for the "overview" table
-app.get('/read/all/overview', (req, res) => {
+app.get('/read/all/info', (req, res) => {
   const query = 'SELECT * FROM overview';
 
   handleDatabaseOperation(query, [], res);
