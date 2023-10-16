@@ -38,16 +38,52 @@ app.get('/read/:table/:hostname', (req, res) => {
   // ... (no change here)
 });
 
-// Update data based on hostname (for packages table)
-app.put('/update/packages/:hostname', (req, res) => {
+// ...
+
+// Create or update data based on hostname (for packages table)
+app.post('/packages/:hostname', (req, res) => {
   const { hostname } = req.params;
   const data = req.body;
-  const columns = Object.keys(data);
-  const query = `UPDATE packages SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
-  const values = [...Object.values(data), hostname];
+  const query = `
+    INSERT INTO packages (hostname, git, wget, sudo, python, python3, nettools, mysql, libpython, dockercecli, dockercomposeplugin, curl, containerd)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+    ON CONFLICT (hostname)
+    DO UPDATE SET
+    git = EXCLUDED.git,
+    wget = EXCLUDED.wget,
+    sudo = EXCLUDED.sudo,
+    python = EXCLUDED.python,
+    python3 = EXCLUDED.python3,
+    nettools = EXCLUDED.nettools,
+    mysql = EXCLUDED.mysql,
+    libpython = EXCLUDED.libpython,
+    dockercecli = EXCLUDED.dockercecli,
+    dockercomposeplugin = EXCLUDED.dockercomposeplugin,
+    curl = EXCLUDED.curl,
+    containerd = EXCLUDED.containerd
+    RETURNING *;
+  `;
+  const values = [
+    hostname,
+    data.git,
+    data.wget,
+    data.sudo,
+    data.python,
+    data.python3,
+    data.nettools,
+    data.mysql,
+    data.libpython,
+    data.dockercecli,
+    data.dockercomposeplugin,
+    data.curl,
+    data.containerd,
+  ];
 
   handleDatabaseOperation(query, values, res);
 });
+
+// ...
+
 
 // Update data based on hostname (for info table)
 app.put('/update/info/:hostname', (req, res) => {

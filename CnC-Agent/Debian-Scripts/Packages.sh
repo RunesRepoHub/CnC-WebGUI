@@ -9,17 +9,11 @@ me=$(basename "$0")
 # Escape double quotes in variables
 HOSTNAME=$(echo "$HOSTNAME" | sed 's/"/\\"/g')
 
-# Define your REST API endpoint for reading and updating data
-READ_API_ENDPOINT="http://$databaseip:3000/read/packages/$HOSTNAME"
-CREATE_API_ENDPOINT="http://$databaseip:3000/create/packages"
+# Define your REST API endpoints
 UPDATE_API_ENDPOINT="http://$databaseip:3000/update/packages"
-DELETE_API_ENDPOINT="http://$databaseip:3000/delete/packages"
 
 # Send a GET request to retrieve existing data
-existing_data=$(curl -s -X GET "$READ_API_ENDPOINT")
-
-# Extract the ID for the hostname from the JSON object
-id=$(echo "$existing_data" | jq -r '.id')
+existing_data=$(curl -s -X GET "$UPDATE_API_ENDPOINT/$HOSTNAME")
 
 # Define the data to be sent to the API
 DATA=$(cat <<EOF
@@ -41,20 +35,15 @@ DATA=$(cat <<EOF
 EOF
 )
 
-# Debugging: Print the data being sent
-# echo "Sending data: $DATA"
-
-# Check if an ID was found
-if [ -z "$id" ]; then
-    # No existing data found, send a POST request to insert data
-    response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$CREATE_API_ENDPOINT" >/dev/null 2>&1)
+# Check if existing data is empty or not
+if [ -z "$existing_data" ]; then
+    # Send a POST request to the API to insert data
+    response=$(curl -X POST -H "Content-Type: application/json" -d "$DATA" "$UPDATE_API_ENDPOINT")
     echo "Data inserted from $me."
 else
-    # Send a DELETE request to the API to delete old data
-    delete_response=$(curl -X DELETE "$DELETE_API_ENDPOINT/$id" >/dev/null 2>&1)
-    # Send a PUT request to update data with the retrieved ID
-    update_response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$UPDATE_API_ENDPOINT/$id" >/dev/null 2>&1)
-    echo "Data updated and old data deleted from $me."
+    # Send a PUT request to the API to update data
+    response=$(curl -X PUT -H "Content-Type: application/json" -d "$DATA" "$UPDATE_API_ENDPOINT/$HOSTNAME")
+    echo "Data updated from $me."
 fi
 
 # Debugging: Print the response from the API
