@@ -15,12 +15,13 @@ const pool = new Pool({
 app.use(express.json());
 
 // Reusable function to handle database operations
-async function handleDatabaseOperationAll(query, values, res) {
+async function handleDatabaseOperationAll(query, values, res, tableName) {
   try {
     const { rows } = await pool.query(query, values);
     res.status(200).json(rows); // Return all rows
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    logError(error); // Log the error for debugging
+    res.status(500).json({ error: `Internal Server Error: Failed to retrieve data from ${tableName} table` });
   }
 }
 
@@ -108,22 +109,27 @@ app.delete('/delete/:table/:id', (req, res) => {
   handleDatabaseOperationSingle(query, [id], res);
 });
 
+// Add a function to log errors
+function logError(error) {
+  console.error('Error:', error);
+}
+
 // Read all data for the "cronjobs" table
 app.get('/read/all/cronjobs', (req, res) => {
   const query = 'SELECT * FROM cronjobs';
-  handleDatabaseOperationAll(query, [], res);
+  handleDatabaseOperationAll(query, [], res, 'cronjobs'); // Pass the table name for better error messages
 });
 
 // Read all data for the "packages" table
 app.get('/read/all/packages', (req, res) => {
   const query = 'SELECT * FROM packages';
-  handleDatabaseOperationAll(query, [], res);
+  handleDatabaseOperationAll(query, [], res, 'packages'); // Pass the table name for better error messages
 });
 
 // Read all data for the "info" table
 app.get('/read/all/info', (req, res) => {
   const query = 'SELECT * FROM info';
-  handleDatabaseOperationAll(query, [], res);
+  handleDatabaseOperationAll(query, [], res, 'info'); // Pass the table name for better error messages
 });
 
 app.listen(port, () => {
