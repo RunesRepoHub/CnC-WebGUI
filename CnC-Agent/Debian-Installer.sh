@@ -19,7 +19,7 @@ echo "$databaseip" > "$dbip"
 # Function to remove and add a cron job
 remove_and_add_cron_job() {
     local script_name="$1"
-    local cron_command="00 00 * * * bash $script_name"
+    local cron_command="5 * * * * bash $script_name"
     
     # Remove existing cron job with the same script name
     crontab -l | grep -v "$script_name" | crontab -
