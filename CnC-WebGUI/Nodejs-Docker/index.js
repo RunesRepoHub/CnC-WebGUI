@@ -99,24 +99,21 @@ app.delete('/delete/:table/:id', (req, res) => {
 });
 
 // Read all data for the "cronjobs" table
-app.get('/read//cronjobs', (req, res) => {
+app.get('/read/all/cronjobs', (req, res) => {
   const query = 'SELECT * FROM cronjobs';
-
-  handleDatabaseOperation(query, [cronjobs], res);
+  handleDatabaseOperation(query, [], res);
 });
 
 // Read all data for the "packages" table
 app.get('/read/all/packages', (req, res) => {
   const query = 'SELECT * FROM packages';
-
-  handleDatabaseOperation(query, [packages], res);
+  handleDatabaseOperation(query, [], res);
 });
 
-// Read all data for the "overview" table
+// Read all data for the "info" table
 app.get('/read/all/info', (req, res) => {
   const query = 'SELECT * FROM info';
-
-  handleDatabaseOperation(query, [info], res);
+  handleDatabaseOperation(query, [], res);
 });
 
 app.listen(port, () => {
