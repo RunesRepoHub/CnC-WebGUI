@@ -51,6 +51,8 @@ while true; do
                     git clone --branch Dev https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     ## Runs the installation script
                     bash ~/CnC-WebGUI/Functions/Getting-started.sh;
+                else
+                    bash ~/CnC-WebGUI/Functions/Getting-started.sh;
                 fi
             else 
                 ## If the files has not been download before
@@ -86,6 +88,8 @@ while true; do
                     echo
                     git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                     ## Runs the installation script
+                    bash ~/CnC-WebGUI/Functions/Getting-started.sh;
+                else
                     bash ~/CnC-WebGUI/Functions/Getting-started.sh;
                 fi
             else 
