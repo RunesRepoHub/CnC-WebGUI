@@ -13,18 +13,16 @@ docker rmi cnc-node-api:$version
 # Remove docker volume used by the dockers
 docker volume rm cnc-webgui_dbdata
 
-# Function to remove a cron job
-remove_cron_job() {
-    local script_name="$1"
-    crontab -l | grep -v "5 * * * * bash $script_name" | crontab -
-}
+# Define the cron job script paths
+pack_cron="/root/CnC-Agent/Debian-Scripts/Packages.sh"
+over_cron="/root/CnC-Agent/Debian-Scripts/Overview.sh"
+cron_cron="/root/CnC-Agent/Debian-Scripts/Cronjob.sh"
 
-# Remove the specified cron jobs
-remove_cron_job "$pack_cron"
-remove_cron_job "$over_cron"
-remove_cron_job "$cron_cron"
+# Use sed to remove the specific entries from /etc/crontab
+sudo sed -i "/$pack_cron/d" /etc/crontab
+sudo sed -i "/$over_cron/d" /etc/crontab
+sudo sed -i "/$cron_cron/d" /etc/crontab
 
-echo "Cron jobs removed from your crontab."
 
 # Remove both repos
 rm -rf ~/CnC-WebGUI
