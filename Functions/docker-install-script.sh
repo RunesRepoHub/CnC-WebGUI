@@ -43,7 +43,7 @@ fi
 # Install Docker and Docker Compose on Ubuntu
 install_docker_ubuntu() {
     apt-get update > /dev/null 2>&1
-    apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    apt-get install -y apt-transport-https ca-certificates curl software-properties-common > /dev/null 2>&1
 
     # Add Docker GPG key and repository
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -56,7 +56,7 @@ install_docker_ubuntu() {
 # Install Docker and Docker Compose on Debian
 install_docker_debian() {
     apt-get update > /dev/null 2>&1
-    apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+    apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common > /dev/null 2>&1
 
     # Add Docker GPG key and repository
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
