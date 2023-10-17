@@ -23,43 +23,6 @@ if ($cronjobs === null) {
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    color: #ffffff; /* Text color */
-    background-color: #111111; /* Dark background color */
-}
-
-h1, h2, h3 {
-    text-align: center;
-    color: #ffffff;
-}
-
-table {
-    width: 80%;
-    border-collapse: collapse;
-    margin: 20px auto;
-    background-color: #333333; /* Dark background color for the table */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #555; /* Add border lines between cells */
-}
-
-th {
-    background-color: #5e0000;
-    font-weight: bold;
-}
-
-tr:nth-child(even) {
-    background-color: #444444; /* Dark background color for even rows */
-}
-
-
-    </style>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
