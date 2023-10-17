@@ -25,11 +25,12 @@ if ($packagesData === null) {
 <head>
     <style>
         body {
-            
+            background-color: #242323;
+            font-family: Arial, sans-serif;
         }
 
         h1 {
-            
+            text-align: center;
             color: #333;
         }
 

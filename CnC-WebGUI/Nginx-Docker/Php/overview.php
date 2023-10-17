@@ -25,6 +25,7 @@ if ($cronjobs === null) {
 <head>
     <style>
         body {
+            background-color: #242323;
             font-family: Arial, sans-serif;
         }
 
