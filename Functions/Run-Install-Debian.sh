@@ -113,7 +113,7 @@ while true; do
             fi 
             break 2;;
             ## When quiting the script
-            $((${#items[@]}+1))) echo; echo -e "${Green}Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information"${NC}; break 2;;
+            $((${#items[@]}+1))) echo; echo -e "${Green}Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information${NC}"; break 2;;
             ## Wrong input
             *) echo -e "${Red}Ooops - unknown choice $REPLY${NC}"; break;
         esac
@@ -123,11 +123,19 @@ done
 
 if [ -f ~/CnC-WebGUI/.serverinstallcon ] && [ -f ~/CnC-Agent/.clientinstallcon ]; then
     echo -e "${Green}Both Agent and Server was installed successful${NC}"
+    echo -e "${Green}Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information${NC}"
+    echo -e "${Green}Go to https://github.com/RunesRepoHub/CnC-WebGUI/issues to report an issue with the WebGUI and https://github.com/RunesRepoHub/CnC-Agent/issues for the Agent"${NC}
 elif  [ -f ~/CnC-WebGUI/.serverinstallcon ]; then
     echo -e "${Green}The Server was installed successful${NC}"
+    echo -e "${Green}Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information${NC}"
+    echo -e "${Green}Go to https://github.com/RunesRepoHub/CnC-WebGUI/issues to report an issue with the WebGUI and https://github.com/RunesRepoHub/CnC-Agent/issues for the Agent"${NC}
 elif  [ -f ~/CnC-Agent/.clientinstallcon ]; then
     echo -e "${Green}The Agent was installed successful${NC}"
+    echo -e "${Green}Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information${NC}"
+    echo -e "${Green}Go to https://github.com/RunesRepoHub/CnC-WebGUI/issues to report an issue with the WebGUI and https://github.com/RunesRepoHub/CnC-Agent/issues for the Agent"${NC}
 else
     echo -e "${Red}Installation has failed${NC}"
+    echo -e "${Green}Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information${NC}"
+    echo -e "${Green}Go to https://github.com/RunesRepoHub/CnC-WebGUI/issues to report an issue with the WebGUI and https://github.com/RunesRepoHub/CnC-Agent/issues for the Agent"${NC}
 fi
 
