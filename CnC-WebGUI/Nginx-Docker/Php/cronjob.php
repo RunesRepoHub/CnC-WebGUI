@@ -1,61 +1,87 @@
-<!DOCTYPE html>
-<html>
-<body>
-
 <?php
-echo '<body style="background-color:#242323">';
+// API endpoint URL
+$apiUrl = "http://cnc-api:3000/read/cronjobs";
 
-// Include your PostgreSQL database configuration
-include '/var/postgresql.php';
+// Fetch data from the API
+$data = file_get_contents($apiUrl);
 
-// Create a PostgreSQL connection
-$conn = pg_connect("host=$servername port=5432 dbname=$dbname user=$username password=$password");
-
-// Check the PostgreSQL connection
-if (!$conn) {
-  die("ERROR: Could not connect to the PostgreSQL database.");
+// Check if the request was successful
+if ($data === false) {
+    die("Failed to fetch data from the API.");
 }
 
-echo "<center>";
-echo '<span style="color:#ffffff;text-align:center;font-size:40px;">Cron Jobs Scripts</span>';
-echo "</center>";
-echo str_repeat('&nbsp;', 5);
+// Parse the JSON data
+$cronjobs = json_decode($data, true);
 
-// Attempt a select query execution
-$sql = "SELECT * FROM cronjobs ORDER BY cronjobsscripts ASC";
-$result = pg_query($conn, $sql);
-
-if (!$result) {
-  echo "ERROR: Could not execute the query.";
-} else {
-  $num_rows = pg_num_rows($result);
-
-  if ($num_rows > 0) {
-    echo "<table align='center' cellspacing=3 cellpadding=4 border=1 bgcolor=dddddd>";
-    echo "<tr>";
-    echo "<th>Hostname</th>";
-    echo "<th>Cron Jobs Scripts</th>";
-    echo "</tr>";
-
-    while ($row = pg_fetch_assoc($result)) {
-      echo "<tr>";
-      echo "<td>" . $row['hostname'] . "</td>";
-      echo "<td>" . $row['cronjobsscripts'] . "</td>";
-      echo "</tr>";
-    }
-
-    echo "</table>";
-  } else {
-    echo "No records matching your query were found.";
-  }
-
-  // Free result set
-  pg_free_result($result);
+// Check if the JSON was successfully parsed
+if ($cronjobs === null) {
+    die("Failed to parse JSON data.");
 }
 
-// Close the PostgreSQL connection
-pg_close($conn);
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    color: #ffffff; /* Text color */
+    background-color: #111111; /* Dark background color */
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: #ffffff;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #333333; /* Dark background color for the table */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #555; /* Add border lines between cells */
+}
+
+th {
+    background-color: #5e0000;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #444444; /* Dark background color for even rows */
+}
+
+
+    </style>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="overskift">
+  <h1>Cronjobs</h1>
+  <a href="../Php/packages.php">Packages</a>
+  <a href="../Php/cronjob.php">Cronjobs</a>
+  <a href="../Php/overview.php">Overview</a>
+  </div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Hostname</th>
+            <th>Cronjob Script</th>
+        </tr>
+        <?php foreach ($cronjobs as $cronjob): ?>
+            <tr>
+                <td><?php echo $cronjob['id']; ?></td>
+                <td><?php echo $cronjob['hostname']; ?></td>
+                <td><?php echo $cronjob['cronjobsscripts']; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 </body>
 </html>

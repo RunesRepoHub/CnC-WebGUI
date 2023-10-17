@@ -1,5 +1,25 @@
 #!/bin/bash
 
+##### Styles ######
+Black='\e[0;30m'
+DarkGray='\e[1;30m'
+Red='\e[0;31m'
+LightRed='\e[1;31m'
+Green='\e[0;32m'
+LightGreen='\e[1;32m'
+BrownOrange='\e[0;33m'
+Yellow='\e[1;33m'
+Blue='\e[0;34m'
+LightBlue='\e[1;34m'
+Purple='\e[0;35m'
+LightPurple='\e[1;35m'
+Cyan='\e[0;36m'
+LightCyan='\e[1;36m'
+LightGray='\e[0;37m'
+White='\e[1;37m'
+NC='\e[0m'  # Reset to default
+###################
+
 # Check if the script is running as root
 if [ "$EUID" -ne 0 ]; then
     echo "Please run this script as root."
@@ -22,28 +42,28 @@ fi
 
 # Install Docker and Docker Compose on Ubuntu
 install_docker_ubuntu() {
-    apt-get update
+    apt-get update > /dev/null 2>&1
     apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 
     # Add Docker GPG key and repository
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-    apt-get update
-    apt-get install -y docker-ce docker-ce-cli containerd.io
+    apt-get update > /dev/null 2>&1
+    apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null 2>&1
 }
 
 # Install Docker and Docker Compose on Debian
 install_docker_debian() {
-    apt-get update
+    apt-get update > /dev/null 2>&1
     apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
     # Add Docker GPG key and repository
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
-    apt-get update
-    apt-get install -y docker-ce docker-ce-cli containerd.io
+    apt-get update > /dev/null 2>&1
+    apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null 2>&1
 }
 
 # Install Docker Compose
@@ -56,12 +76,12 @@ install_docker_compose() {
 
 # Check if Docker is already installed
 if [ -x "$(command -v docker)" ]; then
-    echo "Docker is already installed."
-    echo "Updating Docker..."
-    apt-get update
-    apt-get upgrade -y
+    echo -e "${Green}Docker is already installed.${NC}"
+    echo -e "${Yellow}Updating Docker...${NC}"
+    apt-get update > /dev/null 2>&1
+    apt-get upgrade -y > /dev/null 2>&1
 else
-    echo "Docker is not installed. Installing..."
+    echo -e "${Yellow}Docker is not installed. Installing...${NC}"
     case $DISTRO in
         "Ubuntu") install_docker_ubuntu ;;
         "Debian") install_docker_debian ;;
@@ -73,9 +93,11 @@ fi
 install_docker_compose
 
 # Check Docker and Docker Compose versions
-docker --version
-docker-compose --version
+dockerv=$(docker --version)
+dockercomposev=$(docker-compose --version)
 
-echo "Docker and Docker Compose installation completed."
+echo -e "${Green}${dockerv}${NC}"
+echo -e "${Green}${dockercomposev}${NC}"
+echo -e "${Green}Docker and Docker Compose installation completed.${NC}"
 
 exit 0

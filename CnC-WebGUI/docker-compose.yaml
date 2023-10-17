@@ -1,7 +1,7 @@
 version: "3.2"
 services:
   cnc-db:
-    image: cnc-pg:1.2
+    image: cnc-pg:${Version}
     restart: always
     environment:
       -  POSTGRES_DATABASE=machines
@@ -12,7 +12,7 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
   cnc-api:
-    image: cnc-node-api:1.2
+    image: cnc-node-api:${Version}
     restart: always
     environment:
       - POSTGRES_DATABASE=machines
@@ -27,7 +27,7 @@ services:
     volumes:
       - dbdata:/var/lib/api
   cnc-web:
-    image: cnc-web:1.2
+    image: cnc-web:${Version}
     restart: always
     ports:
       - "8080:80"
