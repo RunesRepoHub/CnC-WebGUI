@@ -3,6 +3,17 @@
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 
+## Setup
+
+* You have to be root user.
+* Make sure to change the hostname before running this.
+* Make sure to run.
+    1. apt-get update
+    2. apt-get upgrade
+
+
+## Install 
+
 ### Docker images
 The images has not been made public yet, so if you want to use this right now. You will have to build the images yourself.
 
