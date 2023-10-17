@@ -26,7 +26,7 @@ NC='\e[0m'  # Reset to default
 # to Production     #
 #####################
 # Version tag
-Version="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-WebGUI/.env | sed 's/.\{8\}//'"
+Version="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Production/CnC-WebGUI/.env | sed 's/.\{8\}//'"
 #####################
 
 # Global Variables
@@ -57,7 +57,7 @@ deb_ins="/root/CnC-Agent/Debian-Installer.sh"
 # to Production     #
 #####################
 # Check-OS.sh
-deb_url_ins="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/Run-Install-Debian.sh"
+deb_url_ins="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Production/Functions/Run-Install-Debian.sh"
 #####################
 
 
@@ -79,5 +79,5 @@ repo_url_ins="https://github.com/RunesRepoHub/CnC-Agent.git"
 # changed when push #
 # to Production     #
 #####################
-get_config_url="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/config.sh"
+get_config_url="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Production/config.sh"
 #####################
