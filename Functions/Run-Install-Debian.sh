@@ -19,11 +19,7 @@ LightGray='\e[0;37m'
 White='\e[1;37m'
 NC='\e[0m'  # Reset to default
 ###################
-
-
 bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/docker-install-script.sh)
-echo
-echo
 echo -e "${Blue}---------------------------------------------------------------${NC}"
 echo -e "${Red}The Development Version is undergoing constant updates and changes to the code${NC} ${Yellow}and will therefor not always work as it should...${NC} ${Red}THIS HAS BEEN YOUR WARNING${NC}"
 echo -e "${Blue}--------------------------------------------------------------${NC}" 

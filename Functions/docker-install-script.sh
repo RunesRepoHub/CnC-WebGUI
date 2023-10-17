@@ -92,13 +92,12 @@ fi
 # Install Docker Compose
 install_docker_compose
 
-echo
-echo
-
 # Check Docker and Docker Compose versions
-docker --version
-docker-compose --version
+dockerv=$(docker --version)
+docker-composev=$(docker-compose --version)
 
+echo -e "${Green}${dockerv}${NC}"
+echo -e "${Green}${docker-composev}${NC}"
 echo -e "${Green}Docker and Docker Compose installation completed.${NC}"
 
 exit 0
