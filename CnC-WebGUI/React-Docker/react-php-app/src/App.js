@@ -5,40 +5,26 @@ function Overview() {
   const [packagesData, setPackagesData] = useState([]);
   const [overviewData, setOverviewData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const cronjobsResponse = await fetch('http://cnc-api:3000/read/cronjobs');
-        if (!cronjobsResponse.ok) {
-          throw new Error('Failed to fetch cronjobs data');
-        }
-        const cronjobsData = await cronjobsResponse.json();
-        setCronjobData(cronjobsData);
+    fetch('http://cnc-api:3000/read/cronjobs')
+      .then((response) => response.json())
+      .then((data) => {
+        setCronjobData(data);
+      });
 
-        const packagesResponse = await fetch('http://cnc-api:3000/read/packages');
-        if (!packagesResponse.ok) {
-          throw new Error('Failed to fetch packages data');
-        }
-        const packagesData = await packagesResponse.json();
-        setPackagesData(packagesData);
+    fetch('http://cnc-api:3000/read/packages')
+      .then((response) => response.json())
+      .then((data) => {
+        setPackagesData(data);
+      });
 
-        const overviewResponse = await fetch('http://cnc-api:3000/read/info');
-        if (!overviewResponse.ok) {
-          throw new Error('Failed to fetch overview data');
-        }
-        const overviewData = await overviewResponse.json();
-        setOverviewData(overviewData);
-
+    fetch('http://cnc-api:3000/read/info')
+      .then((response) => response.json())
+      .then((data) => {
+        setOverviewData(data);
         setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+      });
   }, []);
 
   return (
