@@ -13,16 +13,7 @@ docker rmi cnc-node-api:$version
 # Remove docker volume used by the dockers
 docker volume rm cnc-webgui_dbdata
 
-# Define the cron job script paths
-pack_cron="/root/CnC-Agent/Debian-Scripts/Packages.sh"
-over_cron="/root/CnC-Agent/Debian-Scripts/Overview.sh"
-cron_cron="/root/CnC-Agent/Debian-Scripts/Cronjob.sh"
-
-# Use sed to remove the specific entries from /etc/crontab
-sudo sed -i "/$pack_cron/d" /etc/crontab
-sudo sed -i "/$over_cron/d" /etc/crontab
-sudo sed -i "/$cron_cron/d" /etc/crontab
-
+sudo sed -i '/Packages\.sh\|Cronjob\.sh\|Overview\.sh/d' /etc/crontab
 
 # Remove both repos
 rm -rf ~/CnC-WebGUI
