@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+const fetch = require('node-fetch');
 
 function Overview() {
   const [cronjobData, setCronjobData] = useState([]);
