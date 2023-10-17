@@ -25,14 +25,14 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/F
 echo
 echo
 echo -e "${Blue}---------------------------------------------------------------${NC}"
-echo -e "The ${Red}Development Version${NC} is undergoing constant updates and changes to the code and will therefor not always work as it should... ${Red}THIS HAS BEEN YOUR WARNING${NC}"
+echo -e "The ${Red}Development Version${NC} is undergoing constant updates and changes to the code and will therefor ${Yellow}not always work as it should...${NC} ${Red}THIS HAS BEEN YOUR WARNING${NC}"
 echo -e "${Blue}--------------------------------------------------------------${NC}" 
 echo -e "The ${Green}Production Version${NC} will only see massive update and changes to the code" 
-echo "When it has been tested and vaildated on:"
+echo -e "${Green}When it has been tested and vaildated on:${NC}"
 echo
-echo -e " * ${Green}Debian 9,10,11${NC}"
+echo -e " ${Cyan}*${NC} ${Green}Debian 9,10,11${NC}"
 echo
-echo -e " * ${Green}Ubuntu 20.04,22.04${NC}" 
+echo -e " ${Cyan}*${NC} ${Green}Ubuntu 20.04,22.04${NC}" 
 echo -e "${Blue}---------------------------------------------------------------${NC}"
 echo -e "${Green}This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try me best to avoid it, but this is a headsup and warning to backup before updating${NC}"
 echo -e "${Blue}---------------------------------------------------------------${NC}"
