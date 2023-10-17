@@ -25,35 +25,37 @@ if ($cronjobs === null) {
 <head>
     <style>
         body {
-            font-family: Arial, sans-serif;
-        }
+    font-family: Arial, sans-serif;
+    color: #ffffff; /* Text color */
+    background-color: #111111; /* Dark background color */
+}
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+h1, h2, h3 {
+    text-align: center;
+    color: #ffffff;
+}
 
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #333333; /* Dark background color for the table */
+}
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
+th, td {
+    padding: 12px;
+    text-align: left;
+}
 
-        th {
-            background-color: #5e0000;
-            font-weight: bold;
-        }
+th {
+    background-color: #5e0000;
+    font-weight: bold;
+}
 
-        tr:nth-child(even) {
-            background-color: #5e0000;
-        }
+tr:nth-child(even) {
+    background-color: #444444; /* Dark background color for even rows */
+}
+
 
     </style>
     <link rel="stylesheet" href="../style.css">
