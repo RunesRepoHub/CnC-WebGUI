@@ -58,7 +58,12 @@ if ($packagesData === null) {
     </style>
 </head>
 <body>
-    <h1>Packages</h1>
+  <div class="overskift">
+  <h1>Packages</h1>
+  <a href="Php/packages.php">Packages</a>
+  <a href="Php/cronjob.php">Cronjobs</a>
+  <a href="Php/overview.php">Overview</a>
+  </div>
     <table>
         <tr>
             <th>Hostname</th>
