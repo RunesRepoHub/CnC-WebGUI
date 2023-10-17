@@ -25,9 +25,9 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/F
 echo
 echo
 echo "---------------------------------------------------------------"
-printf "The ${RED}Development Version${NC} is undergoing constant updates and changes to the code and will therefor not always work as it should... ${RED}THIS HAS BEEN YOUR WARNING${NC}\n"
+echo -e "The ${RED}Development Version${NC} is undergoing constant updates and changes to the code and will therefor not always work as it should... ${RED}THIS HAS BEEN YOUR WARNING${NC}"
 echo "--------------------------------------------------------------" 
-printf "The ${GREEN}Production Version${NC} will only see massive update and changes to the code\n" 
+echo -e "The ${GREEN}Production Version${NC} will only see massive update and changes to the code" 
 echo "When it has been tested and vaildated on:"
 echo
 echo " * Debian 9,10,11"
