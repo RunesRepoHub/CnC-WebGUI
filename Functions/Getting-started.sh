@@ -32,8 +32,6 @@ while true; do
             ## Remove old files
             rm -rf ~/CnC-Agent
             ## Clones new files
-            echo
-            echo
             git clone --branch Dev https://github.com/RunesRepoHub/CnC-Agent.git;
             ## Runs the installation script
             else
@@ -43,11 +41,10 @@ while true; do
             ## If the files has not been download before
             echo "$FILE does not exist."
             ## Clones new files
-            echo
-            echo
             git clone --branch Dev https://github.com/RunesRepoHub/CnC-Agent.git;
             ## Runs the installation script
             wget -O ~/CnC-Agent/config.sh "$get_config_url" > /dev/null 2>&1;
+            sleep 3
             bash ~/CnC-Agent/Install-Agent.sh; 
             bash "$Install_Agent";
             fi; break 2;;  
@@ -57,6 +54,3 @@ while true; do
         esac
     done
 done
-
-echo 
-echo
