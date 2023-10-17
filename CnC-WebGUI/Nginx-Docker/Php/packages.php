@@ -56,7 +56,7 @@ if ($packagesData === null) {
         }
 
     </style>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="overskift">
