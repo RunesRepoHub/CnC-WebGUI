@@ -5,9 +5,6 @@ version=$(cat "$ver_path" | awk '{ print substr( $0, 9 ) }')
 # Shutdown the dockers 
 docker compose -f "$compose" -p cnc-webgui down
 
-# Remove the docker network used by the dockers 
-docker network rm cnc-webgui_cncnetwork
-
 # Remove the docker images used by the dockers 
 docker rmi cnc-web:$version
 docker rmi cnc-pg:$version
@@ -19,7 +16,7 @@ docker volume rm cnc-webgui_dbdata
 # Function to remove a cron job
 remove_cron_job() {
     local script_name="$1"
-    crontab -l | grep -v "$script_name" | crontab -
+    crontab -l | grep -v "5 * * * * bash $script_name" | crontab -
 }
 
 # Remove the specified cron jobs
