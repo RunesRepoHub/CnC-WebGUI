@@ -39,14 +39,14 @@ echo -e "${Blue}---------------------------------------------------------------$
 echo
 
 
-PS3="${Purple}Select the what version you want to install:${NC}"
+PS3="Select the what version you want to install:"
 
 items=("Development" "Production")
 
 ## Select Version of code to download
 
 while true; do
-    select item in "${items[@]}" Quit
+    select item in "${Purple}${items[@]}${NC}" Quit
     do
         case $REPLY in
             1)
