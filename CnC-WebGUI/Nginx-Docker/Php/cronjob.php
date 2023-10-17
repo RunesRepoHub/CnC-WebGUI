@@ -46,6 +46,7 @@ table {
 th, td {
     padding: 12px;
     text-align: left;
+    border: 1px solid #555; /* Add border lines between cells */
 }
 
 th {
