@@ -34,7 +34,8 @@ async function handleDatabaseOperationSingle(query, values, res) {
     const { rows } = await pool.query(query, values);
     res.status(201).json(rows[0]);
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    logError(error);
+    res.status(500).json({ error: `Internal Server Error: Failed to retrieve data from ${table} table` });
   }
 }
 
@@ -122,7 +123,7 @@ function logError(error) {
 app.get('/read/:table', (req, res) => {
   const { table } = req.params;
   const query = `SELECT * FROM ${table}`; // Use backticks for template literals
-  handleDatabaseOperationAll(query, [], res, 'cronjobs'); // Pass the table name for better error messages
+  handleDatabaseOperationAll(query, [], res, `${table}`); // Pass the table name for better error messages
 });
 
 
