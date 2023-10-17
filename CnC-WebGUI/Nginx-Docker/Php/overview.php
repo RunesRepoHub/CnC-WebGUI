@@ -40,6 +40,7 @@ table {
     border-collapse: collapse;
     margin: 20px auto;
     background-color: #333333; /* Dark background color for the table */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
