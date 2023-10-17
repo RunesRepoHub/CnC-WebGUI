@@ -28,7 +28,7 @@ deb_url_ins="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Funct
 
 # CnC-Image-Builder.sh
 ver_path="/root/CnC-WebGUI/CnC-WebGUI/.env"
-web_path="/root/CnC-WebGUI/CnC-WebGUI/React-Docker/react-php-app"
+web_path="/root/CnC-WebGUI/CnC-WebGUI/Nginx-Docker"
 pg_path="/root/CnC-WebGUI/CnC-WebGUI/Postgress-Docker"
 apt_path="/root/CnC-WebGUI/CnC-WebGUI/Nodejs-Docker"
 compose="/root/CnC-WebGUI/CnC-WebGUI/docker-compose.yaml"
