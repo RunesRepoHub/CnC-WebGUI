@@ -1,5 +1,6 @@
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
+version=$(cat "$ver_path" | awk '{ print substr( $0, 9 ) }')
 
 # Shutdown the dockers 
 docker compose -f "$compose" -p cnc-webgui down
