@@ -46,7 +46,7 @@ items=("Development" "Production")
 ## Select Version of code to download
 
 while true; do
-    select item in "${Purple}${items[@]}${NC}" Quit
+    select item in "${items[@]}" Quit
     do
         case $REPLY in
             1)
