@@ -41,7 +41,7 @@ echo
 
 PS3="Select the what version you want to install:"
 
-items=("\e[0;31mDevelopment\e[0m" "\e[0;32mProduction\e[0m")
+items=("${Red}Development${NC} "${Green}Production${NC}")
 
 ## Select Version of code to download
 
