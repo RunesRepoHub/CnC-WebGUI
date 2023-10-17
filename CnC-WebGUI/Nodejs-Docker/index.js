@@ -114,23 +114,13 @@ function logError(error) {
   console.error('Error:', error);
 }
 
-// Read all data for the "cronjobs" table
-app.get('/read/all/cronjobs', (req, res) => {
-  const query = 'SELECT * FROM cronjobs';
+// Read all data for the table
+app.get('/read/:table', (req, res) => {
+  const { table } = req.params;
+  const query = `SELECT * FROM ${table}`; // Use backticks for template literals
   handleDatabaseOperationAll(query, [], res, 'cronjobs'); // Pass the table name for better error messages
 });
 
-// Read all data for the "packages" table
-app.get('/read/all/packages', (req, res) => {
-  const query = 'SELECT * FROM packages';
-  handleDatabaseOperationAll(query, [], res, 'packages'); // Pass the table name for better error messages
-});
-
-// Read all data for the "info" table
-app.get('/read/all/info', (req, res) => {
-  const query = 'SELECT * FROM info';
-  handleDatabaseOperationAll(query, [], res, 'info'); // Pass the table name for better error messages
-});
 
 app.listen(port, () => {
   console.log(`Node.js API is running on port ${port}`);
