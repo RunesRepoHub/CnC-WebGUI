@@ -27,6 +27,9 @@ echo -e "${Yellow}Install sudo, Git, jq${NC}"
 apt-get install sudo >/dev/null 2>&1
 apt-get install git -y >/dev/null 2>&1
 apt-get install jq -y >/dev/null 2>&1
+echo -e "${Yellow}Install updates and Upgrade${NC}"
+apt-get updates >/dev/null 2>&1
+apt-get upgrade -y >/dev/null 2>&1
 
 
 if [ -f /etc/os-release ]; then
