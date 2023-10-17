@@ -56,14 +56,14 @@ if ($cronjobs === null) {
         }
 
     </style>
-    <link rel="stylesheet" href="../html/style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="overskift">
   <h1>Cronjobs</h1>
-  <a href="Php/packages.php">Packages</a>
-  <a href="Php/cronjob.php">Cronjobs</a>
-  <a href="Php/overview.php">Overview</a>
+  <a href="../Php/packages.php">Packages</a>
+  <a href="../Php/cronjob.php">Cronjobs</a>
+  <a href="../Php/overview.php">Overview</a>
   </div>
     <table>
         <tr>
