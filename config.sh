@@ -31,6 +31,8 @@ Version="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-
 
 # Global Variables
 dbip="/root/CnC-Agent/.databaseip"
+serverinstallcon="/root/CnC-WebGUI/.serverinstallcon"
+clientinstallcon="/root/CnC-Agent/.clientinstallcon"
 
 # Getting-started.sh
 CnC_Image_Builder="/root/CnC-WebGUI/Functions/CnC-Image-Builder.sh"

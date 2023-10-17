@@ -25,3 +25,7 @@ echo " "
 echo "And the WebGUI, can be accessed via $ip_address:8080"
 echo
 echo
+
+## Make a file to check if installation was successful
+touch "$serverinstallcon"
+echo "yes" > "$serverinstallcon"

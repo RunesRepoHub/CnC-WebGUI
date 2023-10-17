@@ -132,10 +132,10 @@ done
 
 
 
-githubversion="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-WebGUI/.env"
-localversion="cat ~/CnC-WebGUI/CnC-WebGUI/.env"
+serverinstallcon="cat ~/CnC-WebGUI/.serverinstallcon"
+clientinstallcon="cat ~/CnC-Agent/.clientinstallcon"
 
-if [ "$localversion" == "$githubversion" ]; then
+if [[ "$clientinstallcon" == "yes" && "$serverinstallcon" == "yes" ]]; then
         echo -e "${Green}Installation seems to have been successful${NC}"
     else 
         echo -e "${Red}Installation seems to have failed${NC}"
