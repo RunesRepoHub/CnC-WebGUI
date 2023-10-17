@@ -18,14 +18,45 @@ if ($cronjobs === null) {
     die("Failed to parse JSON data.");
 }
 
-// Display the data
-echo "<h1>Cronjobs:</h1>";
-echo "<ul>";
-foreach ($cronjobs as $cronjob) {
-    echo "<li>ID: " . $cronjob['id'] . "</li>";
-    echo "<li>Hostname: " . $cronjob['hostname'] . "</li>";
-    echo "<li>Cronjob Script: " . $cronjob['cronjobsscripts'] . "</li>";
-    echo "<br>";
-}
-echo "</ul>";
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Cronjobs</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Hostname</th>
+            <th>Cronjob Script</th>
+        </tr>
+        <?php foreach ($cronjobs as $cronjob): ?>
+            <tr>
+                <td><?php echo $cronjob['id']; ?></td>
+                <td><?php echo $cronjob['hostname']; ?></td>
+                <td><?php echo $cronjob['cronjobsscripts']; ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>
