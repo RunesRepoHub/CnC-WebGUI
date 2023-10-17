@@ -57,6 +57,7 @@ while true; do
                 ## Ask the user for action input
                 read -p "Are you sure? " -n 1 -r
                 ## Move to a new line
+                echo
                 ## Check user input    
                 if [[ $REPLY =~ ^[Yy]$ ]]
                 then
@@ -105,6 +106,7 @@ while true; do
                 ## If the files has not been download before
                 echo -e "${Green}$FILE does not exist.${NC}"
                 ## Clones new files
+                echo
                 git clone --branch Production https://github.com/RunesRepoHub/CnC-WebGUI.git;
                 ## Runs the installation script
                 bash ~/CnC-WebGUI/Functions/Getting-started.sh;
