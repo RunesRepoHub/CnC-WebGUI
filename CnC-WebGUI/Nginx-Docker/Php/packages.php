@@ -37,7 +37,7 @@ if ($packagesData === null) {
             width: 80%;
             border-collapse: collapse;
             margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(107, 11, 11, 0.1);
         }
 
         th, td {
