@@ -41,7 +41,7 @@ echo
 
 PS3="Select the what version you want to install:"
 
-items=("${Red}Development${NC}" "${Green}Production${NC}")
+items=(echo -e "${Red}Development${NC}" "${Green}Production${NC}")
 
 ## Select Version of code to download
 
@@ -133,13 +133,22 @@ while true; do
         esac
     done
 done
+
+
+
 githubversion="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-WebGUI/.env"
 localversion="cat ~/CnC-WebGUI/Dev/CnC-WebGUI/.env"
+
+if [ "$localversion" == "$githubversion" ]; then
 FILE1=~/CnC-WebGUI
 FILE2=~/CnC-Agent
 
-if [[ -d "$FILE1" && -d "$FILE2" && "$localversion" == "$githubversion"]]; then
+if [[ -d "$FILE1" && -d "$FILE2" ]]; then
     echo -e "${Green}Installation seems to have been successful${NC}"
+else 
+    echo -e "${Red}Installation seems to have failed${NC}"
+    echo -e "${Red}Make sure you are trying to install into ~/ or /root/${NC}"
+fi
 else 
     echo -e "${Red}Installation seems to have failed${NC}"
     echo -e "${Red}Make sure you are trying to install into ~/ or /root/${NC}"

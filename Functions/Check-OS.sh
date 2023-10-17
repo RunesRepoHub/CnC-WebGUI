@@ -21,9 +21,9 @@ NC='\e[0m'  # Reset to default
 ###################
 
 # Install needed tools for installation script to work
-echo "${Purple}Move to root directory${NC}"
+echo -e "${Purple}Move to root directory${NC}"
 cd
-echo "${Yellow}Install sudo, Git, jq${NC}"
+echo -e "${Yellow}Install sudo, Git, jq${NC}"
 apt-get install sudo >/dev/null 2>&1
 apt-get install git -y >/dev/null 2>&1
 apt-get install jq -y >/dev/null 2>&1
