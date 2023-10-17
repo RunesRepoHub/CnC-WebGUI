@@ -30,7 +30,7 @@ services:
     image: cnc-web:1.2
     restart: always
     ports:
-      - "8080:3000"
+      - "8080:80"
     depends_on:
       - cnc-db
     networks:
