@@ -34,7 +34,7 @@ Run the following commands on a Debian 9/10/11/12 or Ubuntu 20.04/22.04 server t
 The docker web, api and db containers has to be running.
 
 ```
-bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-Agent/Dev/Install-Agent-Only.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-Agent/Production/Install-Agent-Only.sh)
 ```
 
 ## Uninstall 
