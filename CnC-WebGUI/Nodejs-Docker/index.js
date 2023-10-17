@@ -1,6 +1,5 @@
 const express = require('express');
 const { Pool } = require('pg');
-const cors = require('cors'); // Import the CORS middleware
 
 const app = express();
 const port = 3000;
@@ -14,9 +13,6 @@ const pool = new Pool({
 });
 
 app.use(express.json());
-
-// Enable CORS for all routes
-app.use(cors());
 
 // Reusable function to handle database operations
 async function handleDatabaseOperationAll(query, values, res, tableName) {
@@ -34,8 +30,7 @@ async function handleDatabaseOperationSingle(query, values, res) {
     const { rows } = await pool.query(query, values);
     res.status(201).json(rows[0]);
   } catch (error) {
-    logError(error);
-    res.status(500).json({ error: `Internal Server Error: Failed to retrieve data from ${table} table` });
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
 
@@ -123,7 +118,7 @@ function logError(error) {
 app.get('/read/:table', (req, res) => {
   const { table } = req.params;
   const query = `SELECT * FROM ${table}`; // Use backticks for template literals
-  handleDatabaseOperationAll(query, [], res, `${table}`); // Pass the table name for better error messages
+  handleDatabaseOperationAll(query, [], res, 'cronjobs'); // Pass the table name for better error messages
 });
 
 
