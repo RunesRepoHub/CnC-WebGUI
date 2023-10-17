@@ -15,7 +15,7 @@ while true; do
         case $REPLY in
             1) bash "$CnC_Image_Builder"; break;;  
             2) git clone --branch Dev "$repo_url_ins"; 
-            sleep 3;
+            wget https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/config.sh ~/CnC-Agent;
             bash "$Install_Agent"; break 2;;  
             3) bash "$Uninstall"; break 2;;  
             $((${#items[@]}+1))) echo "We're done!"; break 2;;
