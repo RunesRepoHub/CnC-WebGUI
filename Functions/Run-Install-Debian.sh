@@ -25,23 +25,23 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/F
 echo
 echo
 echo -e "${Blue}---------------------------------------------------------------${NC}"
-echo -e "The ${Red}Development Version${NC} is undergoing constant updates and changes to the code and will therefor ${Yellow}not always work as it should...${NC} ${Red}THIS HAS BEEN YOUR WARNING${NC}"
+echo -e "${Red}The Development Version is undergoing constant updates and changes to the code${NC} ${Yellow}and will therefor not always work as it should...${NC} ${Red}THIS HAS BEEN YOUR WARNING${NC}"
 echo -e "${Blue}--------------------------------------------------------------${NC}" 
-echo -e "The ${Green}Production Version${NC} will only see massive update and changes to the code" 
+echo -e "${Green}The Production Version will only see massive update and changes to the code${NC}" 
 echo -e "${Green}When it has been tested and vaildated on:${NC}"
 echo
 echo -e " ${Cyan}*${NC} ${Green}Debian 9,10,11${NC}"
 echo
 echo -e " ${Cyan}*${NC} ${Green}Ubuntu 20.04,22.04${NC}" 
 echo -e "${Blue}---------------------------------------------------------------${NC}"
-echo -e "${Green}This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try me best to avoid it, but this is a headsup and warning to backup before updating${NC}"
+echo -e "${Red}This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try my best to avoid it, but this is a headsup and warning to backup before updating${NC}"
 echo -e "${Blue}---------------------------------------------------------------${NC}"
 echo
 
 
-PS3="Select the what version you want to install:"
+PS3="${Purple}Select the what version you want to install:${NC}"
 
-items=(echo -e "${Red}Development${NC}" "${Green}Production${NC}")
+items=("Development" "Production")
 
 ## Select Version of code to download
 
@@ -137,7 +137,7 @@ done
 
 
 githubversion="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-WebGUI/.env"
-localversion="cat ~/CnC-WebGUI/Dev/CnC-WebGUI/.env"
+localversion="cat ~/CnC-WebGUI/CnC-WebGUI/.env"
 
 if [ "$localversion" == "$githubversion" ]; then
 FILE1=~/CnC-WebGUI
