@@ -47,12 +47,12 @@ if ($packagesData === null) {
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #5e0000;
             font-weight: bold;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #5e0000;
         }
 
     </style>
