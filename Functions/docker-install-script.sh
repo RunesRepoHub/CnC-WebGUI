@@ -78,10 +78,12 @@ install_docker_compose() {
 if [ -x "$(command -v docker)" ]; then
     echo -e "${Green}Docker is already installed.${NC}"
     echo -e "${Yellow}Updating Docker...${NC}"
+    echo -e "${Yellow}This can take a while...${NC}"
     apt-get update > /dev/null 2>&1
     apt-get upgrade -y > /dev/null 2>&1
 else
     echo -e "${Yellow}Docker is not installed. Installing...${NC}"
+    echo -e "${Yellow}This can take a while...${NC}"
     case $DISTRO in
         "Ubuntu") install_docker_ubuntu ;;
         "Debian") install_docker_debian ;;
