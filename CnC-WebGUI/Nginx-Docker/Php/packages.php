@@ -1,83 +1,100 @@
-<!DOCTYPE html>
-<html>
-<body>
-
 <?php
-echo '<body style="background-color:#242323">';
+// API endpoint URL
+$apiUrl = "http://cnc-api:3000/read/packages";
 
-// Include your PostgreSQL database configuration
-include '/var/postgresql.php';
+// Fetch data from the API
+$data = file_get_contents($apiUrl);
 
-// Create a PostgreSQL connection
-$conn = pg_connect("host=$servername port=5432 dbname=$dbname user=$username password=$password");
-
-// Check the PostgreSQL connection
-if (!$conn) {
-  die("ERROR: Could not connect to the PostgreSQL database.");
+// Check if the request was successful
+if ($data === false) {
+    die("Failed to fetch data from the API.");
 }
 
-echo "<center>";
-echo '<span style="color:#ffffff;text-align:center;font-size:40px;">Package Updates</span>';
-echo "</center>";
-echo str_repeat('&nbsp;', 5);
+// Parse the JSON data
+$cronjobs = json_decode($data, true);
 
-// Attempt a select query execution
-$sql = "SELECT * FROM packages";
-$result = pg_query($conn, $sql);
-
-if (!$result) {
-  echo "ERROR: Could not execute the query.";
-} else {
-  $num_rows = pg_num_rows($result);
-
-  if ($num_rows > 0) {
-    echo "<table align='center' cellspacing=3 cellpadding=4 border=1 bgcolor=dddddd>";
-    echo "<tr>";
-    echo "<th>Hostname</th>";
-    echo "<th>git</th>";
-    echo "<th>wget</th>";
-    echo "<th>sudo</th>";
-    echo "<th>python</th>";
-    echo "<th>python3</th>";
-    echo "<th>net-tools</th>";
-    echo "<th>mysql</th>";
-    echo "<th>libpython</th>";
-    echo "<th>docker-ce-cli</th>";
-    echo "<th>docker-compose-plugin</th>";
-    echo "<th>curl</th>";
-    echo "<th>containerd</th>";
-    echo "</tr>";
-
-    while ($row = pg_fetch_assoc($result)) {
-      echo "<tr>";
-      echo "<td>" . $row['hostname'] . "</td>";
-      echo "<td>" . $row['git'] . "</td>";
-      echo "<td>" . $row['wget'] . "</td>";
-      echo "<td>" . $row['sudo'] . "</td>";
-      echo "<td>" . $row['python'] . "</td>";
-      echo "<td>" . $row['python3'] . "</td>";
-      echo "<td>" . $row['nettools'] . "</td>";
-      echo "<td>" . $row['mysql'] . "</td>";
-      echo "<td>" . $row['libpython'] . "</td>";
-      echo "<td>" . $row['dockercecli'] . "</td>";
-      echo "<td>" . $row['dockercomposeplugin'] . "</td>";
-      echo "<td>" . $row['curl'] . "</td>";
-      echo "<td>" . $row['containerd'] . "</td>";
-      echo "</tr>";
-    }
-
-    echo "</table>";
-  } else {
-    echo "No records matching your query were found.";
-  }
-
-  // Free result set
-  pg_free_result($result);
+// Check if the JSON was successfully parsed
+if ($cronjobs === null) {
+    die("Failed to parse JSON data.");
 }
 
-// Close the PostgreSQL connection
-pg_close($conn);
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Packages</h1>
+    <table>
+        <tr>
+            <th>Hostname</th>
+            <th>git</th>
+            <th>wget</th>
+            <th>sudo</th>
+            <th>python</th>
+            <th>python3</th>
+            <th>net-tools</th>
+            <th>mysql</th>
+            <th>libpython</th>
+            <th>docker-ce-cli</th>
+            <th>docker-compose-plugin</th>
+            <th>curl</th>
+            <th>containerd</th>
+        </tr>
+        <?php
+        // Assuming $result contains the data from your context
+        while ($row = pg_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td>" . $row['hostname'] . "</td>";
+            echo "<td>" . $row['git'] . "</td>";
+            echo "<td>" . $row['wget'] . "</td>";
+            echo "<td>" . $row['sudo'] . "</td>";
+            echo "<td>" . $row['python'] . "</td>";
+            echo "<td>" . $row['python3'] . "</td>";
+            echo "<td>" . $row['nettools'] . "</td>";
+            echo "<td>" . $row['mysql'] . "</td>";
+            echo "<td>" . $row['libpython'] . "</td>";
+            echo "<td>" . $row['dockercecli'] . "</td>";
+            echo "<td>" . $row['dockercomposeplugin'] . "</td>";
+            echo "<td>" . $row['curl'] . "</td>";
+            echo "<td>" . $row['containerd'] . "</td>";
+            echo "</tr>";
+        }
+        ?>
+    </table>
 </body>
 </html>
