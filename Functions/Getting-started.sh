@@ -35,7 +35,7 @@ while true; do
             git clone --branch Dev https://github.com/RunesRepoHub/CnC-Agent.git;
             ## Runs the installation script
             else
-            bash ~/CnC-Agent/Install-Agent.sh;
+            bash $Install_Agent;
             fi
             else 
             ## If the files has not been download before
@@ -43,9 +43,8 @@ while true; do
             ## Clones new files
             git clone --branch Dev https://github.com/RunesRepoHub/CnC-Agent.git;
             ## Runs the installation script
-            wget -O ~/CnC-Agent/config.sh "$get_config_url" > /dev/null 2>&1;
-            sleep 3
-            bash ~/CnC-Agent/Install-Agent.sh; 
+            wget -O ~/CnC-Agent/config.sh "$get_config_url"
+            sleep 3 
             bash "$Install_Agent";
             fi; break 2;;  
             3) bash "$Uninstall"; break 2;;  
