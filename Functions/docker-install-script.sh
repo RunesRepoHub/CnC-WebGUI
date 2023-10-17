@@ -42,28 +42,28 @@ fi
 
 # Install Docker and Docker Compose on Ubuntu
 install_docker_ubuntu() {
-    apt-get update
+    apt-get update > /dev/null 2>&1
     apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 
     # Add Docker GPG key and repository
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-    apt-get update
-    apt-get install -y docker-ce docker-ce-cli containerd.io
+    apt-get update > /dev/null 2>&1
+    apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null 2>&1
 }
 
 # Install Docker and Docker Compose on Debian
 install_docker_debian() {
-    apt-get update
+    apt-get update > /dev/null 2>&1
     apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
     # Add Docker GPG key and repository
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
-    apt-get update
-    apt-get install -y docker-ce docker-ce-cli containerd.io
+    apt-get update > /dev/null 2>&1
+    apt-get install -y docker-ce docker-ce-cli containerd.io > /dev/null 2>&1
 }
 
 # Install Docker Compose
@@ -78,8 +78,8 @@ install_docker_compose() {
 if [ -x "$(command -v docker)" ]; then
     echo -e "${Green}Docker is already installed.${NC}"
     echo -e "${Yellow}Updating Docker...${NC}"
-    apt-get update
-    apt-get upgrade -y
+    apt-get update > /dev/null 2>&1
+    apt-get upgrade -y > /dev/null 2>&1
 else
     echo -e "${Yellow}Docker is not installed. Installing...${NC}"
     case $DISTRO in
