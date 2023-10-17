@@ -32,7 +32,6 @@ echo -e " ${Cyan}*${NC} ${Green}Ubuntu 20.04,22.04${NC}"
 echo -e "${Blue}---------------------------------------------------------------${NC}"
 echo -e "${Red}This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try my best to avoid it, but this is a headsup and warning to backup before updating${NC}"
 echo -e "${Blue}---------------------------------------------------------------${NC}"
-echo
 
 
 PS3="Select the what version you want to install:"
@@ -52,7 +51,7 @@ while true; do
                 ## Clear screen for better overview
                 
                 ## Inform the user if the file has already been downloaded
-                echo "$FILE exists."
+                echo "${Red}$FILE exists.${NC}"
                 echo -e "${Red}Do you want to delete the old files and install a new version?${NC}"
                 echo
                 ## Ask the user for action input
@@ -75,7 +74,7 @@ while true; do
                 fi
             else 
                 ## If the files has not been download before
-                echo "$FILE does not exist."
+                echo "${Green}$FILE does not exist.${NC}"
                 ## Clones new files
                 echo
                 echo
@@ -91,8 +90,8 @@ while true; do
                 ## Clear screen for better overview
                 
                 ## Inform the user if the file has already been downloaded
-                echo "$FILE exists."
-                echo "Do you want to delete the old files and install a new version?"
+                echo "${Red}$FILE exists.${NC}"
+                echo "${Red}Do you want to delete the old files and install a new version?${NC}"
                 ## Ask the user for action input
                 read -p "Are you sure? " -n 1 -r
                 ## Move to a new line
@@ -113,7 +112,7 @@ while true; do
                 fi
             else 
                 ## If the files has not been download before
-                echo "$FILE does not exist."
+                echo "${Green}$FILE does not exist.${NC}"
                 ## Clones new files
                 echo
                 echo
@@ -123,9 +122,9 @@ while true; do
             fi 
             break 2;;
             ## When quiting the script
-            $((${#items[@]}+1))) echo "Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information"; break 2;;
+            $((${#items[@]}+1))) echo; echo -e "${Green}Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information"${NC}; break 2;;
             ## Wrong input
-            *) echo "Ooops - unknown choice $REPLY"; break;
+            *) echo -e "${Red}Ooops - unknown choice $REPLY${NC}"; break;
         esac
     done
 done
