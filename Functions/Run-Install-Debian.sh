@@ -1,23 +1,23 @@
 #!/bin/bash
 
 ##### Styles ######
-Black='\003[0;30'     
-DarkGray='\003[1;30'
-Red='\003[0;31'     
-LightRed='\003[1;31'
-Green='\003[0;32'     
-LightGreen='\003[1;32'
-BrownOrange='\003[0;33'     
-Yellow='\003[1;33'
-Blue='\003[0;34'     
-LightBlue='\003[1;34'
-Purple='\003[0;35'     
-LightPurple='\003[1;35'
-Cyan='\003[0;36'     
-LightCyan='\003[1;36'
-LightGray='\003[0;37'     
-White='\003[1;37'
-NC='\033[0m'
+Black='\e[0;30m'
+DarkGray='\e[1;30m'
+Red='\e[0;31m'
+LightRed='\e[1;31m'
+Green='\e[0;32m'
+LightGreen='\e[1;32m'
+BrownOrange='\e[0;33m'
+Yellow='\e[1;33m'
+Blue='\e[0;34m'
+LightBlue='\e[1;34m'
+Purple='\e[0;35m'
+LightPurple='\e[1;35m'
+Cyan='\e[0;36m'
+LightCyan='\e[1;36m'
+LightGray='\e[0;37m'
+White='\e[1;37m'
+NC='\e[0m'  # Reset to default
 ###################
 
 
@@ -25,16 +25,16 @@ bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/F
 echo
 echo
 echo "---------------------------------------------------------------"
-echo -e "The ${RED}Development Version${NC} is undergoing constant updates and changes to the code and will therefor not always work as it should... ${RED}THIS HAS BEEN YOUR WARNING${NC}"
+echo -e "The ${Red}Development Version${NC} is undergoing constant updates and changes to the code and will therefor not always work as it should... ${Red}THIS HAS BEEN YOUR WARNING${NC}"
 echo "--------------------------------------------------------------" 
-echo -e "The ${GREEN}Production Version${NC} will only see massive update and changes to the code" 
+echo -e "The ${Green}Production Version${NC} will only see massive update and changes to the code" 
 echo "When it has been tested and vaildated on:"
 echo
-echo " * Debian 9,10,11"
+echo -e " * ${Green}Debian 9,10,11${NC}"
 echo
-echo " * Ubuntu 20.04,22.04" 
+echo -e " * ${Green}Ubuntu 20.04,22.04${NC}" 
 echo "---------------------------------------------------------------"
-echo 'This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try me best to avoid it, but this is a headsup and warning to backup before updating'
+echo -e "${Green}This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try me best to avoid it, but this is a headsup and warning to backup before updating${NC}"
 echo
 
 
@@ -56,7 +56,7 @@ while true; do
                 
                 ## Inform the user if the file has already been downloaded
                 echo "$FILE exists."
-                echo "Do you want to delete the old files and install a new version?"
+                echo -e "${Red}Do you want to delete the old files and install a new version?{$NC}"
                 echo
                 ## Ask the user for action input
                 read -p "Are you sure? " -n 1 -r
@@ -126,12 +126,18 @@ while true; do
             fi 
             break 2;;
             ## When quiting the script
-            $((${#items[@]}+1))) echo "We're done!"; break 2;;
+            $((${#items[@]}+1))) echo "Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information"; break 2;;
             ## Wrong input
             *) echo "Ooops - unknown choice $REPLY"; break;
         esac
     done
 done
-echo "Installation was successful"
 
-echo 
+FILE1=~/CnC-WebGUI
+FILE2=~/CnC-Agent
+if [[ -d "$FILE1" && "$FILE2"]]; then
+    echo -e "{$Green}Installation seems to have been successful{$NC}"
+else 
+    echo -e "{$Red}Installation seems to have failed{$NC}"
+    echo -e "{$Red}Make sure you are trying to install into ~/ or /root/{$NC}"
+fi 
