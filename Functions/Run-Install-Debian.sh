@@ -136,16 +136,8 @@ githubversion="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/De
 localversion="cat ~/CnC-WebGUI/CnC-WebGUI/.env"
 
 if [ "$localversion" == "$githubversion" ]; then
-    FILE1=~/CnC-WebGUI
-    FILE2=~/CnC-Agent
-
-    if [ -d "$FILE1" ] && [ -d "$FILE2" ]; then
         echo -e "${Green}Installation seems to have been successful${NC}"
     else 
         echo -e "${Red}Installation seems to have failed${NC}"
         echo -e "${Red}Make sure you are trying to install into ~/ or /root/${NC}"
     fi
-else 
-    echo -e "${Red}Installation seems to have failed${NC}"
-    echo -e "${Red}Make sure you are trying to install into ~/ or /root/${NC}"
-fi
