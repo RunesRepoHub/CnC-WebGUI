@@ -540,16 +540,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#docker-images" class="md-nav__link">
-    Docker images
+  <a href="#setup" class="md-nav__link">
+    Setup
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
+  </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-images" class="md-nav__link">
+    Docker images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#install-agent" class="md-nav__link">
     Install Agent
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstall" class="md-nav__link">
+    Uninstall
+  </a>
+  
+    <nav class="md-nav" aria-label="Uninstall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#webgui-server" class="md-nav__link">
+    WebGUI Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents" class="md-nav__link">
+    Agents
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -675,16 +722,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#docker-images" class="md-nav__link">
-    Docker images
+  <a href="#setup" class="md-nav__link">
+    Setup
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
+  </a>
+  
+    <nav class="md-nav" aria-label="Install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-images" class="md-nav__link">
+    Docker images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#install-agent" class="md-nav__link">
     Install Agent
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstall" class="md-nav__link">
+    Uninstall
+  </a>
+  
+    <nav class="md-nav" aria-label="Uninstall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#webgui-server" class="md-nav__link">
+    WebGUI Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agents" class="md-nav__link">
+    Agents
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -708,6 +802,17 @@
 
 <h1 id="cnc-webgui-installation">CnC-WebGUI Installation<a class="headerlink" href="#cnc-webgui-installation" title="Permanent link">&para;</a></h1>
 <p><img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&amp;logo=docker&amp;logoColor=white" /></p>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<ul>
+<li>You have to be root user.</li>
+<li>Make sure to change the hostname before running this.</li>
+<li>Make sure to run.<ol>
+<li>apt-get update</li>
+<li>apt-get upgrade</li>
+</ol>
+</li>
+</ul>
+<h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
 <h3 id="docker-images">Docker images<a class="headerlink" href="#docker-images" title="Permanent link">&para;</a></h3>
 <p>The images has not been made public yet, so if you want to use this right now. You will have to build the images yourself.</p>
 <p>Run this one line command for a automated install.</p>
@@ -723,6 +828,18 @@ This should make the 3 docker images and after they have been made it will use t
 <p>The docker web, api and db containers has to be running.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bash &lt;(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-Agent/Dev/Install-Agent-Only.sh)
 </code></pre></div>
+<h2 id="uninstall">Uninstall<a class="headerlink" href="#uninstall" title="Permanent link">&para;</a></h2>
+<p>I have made it easy to Uninstall aswell.</p>
+<h3 id="webgui-server">WebGUI Server<a class="headerlink" href="#webgui-server" title="Permanent link">&para;</a></h3>
+<p>How to uninstall the dockers and delete all their data on the Web Server?</p>
+<p>Use this one line command to call on a Uninstall.sh script the will do the rest:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>bash ~/CnC-WebGUI/Functions/Uninstall.sh  
+</code></pre></div></p>
+<h3 id="agents">Agents<a class="headerlink" href="#agents" title="Permanent link">&para;</a></h3>
+<p>How to uninstall the Agents and delete all their data on the Server?</p>
+<p>Use this one line command to call on a Uninstall.sh script the will do the rest:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bash ~/CnC-Agent/Uninstall.sh  
+</code></pre></div></p>
 
 
   
