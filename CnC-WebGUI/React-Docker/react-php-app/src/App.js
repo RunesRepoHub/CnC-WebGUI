@@ -7,19 +7,19 @@ function Overview() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://cnc-api:3000/read/all/cronjob')
+    fetch('http://cnc-api:3000/read/cronjob')
       .then((response) => response.json())
       .then((data) => {
         setCronjobData(data);
       });
 
-    fetch('http://cnc-api:3000/read/all/packages')
+    fetch('http://cnc-api:3000/read/packages')
       .then((response) => response.json())
       .then((data) => {
         setPackagesData(data);
       });
 
-    fetch('http://cnc-api:3000/read/all/overview')
+    fetch('http://cnc-api:3000/read/overview')
       .then((response) => response.json())
       .then((data) => {
         setOverviewData(data);
