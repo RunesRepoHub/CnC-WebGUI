@@ -122,12 +122,13 @@ while true; do
 done
 
 
-
-serverinstallcon=$(cat ~/CnC-WebGUI/.serverinstallcon)
-clientinstallcon=$(cat ~/CnC-Agent/.clientinstallcon)
-
-if [ -f "$serverinstallcon" ] && [ -f "$clientinstallcon" ]; then
-    echo -e "${Green}Installation has been successful${NC}"
-else 
+if [ -f ~/CnC-WebGUI/.serverinstallcon ] && [ -f ~/CnC-Agent/.clientinstallcon ]; then
+    echo -e "${Green}Both Agent and Server was installed successful${NC}"
+elif  [ -f ~/CnC-WebGUI/.serverinstallcon ]; then
+    echo -e "${Green}The Server was installed successful${NC}"
+elif  [ -f ~/CnC-Agent/.clientinstallcon ]; then
+    echo -e "${Green}The Agent was installed successful${NC}"
+else
     echo -e "${Red}Installation has failed${NC}"
 fi
+

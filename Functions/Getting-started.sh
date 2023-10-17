@@ -47,10 +47,10 @@ while true; do
             echo
             git clone --branch Dev https://github.com/RunesRepoHub/CnC-Agent.git;
             ## Runs the installation script
-            bash ~/CnC-Agent/Install-Agent.sh;
-            fi; 
             wget -O ~/CnC-Agent/config.sh "$get_config_url" > /dev/null 2>&1;
-            bash "$Install_Agent"; break 2;;  
+            bash ~/CnC-Agent/Install-Agent.sh; 
+            bash "$Install_Agent";
+            fi; break 2;;  
             3) bash "$Uninstall"; break 2;;  
             $((${#items[@]}+1))) echo "We're done!"; break 2;;
             *) echo "Oops - unknown choice $REPLY"; break;
