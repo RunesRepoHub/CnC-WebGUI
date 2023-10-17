@@ -4,7 +4,7 @@
 Version="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-WebGUI/.env | sed 's/.\{8\}//'"
 
 # Global Variables
-dbip="/root/CnC-WebGUI/CnC-Agent/.databaseip"
+dbip="/root/CnC-Agent/.databaseip"
 
 # Getting-started.sh
 CnC_Image_Builder="/root/CnC-WebGUI/Functions/CnC-Image-Builder.sh"
