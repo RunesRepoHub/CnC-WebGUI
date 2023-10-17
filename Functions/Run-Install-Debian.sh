@@ -1,11 +1,33 @@
 #!/bin/bash
+
+##### Styles ######
+Black='\003[0;30'     
+DarkGray='\003[1;30'
+Red='\003[0;31'     
+LightRed='\003[1;31'
+Green='\003[0;32'     
+LightGreen='\003[1;32'
+BrownOrange='\003[0;33'     
+Yellow='\003[1;33'
+Blue='\003[0;34'     
+LightBlue='\003[1;34'
+Purple='\003[0;35'     
+LightPurple='\003[1;35'
+Cyan='\003[0;36'     
+LightCyan='\003[1;36'
+LightGray='\003[0;37'     
+White='\003[1;37'
+NC='\033[0m'
+###################
+
+
 bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/docker-install-script.sh)
 echo
 echo
 echo "---------------------------------------------------------------"
-echo "The Development Version is undergoing constant updates and changes to the code and will therefor not always work as it should... THIS HAS BEEN YOUR WARNING"
+printf "The ${RED}Development Version${NC} is undergoing constant updates and changes to the code and will therefor not always work as it should... ${RED}THIS HAS BEEN YOUR WARNING${NC}\n"
 echo "--------------------------------------------------------------" 
-echo "The Production Version will only see massive update and changes to the code" 
+printf "The ${GREEN}Production Version${NC} will only see massive update and changes to the code\n" 
 echo "When it has been tested and vaildated on:"
 echo
 echo " * Debian 9,10,11"
@@ -110,5 +132,6 @@ while true; do
         esac
     done
 done
-echo "---------------------------------------------------------------"
+echo "Installation was successful"
+
 echo 
