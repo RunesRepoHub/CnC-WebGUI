@@ -25,3 +25,25 @@ The docker web, api and db containers has to be running.
 ```
 bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-Agent/Dev/Install-Agent-Only.sh)
 ```
+
+## Uninstall 
+
+I have made it easy to Uninstall aswell.
+
+### WebGUI Server
+
+How to uninstall the dockers and delete all their data on the Web Server?
+
+Use this one line command to call on a Uninstall.sh script the will do the rest:
+```
+bash ~/CnC-WebGUI/Functions/Uninstall.sh  
+```
+
+### Agents
+
+How to uninstall the Agents and delete all their data on the Server?
+
+Use this one line command to call on a Uninstall.sh script the will do the rest:
+```
+bash ~/CnC-Agent/Uninstall.sh  
+```
