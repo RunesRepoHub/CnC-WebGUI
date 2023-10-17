@@ -147,6 +147,6 @@ if [[ "$clientinstallcon" == "yes" && "$serverinstallcon" == "yes" ]]; then
         echo -e "${Red}Both Agent and Server has not been installed yet${NC}"
 
         else
-        echo "A Error has ouccured"
+        echo -e "${Red}A Error has ouccured${NC}"
         fi
     fi
