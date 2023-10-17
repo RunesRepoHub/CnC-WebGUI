@@ -134,19 +134,13 @@ done
 serverinstallcon="cat ~/CnC-WebGUI/.serverinstallcon"
 clientinstallcon="cat ~/CnC-Agent/.clientinstallcon"
 
+if [ -f "$serverinstallcon" ] && [ -f "$clientinstallcon" ]; then
+
 if [[ "$clientinstallcon" == "yes" && "$serverinstallcon" == "yes" ]]; then
         echo -e "${Green}Installation has been successful${NC}"
     else 
-        if [ "$serverinstallcon" == "cat: /root/CnC-WebGUI/.serverinstallcon: Ingen sådan fil eller filkatalog" ]; then
-        echo -e "${Red}Server has not been installed yet${NC}"
-
-        elif [ "$clientinstallcon" == "cat: /root/CnC-WebGUI/.serverinstallcon: Ingen sådan fil eller filkatalog" ]; then 
-        echo -e "${Red}Agent has not been installed yet${NC}"
-        
-        elif [[ "$clientinstallcon" == "cat: /root/CnC-WebGUI/.serverinstallcon: Ingen sådan fil eller filkatalog" && "$serverinstallcon" == "cat: /root/CnC-WebGUI/.serverinstallcon: Ingen sådan fil eller filkatalog" ]]; then 
-        echo -e "${Red}Both Agent and Server has not been installed yet${NC}"
-
-        else
-        echo -e "${Red}A Error has ouccured${NC}"
-        fi
+        echo -e "${Green}Installation has failed${NC}"
     fi
+else 
+    echo -e "${Green}Installation has aborted${NC}"
+fi
