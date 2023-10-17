@@ -133,11 +133,12 @@ while true; do
         esac
     done
 done
-
+githubversion="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-WebGUI/.env"
+localversion="cat ~/CnC-WebGUI/Dev/CnC-WebGUI/.env"
 FILE1=~/CnC-WebGUI
 FILE2=~/CnC-Agent
 
-if [[ -d "$FILE1" && -d "$FILE2" ]]; then
+if [[ -d "$FILE1" && -d "$FILE2" && "$localversion" == "$githubversion"]]; then
     echo -e "${Green}Installation seems to have been successful${NC}"
 else 
     echo -e "${Red}Installation seems to have failed${NC}"
