@@ -127,11 +127,7 @@ serverinstallcon=$(cat ~/CnC-WebGUI/.serverinstallcon)
 clientinstallcon=$(cat ~/CnC-Agent/.clientinstallcon)
 
 if [ -f "$serverinstallcon" ] && [ -f "$clientinstallcon" ]; then
-    if [ "$clientinstallcon" == "yes" ] && [ "$serverinstallcon" == "yes" ]; then
-        echo -e "${Green}Installation has been successful${NC}"
-    else 
-        echo -e "${Red}Installation has failed${NC}"
-    fi
+    echo -e "${Green}Installation has been successful${NC}"
 else 
-    echo -e "${Red}Installation has aborted${NC}"
+    echo -e "${Red}Installation has failed${NC}"
 fi
