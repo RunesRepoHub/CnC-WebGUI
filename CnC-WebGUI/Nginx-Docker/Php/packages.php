@@ -11,10 +11,10 @@ if ($data === false) {
 }
 
 // Parse the JSON data
-$cronjobs = json_decode($data, true);
+$packagesData = json_decode($data, true);
 
 // Check if the JSON was successfully parsed
-if ($cronjobs === null) {
+if ($packagesData === null) {
     die("Failed to parse JSON data.");
 }
 
@@ -76,8 +76,7 @@ if ($cronjobs === null) {
             <th>containerd</th>
         </tr>
         <?php
-        // Assuming $result contains the data from your context
-        while ($row = pg_fetch_assoc($result)) {
+        foreach ($packagesData as $row) {
             echo "<tr>";
             echo "<td>" . $row['hostname'] . "</td>";
             echo "<td>" . $row['git'] . "</td>";
@@ -85,11 +84,11 @@ if ($cronjobs === null) {
             echo "<td>" . $row['sudo'] . "</td>";
             echo "<td>" . $row['python'] . "</td>";
             echo "<td>" . $row['python3'] . "</td>";
-            echo "<td>" . $row['nettools'] . "</td>";
+            echo "<td>" . $row['net-tools'] . "</td>";
             echo "<td>" . $row['mysql'] . "</td>";
             echo "<td>" . $row['libpython'] . "</td>";
-            echo "<td>" . $row['dockercecli'] . "</td>";
-            echo "<td>" . $row['dockercomposeplugin'] . "</td>";
+            echo "<td>" . $row['docker-ce-cli'] . "</td>";
+            echo "<td>" . $row['docker-compose-plugin'] . "</td>";
             echo "<td>" . $row['curl'] . "</td>";
             echo "<td>" . $row['containerd'] . "</td>";
             echo "</tr>";
