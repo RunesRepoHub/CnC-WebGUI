@@ -24,23 +24,24 @@ NC='\e[0m'  # Reset to default
 bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/docker-install-script.sh)
 echo
 echo
-echo "---------------------------------------------------------------"
+echo -e "${Blue}---------------------------------------------------------------${NC}"
 echo -e "The ${Red}Development Version${NC} is undergoing constant updates and changes to the code and will therefor not always work as it should... ${Red}THIS HAS BEEN YOUR WARNING${NC}"
-echo "--------------------------------------------------------------" 
+echo -e "${Blue}--------------------------------------------------------------${NC}" 
 echo -e "The ${Green}Production Version${NC} will only see massive update and changes to the code" 
 echo "When it has been tested and vaildated on:"
 echo
 echo -e " * ${Green}Debian 9,10,11${NC}"
 echo
 echo -e " * ${Green}Ubuntu 20.04,22.04${NC}" 
-echo "---------------------------------------------------------------"
+echo -e "${Blue}---------------------------------------------------------------${NC}"
 echo -e "${Green}This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try me best to avoid it, but this is a headsup and warning to backup before updating${NC}"
+echo -e "${Blue}---------------------------------------------------------------${NC}"
 echo
 
 
 PS3="Select the what version you want to install:"
 
-items=("Development" "Production")
+items=("\e[0;31mDevelopment\e[0m" "\e[0;32mProduction\e[0m")
 
 ## Select Version of code to download
 
@@ -56,7 +57,7 @@ while true; do
                 
                 ## Inform the user if the file has already been downloaded
                 echo "$FILE exists."
-                echo -e "${Red}Do you want to delete the old files and install a new version?{$NC}"
+                echo -e "${Red}Do you want to delete the old files and install a new version?${NC}"
                 echo
                 ## Ask the user for action input
                 read -p "Are you sure? " -n 1 -r
@@ -135,9 +136,10 @@ done
 
 FILE1=~/CnC-WebGUI
 FILE2=~/CnC-Agent
-if [[ -d "$FILE1" && "$FILE2"]]; then
-    echo -e "{$Green}Installation seems to have been successful{$NC}"
+
+if [[ -d "$FILE1" && -d "$FILE2" ]]; then
+    echo -e "${Green}Installation seems to have been successful${NC}"
 else 
-    echo -e "{$Red}Installation seems to have failed{$NC}"
-    echo -e "{$Red}Make sure you are trying to install into ~/ or /root/{$NC}"
-fi 
+    echo -e "${Red}Installation seems to have failed${NC}"
+    echo -e "${Red}Make sure you are trying to install into ~/ or /root/${NC}"
+fi

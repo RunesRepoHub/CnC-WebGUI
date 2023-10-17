@@ -76,12 +76,12 @@ install_docker_compose() {
 
 # Check if Docker is already installed
 if [ -x "$(command -v docker)" ]; then
-    echo -e "{$Green}Docker is already installed.{$NC}"
-    echo -e "{$Yellow}Updating Docker...{$NC}"
+    echo -e "${Green}Docker is already installed.${NC}"
+    echo -e "${Yellow}Updating Docker...${NC}"
     apt-get update
     apt-get upgrade -y
 else
-    echo -e "{$Yellow}Docker is not installed. Installing...{$NC}"
+    echo -e "${Yellow}Docker is not installed. Installing...${NC}"
     case $DISTRO in
         "Ubuntu") install_docker_ubuntu ;;
         "Debian") install_docker_debian ;;
@@ -99,6 +99,6 @@ echo
 docker --version
 docker-compose --version
 
-echo "{$Green}Docker and Docker Compose installation completed.{$NC}"
+echo -e "${Green}Docker and Docker Compose installation completed.${NC}"
 
 exit 0
