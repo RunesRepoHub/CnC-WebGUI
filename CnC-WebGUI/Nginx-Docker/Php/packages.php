@@ -84,11 +84,11 @@ if ($packagesData === null) {
             echo "<td>" . $row['sudo'] . "</td>";
             echo "<td>" . $row['python'] . "</td>";
             echo "<td>" . $row['python3'] . "</td>";
-            echo "<td>" . $row['net-tools'] . "</td>";
+            echo "<td>" . $row['nettools'] . "</td>";
             echo "<td>" . $row['mysql'] . "</td>";
             echo "<td>" . $row['libpython'] . "</td>";
-            echo "<td>" . $row['docker-ce-cli'] . "</td>";
-            echo "<td>" . $row['docker-compose-plugin'] . "</td>";
+            echo "<td>" . $row['dockercecli'] . "</td>";
+            echo "<td>" . $row['dockercomposeplugin'] . "</td>";
             echo "<td>" . $row['curl'] . "</td>";
             echo "<td>" . $row['containerd'] . "</td>";
             echo "</tr>";
