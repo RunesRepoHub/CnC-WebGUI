@@ -23,7 +23,39 @@ if ($packagesData === null) {
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            
+        }
+
+        h1 {
+            
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+    </style>
 </head>
 <body>
     <h1>Packages</h1>
