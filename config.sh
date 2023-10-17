@@ -1,7 +1,13 @@
 #!/bin/bash
 
+###### WARNING ######
+# This needs to be  #
+# changed when push #
+# to Production     #
+#####################
 # Version tag
 Version="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-WebGUI/.env | sed 's/.\{8\}//'"
+#####################
 
 # Global Variables
 dbip="/root/CnC-Agent/.databaseip"
@@ -23,8 +29,15 @@ cron_cron="/root/CnC-Agent/Debian-Scripts/Cronjob.sh"
 # Install-Agent.sh
 deb_ins="/root/CnC-Agent/Debian-Installer.sh"
 
+###### WARNING ######
+# This needs to be  #
+# changed when push #
+# to Production     #
+#####################
 # Check-OS.sh
 deb_url_ins="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/Functions/Run-Install-Debian.sh"
+#####################
+
 
 # CnC-Image-Builder.sh
 ver_path="/root/CnC-WebGUI/CnC-WebGUI/.env"
@@ -38,3 +51,11 @@ get_start="/root/CnC-WebGUI/Functions/Getting-started.sh"
 
 # Agent install repo url
 repo_url_ins="https://github.com/RunesRepoHub/CnC-Agent.git"
+
+###### WARNING ######
+# This needs to be  #
+# changed when push #
+# to Production     #
+#####################
+get_config_url="https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/config.sh"
+#####################
