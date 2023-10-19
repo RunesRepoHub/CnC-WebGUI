@@ -27,6 +27,11 @@ th, td {
 th {
   background-color: #5e0000;
   font-weight: bold;
+  width: 150px;
+}
+
+td {
+  width: 150px;
 }
 
 tr:nth-child(even) {
