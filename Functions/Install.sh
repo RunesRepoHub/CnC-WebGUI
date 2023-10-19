@@ -160,7 +160,7 @@ else
 fi
 
 
-
+rm /root/.softwaremode
 
 if [ -f ~/CnC-WebGUI/.serverinstallcon ] && [ -f ~/CnC-Agent/.clientinstallcon ]; then
     echo -e "${Green}Both Agent and Server was installed successful${NC}"
