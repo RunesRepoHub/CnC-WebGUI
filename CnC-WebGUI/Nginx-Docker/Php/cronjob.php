@@ -33,12 +33,12 @@ if ($cronjobs === null) {
             table = document.getElementById("cronjobsTable");
             tr = table.getElementsByTagName("tr");
             for (i = 1; i < tr.length; i++) {
-                tr[i].style.display = "none"; // Hide all rows initially
+                tr[i].style.display = "none"; // Hide all data rows initially
                 td = tr[i].getElementsByTagName("td");
                 for (j = 0; j < td.length; j++) {
                     txtValue = td[j].textContent || td[j].innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = ""; // Show the row if a match is found
+                        tr[i].style.display = ""; // Show the data row if a match is found
                         break; // No need to check other columns
                     }
                 }
@@ -47,27 +47,33 @@ if ($cronjobs === null) {
     </script>
 </head>
 <body>
-  <div class="overskift">
-  <h1>Cronjobs</h1>
-  <a href="../Php/packages.php">Packages</a>
-  <a href="../Php/cronjob.php">Cronjobs</a>
-  <a href="../Php/overview.php">Overview</a>
-  <br>
-  <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for Cronjobs...">
-  </div>
-    
+    <div class="overskift">
+        <h1>Cronjobs</h1>
+        <a href="../Php/packages.php">Packages</a>
+        <a href="../Php/cronjob.php">Cronjobs</a>
+        <a href="../Php/overview.php">Overview</a>
+        <br>
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for Cronjobs...">
+    </div>
 
-    <table id="cronjobsTable">
-        <tr>
-            <th>Hostname</th>
-            <th>Cronjob Script</th>
-        </tr>
-        <?php foreach ($cronjobs as $cronjob): ?>
+    <div class="table-container">
+        <!-- Table for headers -->
+        <table id="cronjobsTable">
             <tr>
-                <td><?php echo $cronjob['hostname']; ?></td>
-                <td><?php echo $cronjob['cronjobsscripts']; ?></td>
+                <th>Hostname</th>
+                <th>Cronjob Script</th>
             </tr>
-        <?php endforeach; ?>
-    </table>
+        </table>
+
+        <!-- Table for data rows -->
+        <table id="cronjobsData">
+            <?php foreach ($cronjobs as $cronjob): ?>
+                <tr>
+                    <td><?php echo $cronjob['hostname']; ?></td>
+                    <td><?php echo $cronjob['cronjobsscripts']; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
 </body>
 </html>

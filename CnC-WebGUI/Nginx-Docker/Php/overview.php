@@ -29,16 +29,16 @@ if ($cronjobs === null) {
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById("searchInput");
             filter = input.value.toUpperCase();
-            table = document.getElementById("overviewTable");
+            table = document.getElementById("overviewData"); // Use a separate table for data rows
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                tr[i].style.display = "none"; // Hide all rows by default
+                tr[i].style.display = "none"; // Hide all data rows by default
                 td = tr[i].getElementsByTagName("td")[0]; // Change the index to match the column you want to search
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = ""; // Display the row if a match is found
+                        tr[i].style.display = ""; // Display the data row if a match is found
                     }
                 }
             }
@@ -54,25 +54,31 @@ if ($cronjobs === null) {
         <br>
         <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for Hostname...">
     </div>
-    
 
-    <table id="overviewTable">
-        <tr>
-            <th>Hostname</th>
-            <th>IP Address</th>
-            <th>MAC Address</th>
-            <th>Distro</th>
-            <th>Package Updates</th>
-        </tr>
-        <?php foreach ($cronjobs as $cronjob): ?>
+    <div class="table-container">
+        <!-- Table for headers -->
+        <table id="overviewTable">
             <tr>
-                <td><?php echo $cronjob['hostname']; ?></td>
-                <td><?php echo $cronjob['ipaddress']; ?></td>
-                <td><?php echo $cronjob['macaddress']; ?></td>
-                <td><?php echo $cronjob['distro']; ?></td>
-                <td><?php echo $cronjob['packages']; ?></td>
+                <th>Hostname</th>
+                <th>IP Address</th>
+                <th>MAC Address</th>
+                <th>Distro</th>
+                <th>Package Updates</th>
             </tr>
-        <?php endforeach; ?>
-    </table>
+        </table>
+
+        <!-- Table for data rows -->
+        <table id="overviewData">
+            <?php foreach ($cronjobs as $cronjob): ?>
+                <tr>
+                    <td><?php echo $cronjob['hostname']; ?></td>
+                    <td><?php echo $cronjob['ipaddress']; ?></td>
+                    <td><?php echo $cronjob['macaddress']; ?></td>
+                    <td><?php echo $cronjob['distro']; ?></td>
+                    <td><?php echo $cronjob['packages']; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
 </body>
 </html>
