@@ -35,13 +35,15 @@ if ($packagesData === null) {
     <table>
         <tr>
             <th>Hostname</th>
-            <th>packages</th>
+            <th>Package Name</th>
+            <th>Package Version</th>
         </tr>
         <?php
         foreach ($packagesData as $row) {
             echo "<tr>";
             echo "<td>" . $row['hostname'] . "</td>";
-            echo "<td>" . $row['packages'] . "</td>";
+            echo "<td>" . $row['packagename'] . "</td>";
+            echo "<td>" . $row['packageversion'] . "</td>";
         }
         ?>
     </table>

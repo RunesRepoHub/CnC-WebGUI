@@ -18,7 +18,8 @@ CREATE TABLE hostnames (
 CREATE TABLE packages (
   id serial PRIMARY KEY,
   hostname varchar(255) NOT NULL,
-  packages text
+  packagename text,
+  packageversion text
 );
 
 -- Create the 'cronjobs' table
@@ -31,6 +32,3 @@ CREATE TABLE cronjobs (
 
 ALTER TABLE cronjobs
 ADD CONSTRAINT unique_hostname_script UNIQUE (hostname, cronjobsscripts);
-
-ALTER TABLE packages
-ADD CONSTRAINT unique_packages_script UNIQUE (hostname, packages);
