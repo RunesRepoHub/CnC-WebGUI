@@ -18,7 +18,7 @@ table {
 
 th, td {
   padding: 12px;
-  text-align: left;
+  text-align: center;
   border: 1px solid #555; /* Add border lines between cells */
 }
 
@@ -223,7 +223,7 @@ img {
 }
 
 .table-container {
-  width: 80%;
+  width: 60%;
   margin: 20px auto;
 }
 
