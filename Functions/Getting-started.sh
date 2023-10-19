@@ -3,9 +3,6 @@
 # Source the configuration script
 source ~/CnC-WebGUI/config.sh
 
-echo 
-echo
-
 PS3="Select what you want to install on this server:"
 
 items=("Server" "Agent" "Uninstall CnC-WebGUI")
