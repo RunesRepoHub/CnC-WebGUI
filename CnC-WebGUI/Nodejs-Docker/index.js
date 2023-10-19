@@ -68,6 +68,13 @@ app.get('/read/:table/:hostname', (req, res) => {
   handleDatabaseOperationSingle(query, [hostname], res);
 });
 
+app.get('/read/:table/:hostname/:package', (req, res) => {
+  const { table, hostname, package } = req.params;
+  const query = `SELECT * FROM ${table} WHERE hostname = $1 AND packagename = $2`;
+
+  handleDatabaseOperationSingle(query, [hostname, package], res);
+});
+
 // Update an item (Generic function for different tables)
 app.put('/update/packages/:hostname', (req, res) => {
   const { hostname } = req.params;
