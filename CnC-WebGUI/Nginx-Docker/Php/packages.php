@@ -1,3 +1,24 @@
+<?php
+// API endpoint URL
+$apiUrl = "http://cnc-api:3000/read/packages";
+
+// Fetch data from the API
+$data = file_get_contents($apiUrl);
+
+// Check if the request was successful
+if ($data === false) {
+    die("Failed to fetch data from the API.");
+}
+
+// Parse the JSON data
+$packagesData = json_decode($data, true);
+
+// Check if the JSON was successfully parsed
+if ($packagesData === null) {
+    die("Failed to parse JSON data.");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
