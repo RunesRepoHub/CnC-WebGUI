@@ -188,7 +188,7 @@ img {
 
 /* Style for the search bar */
 #searchInput {
-  width: 100%;
+  width: 60%;
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
@@ -199,6 +199,13 @@ img {
 #searchInput:focus {
   outline: none;
   border-color: #007bff;
+}
+
+#cronjobsTable {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px; /* Adjust the border-radius value to control roundness */
+  overflow: hidden; /* Hides content outside the rounded corners */
 }
 
 
