@@ -17,6 +17,7 @@ $packagesData = json_decode($data, true);
 if ($packagesData === null) {
     die("Failed to parse JSON data.");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -34,18 +35,13 @@ if ($packagesData === null) {
     <table>
         <tr>
             <th>Hostname</th>
-            <th>Packages</th>
+            <th>packages</th>
         </tr>
         <?php
         foreach ($packagesData as $row) {
             echo "<tr>";
             echo "<td>" . $row['hostname'] . "</td>";
-            echo "<td><ul>";
-            foreach ($row['packages'] as $package => $version) {
-                echo "<li><strong>$package:</strong> $version</li>";
-            }
-            echo "</ul></td>";
-            echo "</tr>";
+            echo "<td>" . $row['packages'] . "</td>";
         }
         ?>
     </table>
