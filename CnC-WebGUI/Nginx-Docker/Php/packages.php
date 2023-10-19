@@ -56,6 +56,7 @@ if ($packagesData === null) {
         <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for packages...">
     </div>
 
+<div class="table-container">
     <!-- Create a separate table for headers -->
     <table id="packagesTable">
         <tr>
@@ -77,5 +78,6 @@ if ($packagesData === null) {
         }
         ?>
     </table>
+    </div>
 </body>
 </html>
