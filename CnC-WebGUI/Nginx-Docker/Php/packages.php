@@ -52,8 +52,10 @@ if ($packagesData === null) {
         <a href="../Php/packages.php">Packages</a>
         <a href="../Php/cronjob.php">Cronjobs</a>
         <a href="../Php/overview.php">Overview</a>
+        <br>
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for packages...">
     </div>
-    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for packages...">
+    
 
     <table id="packageTable">
         <tr>

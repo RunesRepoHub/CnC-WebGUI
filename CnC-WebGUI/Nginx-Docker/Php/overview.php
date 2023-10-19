@@ -51,8 +51,10 @@ if ($cronjobs === null) {
         <a href="../Php/packages.php">Packages</a>
         <a href="../Php/cronjob.php">Cronjobs</a>
         <a href="../Php/overview.php">Overview</a>
+        <br>
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for Hostname...">
     </div>
-    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for Hostname...">
+    
 
     <table id="cronjobTable">
         <tr>
