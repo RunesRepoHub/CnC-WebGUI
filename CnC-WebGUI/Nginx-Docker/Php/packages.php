@@ -29,7 +29,7 @@ if ($packagesData === null) {
             var input, filter, table, tr, td, i, j, txtValue;
             input = document.getElementById("searchInput");
             filter = input.value.toUpperCase();
-            table = document.getElementById("packagesTable"); // Corrected table ID
+            table = document.getElementById("dataTable"); // Use a separate table for data rows
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
@@ -55,14 +55,18 @@ if ($packagesData === null) {
         <br>
         <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for packages...">
     </div>
-    
 
-    <table id="packagesTable"> <!-- Corrected table ID -->
+    <!-- Create a separate table for headers -->
+    <table id="headerTable">
         <tr>
             <th>Hostname</th>
             <th>Package Name</th>
             <th>Status</th>
         </tr>
+    </table>
+    
+    <!-- Create a separate table for data rows -->
+    <table id="dataTable">
         <?php
         foreach ($packagesData as $row) {
             echo "<tr>";
