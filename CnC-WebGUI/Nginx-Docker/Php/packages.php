@@ -57,7 +57,7 @@ if ($packagesData === null) {
     </div>
 
     <!-- Create a separate table for headers -->
-    <table id="headerTable">
+    <table id="packagesTable">
         <tr>
             <th>Hostname</th>
             <th>Package Name</th>
