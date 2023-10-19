@@ -18,8 +18,7 @@ CREATE TABLE hostnames (
 CREATE TABLE packages (
   id serial PRIMARY KEY,
   hostname varchar(255) NOT NULL,
-  packagename text,
-  packageversion text
+  package text
 );
 
 -- Create the 'cronjobs' table
