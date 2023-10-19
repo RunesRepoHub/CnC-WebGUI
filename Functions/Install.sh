@@ -60,16 +60,16 @@ select_mode() {
             "Development")
                 echo "You selected Development mode."
                 softwaremode="Dev"
-                touch "/root/CnC-WebGUI/.softwaremode"
-                echo "$softwaremode" > "/root/CnC-WebGUI/.softwaremode"
+                touch "/root/.softwaremode"
+                echo "$softwaremode" > "/root/.softwaremode"
                 export softwaremode
                 return
                 ;;
             "Production")
                 echo "You selected Production mode."
                 softwaremode="Production"
-                touch "/root/CnC-WebGUI/.softwaremode"
-                echo "$softwaremode" > "/root/CnC-WebGUI/.softwaremode"
+                touch "/root/.softwaremode"
+                echo "$softwaremode" > "/root/.softwaremode"
                 export softwaremode
                 return
                 ;;

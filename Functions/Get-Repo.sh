@@ -1,4 +1,4 @@
-softwaremode=$(cat "/root/CnC-WebGUI/.softwaremode")
+softwaremode=$(cat "/root/.softwaremode")
 FILE=~/CnC-WebGUI
 if [ -d "$FILE" ]; then
     ## Clear screen for better overview
