@@ -31,3 +31,6 @@ CREATE TABLE cronjobs (
 
 ALTER TABLE cronjobs
 ADD CONSTRAINT unique_hostname_script UNIQUE (hostname, cronjobsscripts);
+
+ALTER TABLE packages
+ADD CONSTRAINT unique_packages_script UNIQUE (hostname, packages);
