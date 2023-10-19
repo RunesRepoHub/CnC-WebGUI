@@ -79,6 +79,23 @@ app.put('/update/packages/:hostname', (req, res) => {
   handleDatabaseOperationSingle(query, values, res);
 });
 
+// Update an item (Generic function for different tables)
+app.put('/update/packages/:hostname/:package', (req, res) => {
+  const { hostname, package } = req.params;
+  const data = req.body;
+  const columns = Object.keys(data);
+
+  // Check if the 'package' parameter matches any column name
+  if (columns.includes(package)) {
+    const query = `UPDATE packages SET ${columns.map((col, index) => `${col} = $${index + 1}`).join(', ')} WHERE hostname = $${columns.length + 1} RETURNING *`;
+    const values = [...Object.values(data), hostname];
+
+    handleDatabaseOperationSingle(query, values, res);
+  } else {
+    res.status(400).json({ error: 'The specified package is not in the columns.' });
+  }
+});
+
 // Update an item for "info" table
 app.put('/update/info/:hostname', (req, res) => {
   const { hostname } = req.params;
