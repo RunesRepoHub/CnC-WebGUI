@@ -22,7 +22,7 @@ Run this one line command for a automated install.
 This command will install docker, docker cli and docker compose, and when docker has been installed or updated, then the installation script will start running.
 
 ```
-bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Production/Functions/Check-OS.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Production/Functions/Install.sh)
 ```
 This should make the 3 docker images and after they have been made it will use the docker-compose file to start the 3 dockers. When the 3 dockers are up and running, check the you don't have errors on the website.
 
