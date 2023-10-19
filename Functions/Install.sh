@@ -120,28 +120,28 @@ user=$(id -u -n)
 if [[ $OS == "Debian GNU/Linux" && $VER == "10" ]]; then
     
     ## Run Debian Installer
-    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/CnC-WebGUI/Functions/Get-Repo.sh
+    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/CnC-WebGUI/Functions/Get-Repo.sh)
 
 
 ## Check if OS is Debian 10     
 elif [[ $OS == "Debian GNU/Linux" && $VER == "11" ]]; then
     
     ## Run Debian Installer
-    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/Get-Repo.sh
+    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/Get-Repo.sh)
 
 
 ## Check if OS is Ubuntu 22.04 and root user
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user == "root" ]]; then
     
     ## Run Debian Installer
-    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/Get-Repo.sh
+    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/Get-Repo.sh)
 
 
 ## Check if OS is Ubuntu 22.04 and "normal user"
 elif [[ $OS == "Ubuntu" && $VER == "22.04" && $user != "root" ]]; then
     
     ## Run Ubuntu Installer
-    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/Get-Repo.sh
+    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/Get-Repo.sh)
 
 ## Check if user is root
 elif [[ $user != "root" ]]; then 
