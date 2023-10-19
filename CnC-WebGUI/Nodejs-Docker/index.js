@@ -118,7 +118,7 @@ function logError(error) {
 app.get('/read/:table', (req, res) => {
   const { table } = req.params;
   const query = `SELECT * FROM ${table}`; // Use backticks for template literals
-  handleDatabaseOperationAll(query, [], res, ''); // Pass the table name for better error messages
+  handleDatabaseOperationAll(query, [], res, 'cronjobs'); // Pass the table name for better error messages
 });
 
 
