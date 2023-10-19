@@ -47,6 +47,7 @@ echo
 echo -e " ${Cyan}*${NC} ${Green}Ubuntu 20.04,22.04${NC}" 
 echo -e "${Blue}---------------------------------------------------------------${NC}"
 echo -e "${Red}This "software" is in "early access" so the will be a high likelyness of data loss when updating I will try my best to avoid it, but this is a headsup and warning to backup before updating${NC}"
+echo
 echo -e "${LightRed}Use this at your own risk, I am not a programmer so there might be some oversights, when it comes to security and scalability.${NC}"
 echo -e "${Blue}---------------------------------------------------------------${NC}"
 
@@ -59,16 +60,16 @@ select_mode() {
             "Development")
                 echo "You selected Development mode."
                 softwaremode="Dev"
-                touch "/root/CnC-WebGUI/.Dev"
-                echo "$softwaremode" > "/root/CnC-WebGUI/.Dev"
+                touch "/root/CnC-WebGUI/.softwaremode"
+                echo "$softwaremode" > "/root/CnC-WebGUI/.dev"
                 export softwaremode
                 return
                 ;;
             "Production")
                 echo "You selected Production mode."
                 softwaremode="Production"
-                touch "/root/CnC-WebGUI/.Production"
-                echo "$softwaremode" > "/root/CnC-WebGUI/.Production"
+                touch "/root/CnC-WebGUI/.softwaremode"
+                echo "$softwaremode" > "/root/CnC-WebGUI/.production"
                 export softwaremode
                 return
                 ;;
