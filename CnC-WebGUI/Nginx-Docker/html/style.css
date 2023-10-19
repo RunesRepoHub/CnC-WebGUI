@@ -208,6 +208,20 @@ img {
   overflow: hidden; /* Hides content outside the rounded corners */
 }
 
+#overviewTable {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px; /* Adjust the border-radius value to control roundness */
+  overflow: hidden; /* Hides content outside the rounded corners */
+}
+
+#packagesTable {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 10px; /* Adjust the border-radius value to control roundness */
+  overflow: hidden; /* Hides content outside the rounded corners */
+}
+
 
   
 @media only screen and (max-width: 620px) {

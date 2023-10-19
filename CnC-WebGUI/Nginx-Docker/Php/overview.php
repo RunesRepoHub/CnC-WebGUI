@@ -56,7 +56,7 @@ if ($cronjobs === null) {
     </div>
     
 
-    <table id="cronjobTable">
+    <table id="overviewTable">
         <tr>
             <th>Hostname</th>
             <th>IP Address</th>

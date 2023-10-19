@@ -57,7 +57,7 @@ if ($packagesData === null) {
     </div>
     
 
-    <table id="packageTable">
+    <table id="packagesTable">
         <tr>
             <th>Hostname</th>
             <th>Package Name</th>
