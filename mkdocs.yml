@@ -12,6 +12,7 @@ nav:
         - How to Install CnC-WebGUI: 'install.md'
       - Understand The Source Code:
         - The CRUD API Docker: 'crud.md'
+        - The Change Log: 'changelog.md'
 theme:
   icon:
       logo: fontawesome/brands/gitkraken

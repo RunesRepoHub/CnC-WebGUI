@@ -29,7 +29,7 @@ if ($packagesData === null) {
             var input, filter, table, tr, td, i, j, txtValue;
             input = document.getElementById("searchInput");
             filter = input.value.toUpperCase();
-            table = document.getElementById("packageTable");
+            table = document.getElementById("packagesTable"); // Corrected table ID
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
@@ -57,7 +57,7 @@ if ($packagesData === null) {
     </div>
     
 
-    <table id="packagesTable">
+    <table id="packagesTable"> <!-- Corrected table ID -->
         <tr>
             <th>Hostname</th>
             <th>Package Name</th>
