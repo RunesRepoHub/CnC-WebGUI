@@ -22,6 +22,7 @@ th, td {
   padding: 12px;
   text-align: center;
   border: 1px solid #555; /* Add border lines between cells */
+  width: fit-content;
 }
 
 th {
