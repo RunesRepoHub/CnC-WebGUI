@@ -18,18 +18,7 @@ CREATE TABLE hostnames (
 CREATE TABLE packages (
   id serial PRIMARY KEY,
   hostname varchar(255) NOT NULL,
-  git varchar(255),
-  wget varchar(255),
-  sudo varchar(255),
-  python varchar(255),
-  python3 varchar(255),
-  nettools varchar(255),
-  mysql varchar(255),
-  libpython varchar(255),
-  dockercecli varchar(255),
-  dockercomposeplugin varchar(255),
-  curl varchar(255),
-  containerd varchar(255)
+  packages text
 );
 
 -- Create the 'cronjobs' table
@@ -42,3 +31,6 @@ CREATE TABLE cronjobs (
 
 ALTER TABLE cronjobs
 ADD CONSTRAINT unique_hostname_script UNIQUE (hostname, cronjobsscripts);
+
+ALTER TABLE packages
+ADD CONSTRAINT unique_packages_script UNIQUE (hostname, packages);

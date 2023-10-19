@@ -35,36 +35,13 @@ if ($packagesData === null) {
     <table>
         <tr>
             <th>Hostname</th>
-            <th>git</th>
-            <th>wget</th>
-            <th>sudo</th>
-            <th>python</th>
-            <th>python3</th>
-            <th>net-tools</th>
-            <th>mysql</th>
-            <th>libpython</th>
-            <th>docker-ce-cli</th>
-            <th>docker-compose-plugin</th>
-            <th>curl</th>
-            <th>containerd</th>
+            <th>packages</th>
         </tr>
         <?php
         foreach ($packagesData as $row) {
             echo "<tr>";
             echo "<td>" . $row['hostname'] . "</td>";
-            echo "<td>" . $row['git'] . "</td>";
-            echo "<td>" . $row['wget'] . "</td>";
-            echo "<td>" . $row['sudo'] . "</td>";
-            echo "<td>" . $row['python'] . "</td>";
-            echo "<td>" . $row['python3'] . "</td>";
-            echo "<td>" . $row['nettools'] . "</td>";
-            echo "<td>" . $row['mysql'] . "</td>";
-            echo "<td>" . $row['libpython'] . "</td>";
-            echo "<td>" . $row['dockercecli'] . "</td>";
-            echo "<td>" . $row['dockercomposeplugin'] . "</td>";
-            echo "<td>" . $row['curl'] . "</td>";
-            echo "<td>" . $row['containerd'] . "</td>";
-            echo "</tr>";
+            echo "<td>" . $row['packages'] . "</td>";
         }
         ?>
     </table>
