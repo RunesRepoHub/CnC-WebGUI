@@ -43,7 +43,6 @@ while true; do
             fi; 
             wget -O ~/CnC-Agent/config.sh "$get_config_url" > /dev/null 2>&1;
             bash "$Install_Agent"; break 2;;  
-            3) bash "$Uninstall"; break 2;;  
             $((${#items[@]}+1))) 
             echo 
             echo -e "${Green}Go to https://runesrepohub.github.io/CnC-WebGUI/ for more information"${NC}; 
