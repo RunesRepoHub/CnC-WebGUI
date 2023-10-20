@@ -11,7 +11,7 @@ h1, h2, h3 {
 iframe {
   border: 3px solid #5e0000; /* 3px red border */
   border-radius: 10px; /* Rounded corners */
-  width: 80%;
+  width: 100%;
   height: 400px;
 }
 
@@ -241,6 +241,29 @@ img {
   margin: 20px auto;
 }
 
+@media only screen and (max-width: 620px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+  .overskift, .products-box {
+    width: 100%;
+    margin-left: 0;
+  }
+  .footer {
+    width: 60%;
+    margin-left: 20%;
+  }
+  .video {
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+  }
+  .products-box {
+    width: 100%;
+    margin-left: 1%;
+  }
+}
 
 @media only screen and (max-width: 1281px) {
   /* For mobile phones: */
@@ -271,6 +294,10 @@ img {
   }
   .iframe {
     width: 100%;
+  }
+  .products-box {
+    width: 100%;
+    margin-left: 1%;
   }
 }
 
