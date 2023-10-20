@@ -12,7 +12,7 @@ iframe {
   border: 3px solid #5e0000; /* 3px red border */
   border-radius: 10px; /* Rounded corners */
   width: 80%;
-  height: 60%;
+  height: 400px;
 }
 
 table {
