@@ -1,5 +1,28 @@
 # Change log for CnC-WebGUI and CnC-Agent
 
+# 1.4.1 (Theme Patch/Request Rate Patch)
+
+1. Added New design for the index page 
+    
+    * Added help/wiki links 
+
+    * Added embed link of this change log 
+
+    * Added feature/function description 
+
+    * Added "Made By RPH" Footer
+
+    * Made CSS a lot more mobile and tablet friendly 
+
+2. Patched Request Rate
+
+    * Packages no longer gets checked every minute but every 5 minutes.
+
+    * Cronjob no longer gets checked every minute but every 5 minutes.
+
+    * Overview no longer gets checked every minute but every 5 minutes.
+
+
 # 1.4 (Full Update for first release)
 
 ## Nginx (Packages, Cronjob and Overview)
