@@ -672,16 +672,18 @@
 <ol>
 <li>
 <p>Data Source:</p>
-</li>
+<ul>
 <li>
 <p>In "Version 1.2," the code retrieves data from a PostgreSQL database.</p>
 </li>
 <li>
 <p>In "Version 1.4," the code fetches data from an API using the file_get_contents function.</p>
 </li>
+</ul>
+</li>
 <li>
 <p>HTML Structure:</p>
-</li>
+<ul>
 <li>
 <p>In "Version 1.2," the code uses a single table to display the data.</p>
 </li>
@@ -692,47 +694,57 @@
 <li>Another table (dataTable) for data rows.</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>
 <p>Styling and JavaScript:</p>
-</li>
+<ul>
 <li>
 <p>"Version 1.4" includes a link to an external stylesheet (style.css) for styling purposes.</p>
 </li>
 <li>
 <p>It also includes JavaScript code for a search functionality that allows users to filter the data based on input.</p>
 </li>
+</ul>
+</li>
 <li>
 <p>Table Structure:</p>
-</li>
+<ul>
 <li>
 <p>In "Version 1.2," the table has multiple columns for specific package names (e.g., git, wget, sudo).</p>
 </li>
 <li>
 <p>In "Version 1.4," the table has a simplified structure with columns for "Hostname," "Package Name," and "Status."</p>
 </li>
+</ul>
+</li>
 <li>
 <p>HTML Tags:</p>
-</li>
+<ul>
 <li>
 <p>In "Version 1.2," there is a <body> tag with inline styling to set the background color.</p>
 </li>
 <li>
 <p>In "Version 1.4," the <body> tag and other HTML tags have been modified to include additional elements and classes for styling.</p>
 </li>
+</ul>
+</li>
 <li>
 <p>Error Handling:</p>
-</li>
+<ul>
 <li>
 <p>In "Version 1.2," error handling is done with die statements.</p>
 </li>
 <li>
 <p>In "Version 1.4," error handling is also done with die statements, but in the context of fetching and parsing data from the API.</p>
 </li>
-<li>
-<p>API Integration:</p>
+</ul>
 </li>
 <li>
-<p>"Version 1.4" includes API integration code to fetch data, parse JSON, and display it in the HTML table.</p>
+<p>API Integration:</p>
+<ul>
+<li>"Version 1.4" includes API integration code to fetch data, parse JSON, and display it in the HTML table.</li>
+</ul>
 </li>
 </ol>
 <blockquote>
@@ -742,7 +754,7 @@
 <ol>
 <li>
 <p>Function Refactoring:</p>
-</li>
+<ul>
 <li>
 <p>Added handleDatabaseOperationAll function, which handles database operations returning multiple rows.</p>
 </li>
@@ -752,41 +764,43 @@
 <li>
 <p>These functions were introduced to distinguish between queries returning multiple rows and queries returning a single row, improving code organization.</p>
 </li>
-<li>
-<p>Status Code Change:</p>
+</ul>
 </li>
 <li>
-<p>In the handleDatabaseOperationAll function, changed the response status from 201 to 200 for queries returning multiple rows. This ensures the HTTP status code accurately represents the success of retrieving data.</p>
+<p>Status Code Change:</p>
+<ul>
+<li>In the handleDatabaseOperationAll function, changed the response status from 201 to 200 for queries returning multiple rows. This ensures the HTTP status code accurately represents the success of retrieving data.</li>
+</ul>
 </li>
 <li>
 <p>Error Logging:</p>
-</li>
-<li>
-<p>Added a new function, logError, to log errors for debugging purposes. This enhances error handling and debugging capabilities.</p>
+<ul>
+<li>Added a new function, logError, to log errors for debugging purposes. This enhances error handling and debugging capabilities.</li>
+</ul>
 </li>
 <li>
 <p>New Endpoints:</p>
-</li>
-<li>
-<p>Added a new GET endpoint to retrieve all data from a specified table: /read/:table. It uses the handleDatabaseOperationAll function to return all rows from the specified table.</p>
+<ul>
+<li>Added a new GET endpoint to retrieve all data from a specified table: /read/:table. It uses the handleDatabaseOperationAll function to return all rows from the specified table.</li>
+</ul>
 </li>
 <li>
 <p>Updates to Create and Update Endpoints:</p>
-</li>
-<li>
-<p>In the create and update endpoints, changed the response status from 201 to 200 when using the handleDatabaseOperationSingle function. This change aligns the response status with the general practice for success in read operations.</p>
+<ul>
+<li>In the create and update endpoints, changed the response status from 201 to 200 when using the handleDatabaseOperationSingle function. This change aligns the response status with the general practice for success in read operations.</li>
+</ul>
 </li>
 <li>
 <p>New Read Endpoint for Specific Package:</p>
-</li>
-<li>
-<p>Added a new GET endpoint to retrieve data for a specific package within a table: /read/:table/:hostname/:package. This allows querying for specific package details within the specified table.</p>
+<ul>
+<li>Added a new GET endpoint to retrieve data for a specific package within a table: /read/:table/:hostname/:package. This allows querying for specific package details within the specified table.</li>
+</ul>
 </li>
 <li>
 <p>Package Name Validation:</p>
-</li>
-<li>
-<p>In the /update/packages/:hostname/:package endpoint, added validation to check if the specified package matches any column name. If it does, it allows updating; otherwise, it returns a 400 error.</p>
+<ul>
+<li>In the /update/packages/:hostname/:package endpoint, added validation to check if the specified package matches any column name. If it does, it allows updating; otherwise, it returns a 400 error.</li>
+</ul>
 </li>
 </ol>
 <blockquote>
