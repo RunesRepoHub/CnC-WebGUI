@@ -661,14 +661,45 @@
 
 
 <h1 id="change-log-for-cnc-webgui-and-cnc-agent">Change log for CnC-WebGUI and CnC-Agent<a class="headerlink" href="#change-log-for-cnc-webgui-and-cnc-agent" title="Permanent link">&para;</a></h1>
-<h1 id="12-first-release">1.2 (First Release)<a class="headerlink" href="#12-first-release" title="Permanent link">&para;</a></h1>
+<h1 id="141-theme-patchrequest-rate-patch">1.4.1 (Theme Patch/Request Rate Patch)<a class="headerlink" href="#141-theme-patchrequest-rate-patch" title="Permanent link">&para;</a></h1>
+<ol>
+<li>
+<p>Added New design for the index page </p>
 <ul>
-<li>Added basic code for everything</li>
-<li>Made all the basic script to collect information</li>
-<li>Made basic web interface</li>
+<li>
+<p>Added help/wiki links </p>
+</li>
+<li>
+<p>Added embed link of this change log </p>
+</li>
+<li>
+<p>Added feature/function description </p>
+</li>
+<li>
+<p>Added "Made By RPH" Footer</p>
+</li>
+<li>
+<p>Made CSS a lot more mobile and tablet friendly </p>
+</li>
 </ul>
+</li>
+<li>
+<p>Patched Request Rate</p>
+<ul>
+<li>
+<p>Packages no longer gets checked every minute but every 5 minutes.</p>
+</li>
+<li>
+<p>Cronjob no longer gets checked every minute but every 5 minutes.</p>
+</li>
+<li>
+<p>Overview no longer gets checked every minute but every 5 minutes.</p>
+</li>
+</ul>
+</li>
+</ol>
 <h1 id="14-full-update-for-first-release">1.4 (Full Update for first release)<a class="headerlink" href="#14-full-update-for-first-release" title="Permanent link">&para;</a></h1>
-<h2 id="php-packages-cronjob-and-overview">Php Packages, Cronjob and Overview<a class="headerlink" href="#php-packages-cronjob-and-overview" title="Permanent link">&para;</a></h2>
+<h2 id="nginx-packages-cronjob-and-overview">Nginx (Packages, Cronjob and Overview)<a class="headerlink" href="#nginx-packages-cronjob-and-overview" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Data Source:</p>
@@ -806,6 +837,47 @@
 <blockquote>
 <p>These changes enhance code modularity, improve error handling, and add new functionality for retrieving specific data within tables and better representation of HTTP status codes for different operations.</p>
 </blockquote>
+<h2 id="postgres">Postgres<a class="headerlink" href="#postgres" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>New database</p>
+<ul>
+<li>
+<p>Version 1.0 and 1.2 have "on/off" used MySQL as a database, this was MySQL 5.7. It was using 5.7 to avoid issues with authentication between dockers.</p>
+</li>
+<li>
+<p>The database was changed because the MySQL didn't want to play nice with the docker network, so it could send data to the WebGUI, but not the nodejs "API".</p>
+</li>
+</ul>
+</li>
+<li>
+<p>New method to send collected information to server</p>
+<ul>
+<li>MySQL was also based on the fact that the Agents running CnC-Agent had to install MySQL to send data to the database, this is both insecure and a hassle to setup so I went with postgres instead.</li>
+</ul>
+</li>
+<li>
+<p>API?</p>
+<ul>
+<li>The Nodejs "API" has been added so that if needed I can add a Redis server as a cache server for the database if it becomes overtaxed or overworked.</li>
+</ul>
+</li>
+</ol>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Updated Installation Script CnC-WebGUI</p>
+</li>
+<li>
+<p>Updated Installation Script CnC-Agent</p>
+</li>
+</ol>
+<h1 id="12-first-release">1.2 (First Release)<a class="headerlink" href="#12-first-release" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Added basic code for everything</li>
+<li>Made all the basic script to collect information</li>
+<li>Made basic web interface</li>
+</ul>
 
 
   
