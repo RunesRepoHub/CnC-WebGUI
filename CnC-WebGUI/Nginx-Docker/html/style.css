@@ -261,7 +261,11 @@ img {
   }
   .products-box {
     width: 100%;
-    margin-left: 1%;
+    margin-left: 0.1%;
+  }
+  .links {
+    width: 75%;
+    margin-left: 10%;
   }
 }
 
@@ -297,7 +301,7 @@ img {
   }
   .products-box {
     width: 100%;
-    margin-left: 1%;
+    margin-left: 0.1%;
   }
 }
 
