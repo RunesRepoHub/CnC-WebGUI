@@ -1,16 +1,8 @@
 # Change log for CnC-WebGUI and CnC-Agent
 
-# 1.2 (First Release)
-
-* Added basic code for everything
-* Made all the basic script to collect information
-* Made basic web interface
-
-
-
 # 1.4 (Full Update for first release)
 
-## Php Packages, Cronjob and Overview
+## Nginx (Packages, Cronjob and Overview)
 
 1. Data Source:
 
@@ -91,3 +83,35 @@
     * In the /update/packages/:hostname/:package endpoint, added validation to check if the specified package matches any column name. If it does, it allows updating; otherwise, it returns a 400 error.
 
 >These changes enhance code modularity, improve error handling, and add new functionality for retrieving specific data within tables and better representation of HTTP status codes for different operations.
+
+## Postgres 
+
+1. New database
+
+    * Version 1.0 and 1.2 have "on/off" used MySQL as a database, this was MySQL 5.7. It was using 5.7 to avoid issues with authentication between dockers.
+
+    * The database was changed because the MySQL didn't want to play nice with the docker network, so it could send data to the WebGUI, but not the nodejs "API".
+
+2. New method to send collected information to server
+
+    * MySQL was also based on the fact that the Agents running CnC-Agent had to install MySQL to send data to the database, this is both insecure and a hassle to setup so I went with postgres instead.
+
+3. API?
+
+    * The Nodejs "API" has been added so that if needed I can add a Redis server as a cache server for the database if it becomes overtaxed or overworked.
+
+## Installation 
+
+1. Updated Installation Script CnC-WebGUI
+
+2. Updated Installation Script CnC-Agent
+
+
+# 1.2 (First Release)
+
+* Added basic code for everything
+* Made all the basic script to collect information
+* Made basic web interface
+
+
+
