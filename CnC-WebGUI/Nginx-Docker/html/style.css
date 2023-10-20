@@ -8,6 +8,11 @@ h1, h2, h3 {
   color: #ffffff;
 }
 
+iframe {
+  border: 3px solid #5e0000; /* 3px red border */
+  border-radius: 10px; /* Rounded corners */
+}
+
 table {
   width: 60%;
   border-collapse: collapse;
