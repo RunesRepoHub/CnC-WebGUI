@@ -9,11 +9,12 @@ docker compose -f "$compose" -p cnc-webgui down
 docker rmi cnc-web:$version
 docker rmi cnc-pg:$version
 docker rmi cnc-node-api:$version
+docker rmi cnc-node-cnc:$version
 
 # Remove docker volume used by the dockers
 docker volume rm cnc-webgui_dbdata
 
-sudo sed -i '/Packages\.sh\|Cronjob\.sh\|Overview\.sh/d' /etc/crontab
+sudo sed -i '/Packages\.sh\|Cronjob\.sh\|Overview\.sh/d' /etc/crontab 
 
 # Define the paths of the scripts you want to remove from the crontab
 pack_cron="/root/CnC-Agent/Debian-Scripts/Packages.sh"
