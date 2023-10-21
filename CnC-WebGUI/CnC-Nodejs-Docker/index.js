@@ -55,36 +55,38 @@ app.delete('/servers/:id', async (req, res) => {
   }
 });
 
-// SSH into a server
+// Create a route that accepts various SSH commands
 app.post('/servers/ssh/:id', async (req, res) => {
-  const { id } = req.params;
-
-  const server = await db.oneOrNone('SELECT * FROM servers WHERE id = $1', id);
-
-  if (!server) {
-    res.status(404).send('Server not found');
-    return;
-  }
-
-  const conn = new Client();
-
-  conn.on('ready', () => {
-    conn.shell((err, stream) => {
-      if (err) throw err;
-
-      // You can interact with the SSH shell here
-      stream.on('data', (data) => {
-        res.write(data);
+    const { id } = req.params;
+    const { command } = req.body; // Add a command parameter in the request body
+  
+    const server = await db.oneOrNone('SELECT * FROM servers WHERE id = $1', id);
+  
+    if (!server) {
+      res.status(404).send('Server not found');
+      return;
+    }
+  
+    const conn = new Client();
+  
+    conn.on('ready', () => {
+      conn.shell((err, stream) => {
+        if (err) throw err;
+  
+        // You can interact with the SSH shell here
+        stream.on('data', (data) => {
+          res.write(data);
+        });
+  
+        stream.on('close', () => {
+          conn.end();
+          res.end();
+        });
+  
+        // Execute the specified command
+        stream.end(`${command}\n`);
       });
-
-      stream.on('close', () => {
-        conn.end();
-        res.end();
-      });
-
-      stream.end('ls -la\n');
     });
-  });
 
   conn.on('error', (err) => {
     res.status(500).send('SSH Error: ' + err.message);
