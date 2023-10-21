@@ -31,6 +31,7 @@ Version="curl https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/Dev/CnC-
 
 # Global Variables
 dbip="/root/CnC-Agent/.databaseip"
+sshpasswordpath="/root/CnC-Agent/.sshpassword"
 serverinstallcon="/root/CnC-WebGUI/.serverinstallcon"
 clientinstallcon="/root/CnC-Agent/.clientinstallcon"
 softwaremode=$(cat "/root/.softwaremode")
@@ -46,6 +47,12 @@ crontxt="/root/CnC-Agent/cron.txt"
 pack_cron="/root/CnC-Agent/Debian-Scripts/Packages.sh"
 over_cron="/root/CnC-Agent/Debian-Scripts/Overview.sh"
 cron_cron="/root/CnC-Agent/Debian-Scripts/Cronjob.sh"
+
+# Crontab-Installer.sh 
+pack_cron_CI="/root/CnC-Agent/Crontab-Installer/Packages.sh"
+over_cron_CI="/root/CnC-Agent/Crontab-Installer/Overview.sh"
+cron_cron_CI="/root/CnC-Agent/Crontab-Installer/Cronjob.sh"
+ssh_CI="/root/CnC-Agent/Crontab-Installer/SSH-Access.sh"
 
 
 # Install-Agent.sh
