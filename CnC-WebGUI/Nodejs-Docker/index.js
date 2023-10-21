@@ -1,5 +1,6 @@
 const express = require('express');
 const { Pool } = require('pg');
+const SSH2Client = require('ssh2').Client;
 
 const app = express();
 const port = 3000;
@@ -12,7 +13,11 @@ const pool = new Pool({
   port: 5432,
 });
 
+const pool = new Client(dbConfig);
+const sshClient = new SSH2Client();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Reusable function to handle database operations
 async function handleDatabaseOperationAll(query, values, res, tableName) {
@@ -144,6 +149,61 @@ app.get('/read/:table', (req, res) => {
   const query = `SELECT * FROM ${table}`; // Use backticks for template literals
   handleDatabaseOperationAll(query, [], res, 'cronjobs'); // Pass the table name for better error messages
 });
+
+app.post('/send-command', (req, res) => {
+  // Collect user input for SSH username and password
+  const { hostname, command, sshUsername, sshPassword } = req.body;
+
+  pool.connect()
+    .then(() => {
+      return pool.query('SELECT ip_address FROM hostnames WHERE hostname = $1', [hostname]);
+    })
+    .then((result) => {
+      const ip = result.rows[0].ip_address;
+
+      const sshConfig = {
+        port: 22, // Default SSH port
+        username: sshUsername,
+        password: sshPassword,
+        host: ip,
+      };
+
+      sshClient.on('ready', () => {
+        sshClient.shell((err, stream) => {
+          if (err) {
+            res.status(500).json({ error: 'SSH connection failed' });
+            return;
+          }
+
+          stream.write(`${command}\n`);
+          stream.end();
+
+          let output = '';
+
+          stream.on('data', (data) => {
+            output += data;
+          });
+
+          stream.on('close', () => {
+            sshClient.end();
+            pool.end();
+            res.json({ output });
+          });
+        });
+      });
+
+      sshClient.connect(sshConfig);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: 'Database connection failed' });
+    });
+});
+
+// Add a function to log errors
+function logError(error) {
+  console.error('Error:', error);
+}
+
 
 
 app.listen(port, () => {
