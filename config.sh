@@ -66,6 +66,7 @@ ver_path="/root/CnC-WebGUI/CnC-WebGUI/.env"
 web_path="/root/CnC-WebGUI/CnC-WebGUI/Nginx-Docker"
 pg_path="/root/CnC-WebGUI/CnC-WebGUI/Postgress-Docker"
 apt_path="/root/CnC-WebGUI/CnC-WebGUI/Nodejs-Docker"
+cnc_path="/root/CnC-WebGUI/CnC-WebGUI/CnC-Nodejs-Docker"
 compose="/root/CnC-WebGUI/CnC-WebGUI/docker-compose.yaml"
 
 # Run-Install-Debian.sh

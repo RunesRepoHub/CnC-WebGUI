@@ -10,6 +10,7 @@ dockerweb=$(docker ps | grep -i cnc-web: | awk '{print $2}')
 docker build -t cnc-web:$version "$web_path"
 docker build -t cnc-pg:$version "$pg_path"
 docker build -t cnc-node-api:$version "$apt_path"
+docker build -t cnc-node-cnc:$version "$cnc_path"
 
 docker compose -f "$compose" -p cnc-webgui down
 docker compose -f "$compose" -p cnc-webgui up -d

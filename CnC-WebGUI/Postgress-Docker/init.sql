@@ -29,6 +29,14 @@ CREATE TABLE cronjobs (
   cronjobsscripts text
 );
 
+CREATE TABLE servers (
+  id serial PRIMARY KEY,
+  name VARCHAR(255),
+  ip_address VARCHAR(15),
+  ssh_username VARCHAR(255),
+  ssh_password VARCHAR(255)
+);
+
 
 ALTER TABLE cronjobs
 ADD CONSTRAINT unique_hostname_script UNIQUE (hostname, cronjobsscripts);
