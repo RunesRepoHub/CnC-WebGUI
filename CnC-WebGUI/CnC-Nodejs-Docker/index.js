@@ -60,6 +60,11 @@ app.post('/servers/ssh/:id', async (req, res) => {
     const { id } = req.params;
     const { command } = req.body; // Add a command parameter in the request body
   
+    if (!command) {
+      res.status(400).send('Missing command in request body');
+      return;
+    }
+  
     const server = await db.oneOrNone('SELECT * FROM servers WHERE id = $1', id);
   
     if (!server) {
@@ -71,7 +76,10 @@ app.post('/servers/ssh/:id', async (req, res) => {
   
     conn.on('ready', () => {
       conn.shell((err, stream) => {
-        if (err) throw err;
+        if (err) {
+          conn.end();
+          return res.status(500).send('SSH Error: ' + err.message);
+        }
   
         // You can interact with the SSH shell here
         stream.on('data', (data) => {
@@ -84,13 +92,14 @@ app.post('/servers/ssh/:id', async (req, res) => {
         });
   
         // Execute the specified command
-        stream.end(`${command}\n`);
+        stream.write(`${command}\n`);
       });
     });
-
-  conn.on('error', (err) => {
-    res.status(500).send('SSH Error: ' + err.message);
-  });
+  
+    conn.on('error', (err) => {
+      res.status(500).send('SSH Error: ' + err.message);
+    });
+  
 
   conn.connect({
     host: server.ip_address,
