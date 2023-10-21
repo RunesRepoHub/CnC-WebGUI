@@ -63,3 +63,9 @@ curl -X DELETE http://localhost:3000/servers/1  # Replace 1 with the server's ID
 ```
 curl -X POST http://localhost:3000/servers/ssh/1  # Replace 1 with the server's ID
 ```
+
+### SSH Commands
+```
+curl -X POST -H "Content-Type: application/json" -d '{"command": "reboot"}' http://192.168.1.203:3001/servers/ssh/1
+
+```
