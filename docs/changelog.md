@@ -1,5 +1,24 @@
 # Change log for CnC-WebGUI and CnC-Agent
 
+# 1.4.3 (SSH Access)
+
+
+
+# 1.4.2 (CPU/Memory Performence Patch)
+
+1. CPU Usage 
+
+    * CPU usage has been lowered a lot on the agents 
+        (Reduced from 8~10% to ~0.5% with a peak every 5 mins)
+        (This might be incressed to 10-15 min, to limit uneeded overload)
+
+    * CPU usage has also been fix on the server part aswell.
+        (Same issue as above)
+
+2. Memory Usage
+
+    * The memory usage has been limited for all docker containers, to keep the usage of memory as low as possible.
+
 # 1.4.1 (Theme Patch/Request Rate Patch)
 
 1. Added New design for the index page 
