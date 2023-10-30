@@ -1,0 +1,40 @@
+name: publish
+on: [push]
+jobs:
+Build_Prod:
+runs-on: self-hosted
+steps:
+- uses: actions/checkout@v3
+- name: Login to GitHub Container Registry
+uses: docker/login-action@v1
+with:
+registry: ghcr.io
+username: ${{ github.actor }}
+password: ${{ secrets.TOKEN }}
+- name: Build the postgres Docker image
+run: |
+        cd CnC-WebGUI/Postgress-Docker/
+        docker build . -t cnc-webgui-pg -f Dockerfile
+        docker build . --tag ghcr.io/RunesRepoHub/cnc-webgui-pg:latest
+        docker push ghcr.io/RunesRepoHub/cnc-webgui-pg:latest
+
+- name: Build the Docker image
+run: |
+        cd CnC-WebGUI/Nginx-Docker/
+        docker build . -t cnc-webgui-nginx -f Dockerfile
+        docker build . --tag ghcr.io/RunesRepoHub/cnc-webgui-nginx:latest
+        docker push ghcr.io/RunesRepoHub/cnc-webgui-nginx:latest
+
+- name: Build the Docker image
+run: |
+        cd CnC-WebGUI/Nodejs-Docker/
+        docker build . -t cnc-webgui-api -f Dockerfile
+        docker build . --tag ghcr.io/RunesRepoHub/cnc-webgui-api:latest
+        docker push ghcr.io/RunesRepoHub/cnc-webgui-api:latest
+
+- name: Build the Docker image
+run: |
+        cd CnC-WebGUI/CnC-Nodejs-Docker/
+        docker build . -t cnc-webgui-cnc -f Dockerfile
+        docker build . --tag ghcr.io/RunesRepoHub/cnc-webgui-cnc:latest
+        docker push ghcr.io/RunesRepoHub/cnc-webgui-cnc:latest
