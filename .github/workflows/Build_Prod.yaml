@@ -1,5 +1,11 @@
 name: publish
-on: [push]
+on:
+    push:
+      branches: 
+      - Dev
+      - Production
+    pull_request:
+      branches: [ "Dev" ]
 jobs:
 Build_Prod:
 runs-on: self-hosted
