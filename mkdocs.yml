@@ -13,6 +13,7 @@ nav:
       - Understand The Source Code:
         - The CRUD API Docker: 'crud.md'
         - The Change Log: 'changelog.md'
+    - RP-Helpdesk Docs: 'https://runesrepohub.github.io/RPH-Docs/index.html'
 theme:
   icon:
       logo: fontawesome/brands/gitkraken
