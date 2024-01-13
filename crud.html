@@ -309,6 +309,23 @@
   
 
       
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://runesrepohub.github.io/RPH-Docs/index.html" class="md-tabs__link">
+        
+  
+    
+  
+  RP-Helpdesk Docs
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -576,6 +593,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    The CRUD API Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="crud.html" class="md-nav__link md-nav__link--active">
         
   
@@ -585,6 +613,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cnc-api" class="md-nav__link">
+    CnC API
+  </a>
+  
+    <nav class="md-nav" aria-label="CnC API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-server" class="md-nav__link">
+    Creating a Server:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-servers" class="md-nav__link">
+    Retrieving Servers:
+  </a>
+  
+    <nav class="md-nav" aria-label="Retrieving Servers:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-a-server" class="md-nav__link">
+    Updating a Server:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleting-a-server" class="md-nav__link">
+    Deleting a Server:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-into-a-server" class="md-nav__link">
+    SSH into a Server:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-commands" class="md-nav__link">
+    SSH Commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -626,6 +734,25 @@
   
 
     
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://runesrepohub.github.io/RPH-Docs/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RP-Helpdesk Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -645,6 +772,75 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cnc-api" class="md-nav__link">
+    CnC API
+  </a>
+  
+    <nav class="md-nav" aria-label="CnC API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-server" class="md-nav__link">
+    Creating a Server:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieving-servers" class="md-nav__link">
+    Retrieving Servers:
+  </a>
+  
+    <nav class="md-nav" aria-label="Retrieving Servers:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#updating-a-server" class="md-nav__link">
+    Updating a Server:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleting-a-server" class="md-nav__link">
+    Deleting a Server:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-into-a-server" class="md-nav__link">
+    SSH into a Server:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-commands" class="md-nav__link">
+    SSH Commands
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -677,6 +873,35 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl -X DELETE http://localhost:3000/items/:id
 </code></pre></div>
 <p>Make sure to replace 'your_username' and 'your_password' with your MySQL credentials in the database connection configuration.</p>
+<h2 id="cnc-api">CnC API<a class="headerlink" href="#cnc-api" title="Permanent link">&para;</a></h2>
+<h3 id="creating-a-server">Creating a Server:<a class="headerlink" href="#creating-a-server" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;{
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  &quot;name&quot;: &quot;My Server&quot;,
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  &quot;ip_address&quot;: &quot;your_server_ip&quot;,
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  &quot;ssh_username&quot;: &quot;your_ssh_username&quot;,
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  &quot;ssh_password&quot;: &quot;your_ssh_password&quot;
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>}&#39; http://localhost:3000/servers
+</code></pre></div>
+<h3 id="retrieving-servers">Retrieving Servers:<a class="headerlink" href="#retrieving-servers" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl http://localhost:3000/servers
+</code></pre></div>
+<h4 id="updating-a-server">Updating a Server:<a class="headerlink" href="#updating-a-server" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl -X PUT -H &quot;Content-Type: application/json&quot; -d &#39;{
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  &quot;name&quot;: &quot;Updated Server Name&quot;,
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  &quot;ip_address&quot;: &quot;updated_server_ip&quot;,
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  &quot;ssh_username&quot;: &quot;updated_ssh_username&quot;,
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  &quot;ssh_password&quot;: &quot;updated_ssh_password&quot;
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>}&#39; http://localhost:3000/servers/1  # Replace 1 with the server&#39;s ID
+</code></pre></div>
+<h3 id="deleting-a-server">Deleting a Server:<a class="headerlink" href="#deleting-a-server" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>curl -X DELETE http://localhost:3000/servers/1  # Replace 1 with the server&#39;s ID
+</code></pre></div>
+<h3 id="ssh-into-a-server">SSH into a Server:<a class="headerlink" href="#ssh-into-a-server" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>curl -X POST http://localhost:3000/servers/ssh/1  # Replace 1 with the server&#39;s ID
+</code></pre></div>
+<h3 id="ssh-commands">SSH Commands<a class="headerlink" href="#ssh-commands" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;{&quot;command&quot;: &quot;reboot&quot;}&#39; http://192.168.1.203:3001/servers/ssh/1
+</code></pre></div>
 
 
   
@@ -708,7 +933,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2022 RP-Helpdesk
+      Copyright &copy; 2023 RP-Helpdesk
     </div>
   
   
