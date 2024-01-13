@@ -128,8 +128,15 @@ if [[ $OS == "Debian GNU/Linux" && $VER == "10" ]]; then
     bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/CnC-WebGUI/Functions/Get-Repo.sh)
 
 
-## Check if OS is Debian 10     
+## Check if OS is Debian 11     
 elif [[ $OS == "Debian GNU/Linux" && $VER == "11" ]]; then
+    
+    ## Run Debian Installer
+    bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/Get-Repo.sh)
+
+
+# Check if OS is Debian 12     
+elif [[ $OS == "Debian GNU/Linux" && $VER == "12" ]]; then
     
     ## Run Debian Installer
     bash <(wget -qO- https://raw.githubusercontent.com/RunesRepoHub/CnC-WebGUI/$softwaremode/Functions/Get-Repo.sh)
